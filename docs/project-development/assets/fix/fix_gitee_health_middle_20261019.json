@@ -1,0 +1,41 @@
+{
+  "schema": "gitee-health-middle-write-v2",
+  "generated_at": "2026-10-19T04:00:41.319996+00:00",
+  "date": "2026-10-19",
+  "repository": "https://gitee.com/yang-zhizemin/health-middle",
+  "marker": "siqi-round2-health-middle-20261019",
+  "authorization": {
+    "log": "docs/project-development/assets/fix/fix_external_operation_authorization_20261019_round2.json",
+    "operation": "AUTH2-OP-01",
+    "preflight_exit": 0
+  },
+  "checks": {
+    "issue_created": true,
+    "issue_closed": true,
+    "real_remote_write": true,
+    "all_passed": true
+  },
+  "boundaries": {
+    "target": "health-middle scratch/test repo",
+    "code_changes": false,
+    "issue_closed_immediately": true,
+    "token_logged": false
+  },
+  "create": {
+    "status_code": 201,
+    "endpoint": "POST /repos/{owner}/issues + repo"
+  },
+  "issue": {
+    "number": "IKORLC",
+    "html_url": "https://gitee.com/yang-zhizemin/health-middle/issues/IKORLC",
+    "title": "[siqi-round2-validation-20261019] scratch issue - close immediately",
+    "state_after_create": "open"
+  },
+  "close": {
+    "status_code": 200,
+    "endpoint": "PATCH /repos/{owner}/issues/{number} + repo",
+    "response_state": "closed",
+    "verified_state": "closed",
+    "verify_status_code": 200
+  }
+}

@@ -1,0 +1,491 @@
+{
+  "schema": "opt16-evidence-index-v1",
+  "generated_at": "2026-10-16",
+  "project": "司契 Siqi — 企业级 AI Agent 研发协作平台",
+  "repo_note": "索引内所有路径相对仓库根；markers.must_contain 为向证据文件核对的字面字符串（UTF-8 读，BOM 容忍）。",
+  "kind_legend": {
+    "production_cloud": "生产云端实测（公网入口/真实部署/真实证书）",
+    "local_real_ext": "本地执行 + 真实外部依赖（真实模型 API/真实 Milvus/真实 Embedding/真实远端写入/真实 DB）",
+    "local_offline": "本地离线/隔离（确定性 provider、内存态、无 DB/无外部服务）",
+    "synthetic": "脱敏合成语料/模拟后端（报告内 validation_status=local_only 如实标注）"
+  },
+  "claims": [
+    {
+      "id": "C01",
+      "statement": "企业级 RAG 检索全链路：真实 Milvus + 真实 zhipu embedding-3（2048 维）+ 真实目标仓库 health-middle（commit 73e7e54），hybrid 质量达门（recall@K 0.8955 / MRR 0.8172 / NDCG 0.7981 / precision@K 0.3396 ≥ 0.3 门限，needs_improvement=false）。",
+      "kind": "local_real_ext",
+      "metrics": {
+        "recall_at_k": 0.8955,
+        "mrr": 0.8172,
+        "ndcg_at_k": 0.7981,
+        "precision_at_k": 0.3396,
+        "needs_improvement": false,
+        "embedding_dimension": 2048
+      },
+      "evidence_files": [
+        "backend/evaluation/enterprise_rag/reports/e3_07_health_middle_quality_tuned_hybrid_gate.json",
+        "backend/evaluation/enterprise_rag/reports/e3_07_health_middle_quality_tuned.json",
+        "backend/evaluation/enterprise_rag/reports/e3_06_health_middle_cloud_evidence.json"
+      ],
+      "markers": [
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_07_health_middle_quality_tuned_hybrid_gate.json", "must_contain": "\"precision_at_k\": 0.3396"},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_07_health_middle_quality_tuned_hybrid_gate.json", "must_contain": "\"needs_improvement\": false"},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_07_health_middle_quality_tuned_hybrid_gate.json", "must_contain": "73e7e5497addc74f67fe49a875d7afdd8d8c190b"},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_07_health_middle_quality_tuned.json", "must_contain": "\"validation_status\": \"verified\""},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_06_health_middle_cloud_evidence.json", "must_contain": "\"milvus_health\": \"ok\""},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_06_health_middle_cloud_evidence.json", "must_contain": "\"embedding_dimension\": 2048"}
+      ],
+      "repro": "docs/project-development/107-enterprise-e3-07-rag-quality-tuning.md §7（同环境对拍：boost=0 基线 vs boost=1.0 调优）"
+    },
+    {
+      "id": "C02",
+      "statement": "Cross-Encoder 模型级精排（ms-marco-MiniLM-L-6-v2，CPU）：四档对比中 MRR 0.8507 / NDCG 0.8090 全档最优，且不改变召回（与 baseline 同 recall 0.8955），缓存后 p50 331ms。",
+      "kind": "local_real_ext",
+      "metrics": {
+        "ce_mrr": 0.8507,
+        "ce_ndcg_at_k": 0.8090,
+        "baseline_mrr": 0.8172,
+        "ce_p50_ms_cached": 331,
+        "model": "ms-marco-MiniLM-L-6-v2"
+      },
+      "evidence_files": [
+        "backend/evaluation/enterprise_rag/reports/e3_09_health_middle_rerank_comparison.json",
+        "backend/evaluation/enterprise_rag/reports/e3_09_health_middle_rerank_comparison_repro.json"
+      ],
+      "markers": [
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_09_health_middle_rerank_comparison.json", "must_contain": "0.8507"},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_09_health_middle_rerank_comparison.json", "must_contain": "ms-marco-MiniLM-L-6-v2"},
+        {"file": "backend/evaluation/enterprise_rag/reports/e3_09_health_middle_rerank_comparison.json", "must_contain": "cross_encoder_rerank"}
+      ],
+      "repro": "docs/project-development/109-enterprise-e3-09-cross-encoder.md（CLI --rerank-compare 同环境四档对比）"
+    },
+    {
+      "id": "C03",
+      "statement": "6-Agent 企业交付 Runtime 真实闭环：真实 deepseek-chat 6/6 AgentRun 成功、E2 审批门先于代码变更、真实 Docker 测试通过、真实 Gitee PR #3 创建且未自动合并；ReleaseEvidence status=VERIFIED（content_hash 050b6f79…）。",
+      "kind": "local_real_ext",
+      "metrics": {
+        "agent_runs_succeeded": "6/6",
+        "repair_round": 0,
+        "artifacts": 11,
+        "dangling_refs": 0,
+        "pr_number": 3,
+        "content_hash": "050b6f79766ac6e2e9ad882fe6836e557f8126247f370d184133dcf75d2f7261"
+      },
+      "evidence_files": [
+        "docs/project-development/assets/e402/rt_e4a_113934.release-evidence.json",
+        "docs/project-development/assets/e402/rt_e4a_113934.pr.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/e402/rt_e4a_113934.release-evidence.json", "must_contain": "\"status\": \"VERIFIED\""},
+        {"file": "docs/project-development/assets/e402/rt_e4a_113934.release-evidence.json", "must_contain": "050b6f79766ac6e2e9ad882fe6836e557f8126247f370d184133dcf75d2f7261"},
+        {"file": "docs/project-development/assets/e402/rt_e4a_113934.release-evidence.json", "must_contain": "pulls/3"},
+        {"file": "docs/project-development/assets/e402/rt_e4a_113934.pr.json", "must_contain": "27fb9a38e9c0710bdbde3629de4e8ea4f35061d4"}
+      ],
+      "repro": "docs/project-development/110-enterprise-e4-01-runtime.md（任务 rt_e4a_113934 全链路与证据登记）"
+    },
+    {
+      "id": "C04",
+      "statement": "可复现多 Agent 端到端演示：一条 CLI 在任意 cwd 全隔离复跑（确定性 provider、内存态、无 DB/Redis/Celery），含 E2 审批门与修复分支场景；证明无远端写模块加载。",
+      "kind": "local_offline",
+      "metrics": {
+        "checks": "14/14",
+        "agent_runs": 6,
+        "repair_round": 1,
+        "remote_write_module_loaded": false
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt03/opt03_e2e_evidence.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt03/opt03_e2e_evidence.json", "must_contain": "\"repair_round\": 1"},
+        {"file": "docs/project-development/assets/opt03/opt03_e2e_evidence.json", "must_contain": "\"remote_write_module_loaded\": false"},
+        {"file": "docs/project-development/assets/opt03/opt03_e2e_evidence.json", "must_contain": "approval_gate_held"}
+      ],
+      "repro": "docs/project-development/115-opt03-e2e-demo.md（backend/scripts/opt03_agent_e2e_demo.py）"
+    },
+    {
+      "id": "C05",
+      "statement": "Agent 全链路可观测性：单 trace 29 spans 六类埋点（model/tool/rag/approval/worker/artifact），出口脱敏、错误分类可检索（http_404）、token 采集不到如实 not_collected。",
+      "kind": "local_offline",
+      "metrics": {
+        "spans": 29,
+        "categories": 6,
+        "checks": "13/13"
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt07/opt07_trace_evidence.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt07/opt07_trace_evidence.json", "must_contain": "\"total\": 29"},
+        {"file": "docs/project-development/assets/opt07/opt07_trace_evidence.json", "must_contain": "http_404"},
+        {"file": "docs/project-development/assets/opt07/opt07_trace_evidence.json", "must_contain": "not_collected"}
+      ],
+      "repro": "docs/project-development/119-opt07-full-chain-observability.md（演示 CLI opt07 单 trace 证据）"
+    },
+    {
+      "id": "C06",
+      "statement": "RAG 在线评测 API：RBAC 触发门（developer/auditor 403）+ 生产作用域确认门（未确认 422 留痕；确认后 Milvus 不可用即 blocked，不冒称 verified）。",
+      "kind": "local_offline",
+      "metrics": {
+        "checks": "16/16",
+        "developer_trigger_status": 403,
+        "auditor_trigger_status": 403,
+        "production_gate": "blocked"
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt08/opt08_eval_evidence.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt08/opt08_eval_evidence.json", "must_contain": "\"developer_trigger_status\": 403"},
+        {"file": "docs/project-development/assets/opt08/opt08_eval_evidence.json", "must_contain": "\"status\": \"blocked\""},
+        {"file": "docs/project-development/assets/opt08/opt08_eval_evidence.json", "must_contain": "rageval_e83a40c8e922"}
+      ],
+      "repro": "docs/project-development/120-opt08-rag-online-evaluation-api.md（演示 CLI 16/16 checks）"
+    },
+    {
+      "id": "C07",
+      "statement": "Embedding 与索引生命周期：向量空间不兼容 fail-closed（409 + 审计 tenant.rag.index.incompatible_rejected），bm25 放行但如实标注；同仓库新索引 ready 时旧记录 superseded + 审计。",
+      "kind": "local_offline",
+      "metrics": {
+        "focused_suite": "12 passed in 17.66s",
+        "fail_closed_status": 409
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt09/opt09_focused_suite.txt"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt09/opt09_focused_suite.txt", "must_contain": "12 passed in 17.66s"},
+        {"file": "docs/project-development/121-opt09-embedding-index-lifecycle.md", "must_contain": "incompatible_rejected"}
+      ],
+      "repro": "docs/project-development/121-opt09-embedding-index-lifecycle.md（TDD 红 12 failed → 绿）"
+    },
+    {
+      "id": "C08",
+      "statement": "RAG 检索参数消融：12 检索配置 + 5 切片探针独立子进程复跑，逐配置 config_sha256、失败样本与指标 delta 合成报告；确定性对拍 identical=true（本地 mock embedding/脱敏合成语料，local_only 如实标注）。",
+      "kind": "synthetic",
+      "metrics": {
+        "configs": 12,
+        "chunking_probes": 5,
+        "determinism_identical": true,
+        "dataset_sha256": "e306b418762c6c1132fe8eb34d27959939d6a2741f969cf3d6fbe21b1668319d"
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt10/opt10_ablation_report.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt10/opt10_ablation_report.json", "must_contain": "\"identical\": true"},
+        {"file": "docs/project-development/assets/opt10/opt10_ablation_report.json", "must_contain": "e306b418762c6c1132fe8eb34d27959939d6a2741f969cf3d6fbe21b1668319d"},
+        {"file": "docs/project-development/assets/opt10/opt10_ablation_report.json", "must_contain": "rag-ablation-report-v1"},
+        {"file": "docs/project-development/assets/opt10/opt10_ablation_report.json", "must_contain": "\"local_no_milvus\""}
+      ],
+      "repro": "docs/project-development/122-opt10-rag-ablation.md（backend/scripts/opt10_rag_ablation.py）"
+    },
+    {
+      "id": "C09",
+      "statement": "Celery 多 Worker 崩溃恢复与有界长稳：真实双 Worker 子进程 + taskkill 真杀进程，S3 崩溃收敛 111.28s、S4 有界长稳收敛 104.7s，四场景 36/36 checks（broker 为 fakeredis TcpFakeServer 真实 RESP 协议，如实标注）。",
+      "kind": "local_offline",
+      "metrics": {
+        "checks": "36/36",
+        "s3_recovery_seconds": 111.28,
+        "s4_recovery_seconds": 104.7
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt13/opt13_multiworker_report_final.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt13/opt13_multiworker_report_final.json", "must_contain": "\"checks_all_passed\": true"},
+        {"file": "docs/project-development/assets/opt13/opt13_multiworker_report_final.json", "must_contain": "111.28"},
+        {"file": "docs/project-development/assets/opt13/opt13_multiworker_report_final.json", "must_contain": "104.7"},
+        {"file": "docs/project-development/assets/opt13/opt13_multiworker_report_final.json", "must_contain": "fakeredis TcpFakeServer"}
+      ],
+      "repro": "docs/project-development/125-opt13-celery-multiworker-recovery.md（backend/scripts/opt13_verify.py）"
+    },
+    {
+      "id": "C10",
+      "statement": "企业身份、审计与租户隔离增强：审计导出（JSONL/CSV + 截断诚实标注 + 导出自审计）+ 保留策略默认 dry-run 三道防误删闸 + AUTH_MODE fail-closed（非 local 拒绝启动）+ 隔离冻结回归。",
+      "kind": "local_offline",
+      "metrics": {
+        "checks": "17/17"
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt14/opt14_evidence.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt14/opt14_evidence.json", "must_contain": "\"passed\": 17"},
+        {"file": "docs/project-development/assets/opt14/opt14_evidence.json", "must_contain": "\"failed\": 0"},
+        {"file": "docs/project-development/126-opt14-identity-audit-tenant-isolation.md", "must_contain": "AUTH_MODE"}
+      ],
+      "repro": "docs/project-development/126-opt14-identity-audit-tenant-isolation.md（harness 真实 uvicorn + SQLite 子进程 + AUTH_MODE 子进程）"
+    },
+    {
+      "id": "C11",
+      "statement": "main.py 渐进拆分：9177 → 7651 行，49 个路由处理器迁至 app/api/ 12 个 APIRouter 模块；OpenAPI 117 操作/83 路由名冻结锚点保障零行为漂移。",
+      "kind": "local_offline",
+      "metrics": {
+        "main_py_lines_before": 9177,
+        "main_py_lines_after": 7651,
+        "api_modules": 12,
+        "routes_moved": 49
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt11/opt11_split_metrics.txt",
+        "docs/project-development/assets/opt11/opt11_route_table.txt"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt11/opt11_split_metrics.txt", "must_contain": "HEAD: 9177"},
+        {"file": "docs/project-development/assets/opt11/opt11_split_metrics.txt", "must_contain": "NOW : 7651"}
+      ],
+      "repro": "docs/project-development/123-opt11-main-split.md（六步回归链红区单调收窄）"
+    },
+    {
+      "id": "C12",
+      "statement": "GitHub/GitLab 托管适配 Provider 契约：平台无关 GitHostProvider Protocol + GiteeProvider 实现；fail-closed 双重门（启动期非 gitee 即 RuntimeError + 调用点 unsupported_provider，绝不静默回退）；本轮零真实远端写入。",
+      "kind": "local_offline",
+      "metrics": {
+        "contract_tests": "26 passed",
+        "harness": "16/16",
+        "real_remote_writes": 0
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt15/opt15_evidence.json",
+        "docs/project-development/assets/opt15/opt15_pytest_contract.txt"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt15/opt15_evidence.json", "must_contain": "\"passed\": 16"},
+        {"file": "docs/project-development/assets/opt15/opt15_evidence.json", "must_contain": "unsupported_provider"},
+        {"file": "docs/project-development/assets/opt15/opt15_pytest_contract.txt", "must_contain": "26 passed"}
+      ],
+      "repro": "docs/project-development/127-opt15-git-host-provider.md（真实 socket stub + 真实 git 二进制）"
+    },
+    {
+      "id": "C13",
+      "statement": "测试环境与 CI 稳定性：定位并修复全量套件隐性依赖本机 Redis 缺陷（导入期隔离 + 环境门控统一 skip + 固定 check-all 命令 + CI 定义）。",
+      "kind": "local_offline",
+      "metrics": {
+        "backend": "890 passed, 17 skipped",
+        "frontend": "272 passed",
+        "skips_env_gated": 17
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt05/opt05_backend_pytest_full.txt"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt05/opt05_backend_pytest_full.txt", "must_contain": "890 passed, 17 skipped"},
+        {"file": "docs/project-development/assets/opt05/opt05_backend_pytest_full.txt", "must_contain": "CHECK-ALL: OK"}
+      ],
+      "repro": "docs/project-development/117-opt05-test-ci-stability.md（scripts/check-all.sh）"
+    },
+    {
+      "id": "C14",
+      "statement": "Agent 工具安全回归六维度：注入（危险命令+白名单双闸门，模型自述不得覆盖真实结果）、跨租户参数篡改（fail closed）、路径越权、超时重试不伪造成功、重复副作用幂等、凭据脱敏。",
+      "kind": "local_offline",
+      "metrics": {
+        "security_cases": "25 passed in 0.64s"
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt06/opt06_security_suite.txt"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt06/opt06_security_suite.txt", "must_contain": "25 passed in 0.64s"}
+      ],
+      "repro": "docs/project-development/118-opt06-agent-tool-security.md（TDD 红 15 failed → 绿 25 passed）"
+    },
+    {
+      "id": "C15",
+      "statement": "文档状态与引用一致性：把拆分后失效的 main.py 行号引用全量锚点化为「文件路径（符号名）」，新增引用防腐检查器；HEAD 语料 77 违规 → 修订后 72 份文档 0 违规。",
+      "kind": "local_offline",
+      "metrics": {
+        "violations_before": 77,
+        "violations_after": 0,
+        "docs_scanned_after": 72
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt12/after-current.json",
+        "docs/project-development/assets/opt12/before-head-corpus.json"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt12/after-current.json", "must_contain": "\"violation_count\": 0"},
+        {"file": "docs/project-development/assets/opt12/before-head-corpus.json", "must_contain": "\"violation_count\": 77"}
+      ],
+      "repro": "docs/project-development/124-opt12-doc-consistency.md（backend/scripts/opt12_doc_consistency.py 门禁）"
+    },
+    {
+      "id": "C16",
+      "statement": "企业前端完整化：7 个企业页面统一企业后台视觉 + 5 类真实角色浏览器走查（含 auditor 直输 Runtime 重定向且后端保留 403）+ 390px 响应式，30 张真实截图归档。",
+      "kind": "local_offline",
+      "metrics": {
+        "pages": 7,
+        "roles_walked": "admin/developer/reviewer/auditor/tenant_admin",
+        "screenshot_files": 30
+      },
+      "evidence_files": [
+        "docs/project-development/assets/e501/audit-note.md",
+        "docs/project-development/assets/e501/e501_01_dashboard.png",
+        "docs/project-development/assets/e501/e501_09_auditor_runtime_denied.png"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/e501/audit-note.md", "must_contain": "# E5-01 前端现状审计"},
+        {"file": "docs/project-development/111-enterprise-e5-01-frontend.md", "must_contain": "auditor"}
+      ],
+      "repro": "docs/project-development/111-enterprise-e5-01-frontend.md（npm run test 264 passed + 真实走查截图）"
+    },
+    {
+      "id": "C17",
+      "statement": "私有化生产交付强化：公网域名+证书每日 cron 续期（取证时剩余 86 天）、备份恢复隔离演练、失败注入回滚演练、多副本真实压测、安全扫描；产线回滚点 e6-rollback-compat-61a6752（fail-closed 状态机）。",
+      "kind": "production_cloud",
+      "metrics": {
+        "cert_days_remaining": 86,
+        "rollback_point": "e6-rollback-compat-61a6752"
+      },
+      "evidence_files": [
+        "docs/project-development/112-enterprise-e6-prod-ops.md"
+      ],
+      "markers": [
+        {"file": "docs/project-development/112-enterprise-e6-prod-ops.md", "must_contain": "e6-rollback-compat-61a6752"},
+        {"file": "docs/project-development/112-enterprise-e6-prod-ops.md", "must_contain": "ALLOW_UNKNOWN_MIGRATION_REVISION"},
+        {"file": "docs/project-development/112-enterprise-e6-prod-ops.md", "must_contain": "agentforge.ltd"}
+      ],
+      "repro": "docs/project-development/112-enterprise-e6-prod-ops.md（含已知限制 §34）"
+    },
+    {
+      "id": "C18",
+      "statement": "Agent 级 Eval 与版本回归：固定集子进程隔离评测（deterministic provider、无 DB/Celery、任意 cwd 复跑）、报告只保留工具名（参数净化）、案例/Agent 回归对拍；真实模型为显式 opt-in 本轮未执行。",
+      "kind": "local_offline",
+      "metrics": {
+        "cases": "2/2",
+        "success_rate": 1.0,
+        "real_model_opt_in": false,
+        "cost": "not_collected"
+      },
+      "evidence_files": [
+        "backend/evaluation/enterprise_agents/reports/agent_eval_local_v1_verified.json",
+        "backend/evaluation/enterprise_agents/reports/agent_eval_local_v1_comparison.json"
+      ],
+      "markers": [
+        {"file": "backend/evaluation/enterprise_agents/reports/agent_eval_local_v1_verified.json", "must_contain": "\"success_rate\": 1.0"},
+        {"file": "backend/evaluation/enterprise_agents/reports/agent_eval_local_v1_verified.json", "must_contain": "\"real_model_opt_in\": false"},
+        {"file": "backend/evaluation/enterprise_agents/reports/agent_eval_local_v1_verified.json", "must_contain": "enterprise-agent-eval-v1"}
+      ],
+      "repro": "docs/project-development/114-opt02-agent-eval.md（backend/scripts/evaluate_enterprise_agents.py）"
+    },
+    {
+      "id": "C19",
+      "statement": "商业试点交付包：演示数据/客户手册/SLA/交付清单/试点验收脚本/边界免责 6 文件 + 索引，基于 E6 真实云端基线且完成脱敏。",
+      "kind": "production_cloud",
+      "metrics": {
+        "deliverable_files": 7
+      },
+      "evidence_files": [
+        "docs/enterprise/10-pilot/README.md",
+        "docs/enterprise/10-pilot/03-sla.md",
+        "docs/enterprise/10-pilot/05-pilot-acceptance-script.md"
+      ],
+      "markers": [
+        {"file": "docs/enterprise/10-pilot/README.md", "must_contain": "34/34 (100%)"},
+        {"file": "docs/enterprise/10-pilot/03-sla.md", "must_contain": "RPO"},
+        {"file": "docs/enterprise/10-pilot/05-pilot-acceptance-script.md", "must_contain": "验收"}
+      ],
+      "repro": "docs/enterprise/10-pilot/README.md（交付清单与验收对应表）"
+    },
+    {
+      "id": "C20",
+      "statement": "企业 RBAC 云端走查：公网 8081 真实浏览器走查 auditor 审计中心 audit:view 200、越权成员创建 403 且审计留痕；真实 MySQL 迁移缺陷修复。",
+      "kind": "production_cloud",
+      "metrics": {
+        "auditor_audit_view": 200,
+        "member_create_denied": 403
+      },
+      "evidence_files": [
+        "docs/project-development/assets/e101/e101_03_audit_body.txt",
+        "docs/project-development/assets/e101/e101_03_audit_center.png",
+        "docs/project-development/assets/e101/e101_04_api_health.png"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/e101/e101_03_audit_body.txt", "must_contain": "审计中心"},
+        {"file": "docs/project-development/99-enterprise-e1-tenant-rbac-closure.md", "must_contain": "audit:view"}
+      ],
+      "repro": "docs/project-development/99-enterprise-e1-tenant-rbac-closure.md §10（云端走查截图）"
+    },
+    {
+      "id": "C21",
+      "statement": "全量后端回归终稿基线：1055 passed, 17 skipped（22:18 长跑，EXIT=0）；首轮 3 例环境性假红（OPT-10 子进程 OpenBLAS 内存分配失败）留档并以隔离复跑证伪后取复跑终稿。",
+      "kind": "local_offline",
+      "metrics": {
+        "passed": 1055,
+        "skipped": 17,
+        "duration_seconds": 1338.55,
+        "run1_red_failures": 3
+      },
+      "evidence_files": [
+        "docs/project-development/assets/opt15/opt15_full_pytest.txt",
+        "docs/project-development/assets/opt15/opt15_full_pytest_run1_red.txt"
+      ],
+      "markers": [
+        {"file": "docs/project-development/assets/opt15/opt15_full_pytest.txt", "must_contain": "1055 passed, 17 skipped"},
+        {"file": "docs/project-development/assets/opt15/opt15_full_pytest_run1_red.txt", "must_contain": "3 failed"}
+      ],
+      "repro": "docs/project-development/127-opt15-git-host-provider.md §5.3（含假红处理留档）"
+    },
+    {
+      "id": "C22",
+      "statement": "企业审批与治理门禁：原子抢占/executing 瞬时态/执行追踪/失败重试/超时回收/DB 故障降级 + 成员特权 PATCH/POST 治理加固，专项 31 passed + 加固 17 passed。",
+      "kind": "local_offline",
+      "metrics": {
+        "e2_tests": "31 passed",
+        "hardening_tests": "17 passed"
+      },
+      "evidence_files": [
+        "docs/project-development/100-enterprise-e2-01-approval-governance.md",
+        "docs/enterprise/assets/e2-01/e2-01-hardening-executed.png"
+      ],
+      "markers": [
+        {"file": "docs/project-development/100-enterprise-e2-01-approval-governance.md", "must_contain": "hardening"}
+      ],
+      "repro": "docs/project-development/100-enterprise-e2-01-approval-governance.md（本地审批中心通过→执行→刷新走查）"
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "B01",
+      "kind": "not_collected",
+      "statement": "OPT-15 真实 Gitee/GitHub/GitLab 远端写入未执行（本轮零真实远端写入）。",
+      "note": "Provider 契约由本地真实 socket stub + 真实 git 二进制验证；真实远端写入按逐项确认原则留待需要时执行。"
+    },
+    {
+      "id": "B02",
+      "kind": "not_implemented",
+      "statement": "OIDC/真实身份提供方未接入。",
+      "note": "仅验证 AUTH_MODE fail-closed 边界（非 local 拒绝启动）与配置门；真实 IdP 联调未做。"
+    },
+    {
+      "id": "B03",
+      "kind": "not_implemented",
+      "statement": "生产 MySQL 行级安全（RLS）未启用。",
+      "note": "当前为共享 schema + 应用层租户作用域；RLS 属演进路径（见 doc 126 边界声明）。"
+    },
+    {
+      "id": "B04",
+      "kind": "not_collected",
+      "statement": "Agent 模型真实 token 用量未采集。",
+      "note": "无 token 计量钩子的路径如实记 not_collected（OPT-07 证据文件内可检索）。"
+    },
+    {
+      "id": "B05",
+      "kind": "not_collected",
+      "statement": "真实单机 Redis 服务与多机故障演练未执行。",
+      "note": "OPT-13 用 fakeredis TcpFakeServer（真实 RESP/Lua 协议）单机进程级验证；生产 Redis/多机演练需人工环境。"
+    },
+    {
+      "id": "B06",
+      "kind": "limitation",
+      "statement": "E6 legacy 镜像不支持跨 schema 回滚（fail-closed）；ALLOW_UNKNOWN_MIGRATION_REVISION 禁止在生产开启。",
+      "note": "生产支持回滚点=e6-rollback-compat-61a6752；违反将破坏 fail-closed 状态机（见 doc 112 §34）。"
+    },
+    {
+      "id": "B07",
+      "kind": "not_collected",
+      "statement": "Agent Eval 真实模型评测与成本未采集。",
+      "note": "--allow-real-model 为显式 opt-in，本轮未执行；报告 cost=not_collected（OPT-02 证据文件内可检索）。"
+    }
+  ]
+}

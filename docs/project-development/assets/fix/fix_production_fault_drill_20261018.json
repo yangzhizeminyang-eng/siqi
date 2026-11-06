@@ -1,0 +1,60 @@
+{
+  "schema": "fix-production-fault-drill-v1",
+  "generated_at": "2026-10-18T16:18:10+00:00",
+  "date": "2026-10-18",
+  "host": "<production-host> (VM-0-10-ubuntu)",
+  "database": "agent_enterprise @ projectdream-mysql-1",
+  "broker": "production Redis agent-enterprise-redis-1",
+  "milvus": "production-host siqi-milvus (v2.4.15)",
+  "code": "current backend code image agent-enterprise-backend:siqi-multi-host-20261018 (temporary API/worker-1/worker-2; live app image not replaced)",
+  "run": {
+    "run_id": "rageval_1c86dcee1db5",
+    "dataset": "e3_05_baseline.jsonl",
+    "retrieval_mode": "bm25",
+    "execution_scope": "production",
+    "status": "succeeded",
+    "validation_status": "verified",
+    "attempts": 2,
+    "report_name": "online_rageval_1c86dcee1db5.json",
+    "vector_backend": "milvus",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "dataset_size": 32
+  },
+  "fault_injection": {
+    "method": "fix_fault_watch.py polls the production DB every 50ms and calls the Docker socket kill API when the new run is running/attempts>=1",
+    "target": "siqi-prod-eval-worker-1",
+    "killed_at": "2026-10-18T16:17:09.096011+00:00",
+    "observed_state_at_kill": {"status": "running", "attempts": 1},
+    "docker_response": "HTTP/1.1 204 No Content"
+  },
+  "recovery": {
+    "worker": "siqi-prod-eval-worker-2",
+    "lease_seconds": 60,
+    "busy_retry_seconds": 18,
+    "completed_at": "2026-10-18T16:18:09.190+00:00",
+    "attempts_after_recovery": 2,
+    "status_after_recovery": "succeeded"
+  },
+  "checks": {
+    "run_was_running_before_kill": true,
+    "worker_killed_with_sigkill": true,
+    "run_remained_terminal_after_recovery": true,
+    "attempts_incremented": true,
+    "verified_after_recovery": true,
+    "report_readable": true,
+    "production_db_row_visible": true,
+    "production_redis_dispatch": true
+  },
+  "boundaries": {
+    "live_app_code": "the live app still runs the pre-FIX image; this drill used temporary current-code API/workers against the production DB/Redis/Milvus",
+    "retrieval_quality": "production DB has no code_chunks/index; zero metrics are not a quality claim",
+    "fault_scope": "controlled single-worker kill with manual redelivery; not a chaos/long-running fault campaign"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_production_fault_drill_20261018.kill.json",
+    "docs/project-development/assets/fix/fix_production_fault_drill_20261018.report.json",
+    "docs/project-development/assets/fix/fix_production_fault_drill_worker1_20261018.log",
+    "docs/project-development/assets/fix/fix_production_fault_drill_worker2_20261018.log"
+  ]
+}

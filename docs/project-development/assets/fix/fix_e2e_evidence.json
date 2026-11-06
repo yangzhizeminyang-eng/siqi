@@ -1,0 +1,163 @@
+{
+  "schema": "fix-e2e-evidence-v1",
+  "generated_at": "2026-10-18T11:10:30.215801+00:00",
+  "boundaries": {
+    "broker": "fakeredis TcpFakeServer (isolated temporary port)",
+    "real_redis": "not_used",
+    "database": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\fix-e2e\\run_20261018_191025\\app.db",
+    "production_db": "not_used",
+    "milvus": "not_used",
+    "real_model": "not_used",
+    "real_gitee_write": "not_used",
+    "production_evaluation": "not_used"
+  },
+  "run": {
+    "run_id": "rageval_4ce390857889",
+    "tenant_id": "tenant_default",
+    "dataset": "e3_05_baseline.jsonl",
+    "retrieval_mode": "hybrid",
+    "top_k": 8,
+    "execution_scope": "isolated",
+    "status": "succeeded",
+    "validation_status": "local_only",
+    "report_name": "online_rageval_4ce390857889.json",
+    "summary": {
+      "total_cases": 32,
+      "passed_cases": 29,
+      "success_cases": 30,
+      "recall_at_k": 0.8438,
+      "precision_at_k": 0.1172,
+      "mrr": 0.8281,
+      "ndcg_at_k": 0.8322,
+      "latency_p50_ms": 13.6,
+      "latency_p95_ms": 16.3
+    },
+    "error": "",
+    "requested_by": "user_admin",
+    "requested_role": "tenant_owner",
+    "attempts": 1,
+    "created_at": "2026-10-18T11:10:42.643930Z",
+    "started_at": "2026-10-18T11:10:43.059338Z",
+    "finished_at": "2026-10-18T11:10:43.735886Z",
+    "updated_at": "2026-10-18T11:10:43.735886Z"
+  },
+  "trigger": {
+    "run_id": "rageval_4ce390857889",
+    "dispatch": {
+      "mode": "redis",
+      "enqueued": true,
+      "label": "run_rag_evaluation:rageval_4ce390857889"
+    },
+    "status": "queued"
+  },
+  "trace": {
+    "count": 33,
+    "categories": [
+      "rag",
+      "worker"
+    ],
+    "tenant_other_count": 0
+  },
+  "audit_export": {
+    "rows": [
+      {
+        "id": "audit_8119573c5ab6434c",
+        "event_type": "tenant.rag.eval.completed",
+        "tenant_id": "tenant_default",
+        "resource_type": "rag_evaluation",
+        "resource_id": "rageval_4ce390857889",
+        "actor_id": "user_admin",
+        "actor_name": "",
+        "summary": "在线评测完成 status=succeeded validation=local_only report=online_rageval_4ce390857889.json",
+        "diff_summary": [],
+        "created_at": "2026-10-18T11:10:43.745887+00:00",
+        "execution_step_ids": []
+      }
+    ],
+    "event_time": "2026-10-18T11:10:43.745887+00:00"
+  },
+  "retention": {
+    "db": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\fix-e2e\\run_20261018_191025\\retention.db",
+    "dry_run": {
+      "rc": 0,
+      "days": 90,
+      "cutoff": "2026-07-20T11:10:55.173635+00:00",
+      "total": 3,
+      "candidates": 3,
+      "deleted": 0,
+      "deleted_memory": 0,
+      "deleted_db": 0,
+      "dry_run": true,
+      "truncated": false,
+      "refused": false,
+      "reason": "",
+      "error_code": "",
+      "effective_max_delete": 10000,
+      "capped_by_policy": false
+    },
+    "invalid_zero": {
+      "rc": 2,
+      "days": 90,
+      "cutoff": null,
+      "total": 0,
+      "candidates": 0,
+      "deleted": 0,
+      "deleted_memory": 0,
+      "deleted_db": 0,
+      "dry_run": false,
+      "truncated": false,
+      "refused": true,
+      "reason": "max_delete=0 非法：必须为正整数（0 不会解释为删除 1 条）；已拒绝且未修改任何事件",
+      "error_code": "invalid_max_delete",
+      "effective_max_delete": 10000,
+      "capped_by_policy": false,
+      "rows_after": 3
+    },
+    "apply_capped": {
+      "rc": 0,
+      "days": 90,
+      "cutoff": "2026-07-20T11:11:10.401031+00:00",
+      "total": 3,
+      "candidates": 3,
+      "deleted": 2,
+      "deleted_memory": 0,
+      "deleted_db": 2,
+      "dry_run": false,
+      "truncated": true,
+      "refused": false,
+      "reason": "",
+      "error_code": "",
+      "effective_max_delete": 2,
+      "capped_by_policy": false,
+      "rows_after": 1
+    }
+  },
+  "checks": {
+    "dispatch_redis_queued": true,
+    "worker_terminal_succeeded": true,
+    "run_persisted_after_memory_reset": true,
+    "report_file_written": true,
+    "admin_login": true,
+    "api_reads_worker_terminal": true,
+    "api_reads_worker_report": true,
+    "worker_trace_visible": true,
+    "rag_trace_visible": true,
+    "trace_tenant_filtered": true,
+    "trace_redaction": true,
+    "observer_login": true,
+    "audit_export_time_filtered": true,
+    "audit_event_time_is_current": true,
+    "isolated_seed_compatible": true,
+    "embedding_change_vector_rejected": true,
+    "embedding_change_bm25_annotated": true,
+    "retention_dry_run_no_delete": true,
+    "retention_invalid_zero_rejected_before_change": true,
+    "retention_apply_capped": true
+  },
+  "work_dir": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\fix-e2e\\run_20261018_191025",
+  "logs": {
+    "broker": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\fix-e2e\\run_20261018_191025\\broker.log",
+    "worker": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\fix-e2e\\run_20261018_191025\\worker.log"
+  },
+  "all_passed": true
+}

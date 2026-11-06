@@ -1,0 +1,75 @@
+{
+  "dataset_sha256": "9789e0c03b2688573ffe57b7b4bc51f81083da58b0ea69d115ec40f2ef24a78d",
+  "baseline_versions": {
+    "model": "deterministic-v1",
+    "prompt": "agent-prompts-v1"
+  },
+  "candidate_versions": {
+    "model": "deterministic-v1",
+    "prompt": "agent-prompts-v1"
+  },
+  "regression_count": 0,
+  "regressions": [],
+  "improvement_count": 0,
+  "improvements": [],
+  "agent_regressions": [],
+  "agent_improvements": [],
+  "success_rate_delta": 0.0,
+  "latency_p50_delta_ms": 25.7,
+  "agent_deltas": {
+    "code_change_agent": {
+      "runs_delta": 0,
+      "success_rate_delta": 0.0,
+      "latency_p50_delta_ms": 0.04,
+      "tool_calls_delta": 0,
+      "failure_classes_delta": {
+        "none": 0
+      }
+    },
+    "planner_agent": {
+      "runs_delta": 0,
+      "success_rate_delta": 0.0,
+      "latency_p50_delta_ms": 0.02,
+      "tool_calls_delta": 0,
+      "failure_classes_delta": {
+        "none": 0
+      }
+    },
+    "repository_research_agent": {
+      "runs_delta": 0,
+      "success_rate_delta": 0.0,
+      "latency_p50_delta_ms": 0.02,
+      "tool_calls_delta": 0,
+      "failure_classes_delta": {
+        "none": 0
+      }
+    },
+    "requirement_agent": {
+      "runs_delta": 0,
+      "success_rate_delta": 0.0,
+      "latency_p50_delta_ms": 10.54,
+      "tool_calls_delta": 0,
+      "failure_classes_delta": {
+        "none": 0
+      }
+    },
+    "review_security_agent": {
+      "runs_delta": 0,
+      "success_rate_delta": 0.0,
+      "latency_p50_delta_ms": 0.01,
+      "tool_calls_delta": 0,
+      "failure_classes_delta": {
+        "none": 0
+      }
+    },
+    "test_release_agent": {
+      "runs_delta": 0,
+      "success_rate_delta": 0.0,
+      "latency_p50_delta_ms": 0.03,
+      "tool_calls_delta": 0,
+      "failure_classes_delta": {
+        "none": 0
+      }
+    }
+  }
+}

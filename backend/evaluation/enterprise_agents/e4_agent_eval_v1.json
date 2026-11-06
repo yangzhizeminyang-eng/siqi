@@ -1,0 +1,62 @@
+{
+  "dataset_id": "enterprise-agent-eval-v1",
+  "workflow_version": 2,
+  "cases": [
+    {
+      "case_id": "approved-happy-path",
+      "title": "Local feature request completes after approval",
+      "issue": "Add a deterministic local feature and verify it with isolated tests.",
+      "approval_decision": "approve",
+      "expected": {
+        "workflow_status": "succeeded",
+        "agent_types": [
+          "requirement_agent",
+          "repository_research_agent",
+          "planner_agent",
+          "code_change_agent",
+          "review_security_agent",
+          "test_release_agent"
+        ],
+        "artifact_types": [
+          "RequirementArtifact",
+          "ResearchArtifact",
+          "CodeContextArtifact",
+          "PlanArtifact",
+          "PatchArtifact",
+          "DiffArtifact",
+          "ReviewArtifact",
+          "SecurityRiskArtifact",
+          "TestReportArtifact",
+          "PRDescriptionArtifact",
+          "ReleaseEvidenceArtifact"
+        ],
+        "tool_trace": {},
+        "approval_boundary": "approved_before_code_change",
+        "failure_class": "none"
+      }
+    },
+    {
+      "case_id": "approval-rejected",
+      "title": "Rejected plan never starts CodeChangeAgent",
+      "issue": "Propose a change that requires explicit approval before execution.",
+      "approval_decision": "reject",
+      "expected": {
+        "workflow_status": "failed",
+        "agent_types": [
+          "requirement_agent",
+          "repository_research_agent",
+          "planner_agent"
+        ],
+        "artifact_types": [
+          "RequirementArtifact",
+          "ResearchArtifact",
+          "CodeContextArtifact",
+          "PlanArtifact"
+        ],
+        "tool_trace": {},
+        "approval_boundary": "rejected_before_code_change",
+        "failure_class": "approval_rejected"
+      }
+    }
+  ]
+}

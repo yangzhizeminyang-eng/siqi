@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-09-23T02:47:39.321477+00:00",
+  "repository_url": "https://gitee.com/yang-zhizemin/health-middle",
+  "project_id": "proj_health_middle",
+  "repository_id": "repo_health_middle",
+  "commit_sha": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+  "index_id": "idx_health_middle_73e7e54",
+  "index_commit_sha": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+  "commit_index_match": true,
+  "embedding_model": "embedding-3",
+  "embedding_model_configured": true,
+  "embedding_dimension": 2048,
+  "collection_name": "code_idx_health_middle_73e7e54",
+  "milvus_health": "ok",
+  "milvus_server_available": true,
+  "collection_exists": true,
+  "vector_dimension": 2048,
+  "expected_vector_dimension": 2048,
+  "dimension_match": true,
+  "index_exists": true,
+  "index_names": [
+    "embedding"
+  ],
+  "query_success": true,
+  "fallback_used": false,
+  "validation_status": "verified",
+  "evidence_command_names": [
+    "git ls-remote Origin HEAD",
+    "scripts.evaluate_enterprise_rag --require-milvus --all-modes"
+  ]
+}

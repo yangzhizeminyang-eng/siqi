@@ -1,0 +1,53 @@
+schema=siqi-production-host-redis-ha-v1
+timestamp=20261018_224411
+topology=live production Redis (master) + isolated replica container on same Docker network; no master restart
+--- master before ---
+role:master
+connected_slaves:0
+master_replid:903357da526e92455cdb3d8a6b041e9a0bb50011
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:2
+0
+--- master BGSAVE/BGREWRITEAOF ---
+Background saving started
+rdb_last_save_time:1792334651
+rdb_last_bgsave_status:ok
+aof_enabled:1
+aof_last_bgrewrite_status:ok
+aof_last_write_status:ok
+Background append only file rewriting started
+aof_enabled:1
+aof_last_bgrewrite_status:ok
+aof_rewrites:1
+aof_rewrites_consecutive_failures:0
+aof_last_write_status:ok
+--- replica start ---
+replica_master_link_status=up
+--- replica replication ---
+role:slave
+master_host:agent-enterprise-redis-1
+master_port:6379
+master_link_status:up
+slave_repl_offset:2
+master_repl_offset:2
+replica_dbsize=0
+--- master sees replica ---
+connected_slaves:1
+slave0:ip=172.26.0.5,port=6379,state=online,offset=2,lag=1
+--- manual promotion ---
+OK
+role:master
+connected_slaves:0
+OK
+promoted_get=ok
+--- restart promoted replica, AOF reload ---
+after_restart_ping=PONG
+after_restart_get=ok
+loading:0
+rdb_last_load_keys_loaded:0
+aof_enabled:1
+aof_last_write_status:ok
+aof_bytes=
+--- cleanup ---
+replica_container_removed=true
+evidence_file=/home/ubuntu/siqi-redis-ha-20261018_224411/evidence.txt

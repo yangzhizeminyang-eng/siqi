@@ -1,0 +1,19 @@
+# OPT-11 路由冻结锚点测试（迁移完成后 4/4 绿）
+# cmd: cd backend && APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true ENV_FILE="$PWD/tests/.env.hermetic-nonexistent" .venv/Scripts/python.exe -m pytest tests/test_opt11_main_split.py -v
+# env: local / in-memory / mock-fallback / hermetic ENV_FILE
+
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend
+configfile: pyproject.toml
+plugins: anyio-4.14.2, langsmith-0.12.2
+collecting ... collected 4 items
+
+tests/test_opt11_main_split.py::test_frozen_effective_table_matches PASSED [ 25%]
+tests/test_opt11_main_split.py::test_frozen_core_routes_all_still_served PASSED [ 50%]
+tests/test_opt11_main_split.py::test_migrated_handlers_live_in_domain_modules PASSED [ 75%]
+tests/test_opt11_main_split.py::test_health_smoke_after_split PASSED     [100%]
+
+============================== 4 passed in 5.15s ==============================
+EXIT=0

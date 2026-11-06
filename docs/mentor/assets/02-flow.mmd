@@ -1,0 +1,51 @@
+flowchart LR
+    ROOT["司契 Siqi<br/>企业级 AI Agent<br/>研发协作平台"]
+
+    ROOT --> V["① 版本分层"]
+    ROOT --> M["② 领域模型"]
+    ROOT --> S["③ 任务状态机"]
+    ROOT --> A["④ Agent 编排"]
+    ROOT --> R["⑤ RAG 检索"]
+    ROOT --> G["⑥ 治理与安全"]
+    ROOT --> F["⑦ 前端"]
+    ROOT --> O["⑧ 交付与运维"]
+
+    V --> V1["MVP 版<br/>单 Agent 任务闭环 · 规则兜底 · SQLite"]
+    V --> V2["团队版<br/>MySQL + Redis + Celery + Milvus + Runner"]
+    V --> V3["企业版<br/>多租户 + 6-Agent + 企业级 Hybrid RAG"]
+
+    M --> M1["租户域<br/>Tenant / Organization / Membership"]
+    M --> M2["研发域<br/>Project / Repository / RepositoryIndex / CodeChunk"]
+    M --> M3["任务域<br/>Task / IssueSnapshot / Plan / Diff / TestRun / PR"]
+    M --> M4["企业域<br/>RuntimeTask / RuntimeStep / Checkpoint / Lease / Artifact"]
+    M --> M5["审计域<br/>AuditEvent / TaskEvent / ExecutionStep"]
+
+    S --> S1["前序<br/>CREATED → ISSUE_FETCHED → CONTEXT_INDEXED → ANALYSIS_QUEUED"]
+    S --> S2["分析计划<br/>ANALYZED → PLAN_GENERATED"]
+    S --> S3["审批<br/>WAITING_APPROVAL → APPROVED"]
+    S --> S4["执行<br/>DIFF_GENERATED → TEST_RUNNING → TEST_FAILED / TESTED"]
+    S --> S5["终态<br/>COMPLETED / FAILED / CANCELLED"]
+
+    A --> A1["单 Agent 主链<br/>LangGraph 九节点 · workflow.py"]
+    A --> A2["企业 6-Agent<br/>Orchestrator + DB 租约 + Checkpoint"]
+    A --> A3["驱动与增强<br/>Celery Worker · DeepAgents 叙述"]
+
+    R --> R1["离线索引<br/>同步 → 解析切片 → 向量化 → 写 Milvus"]
+    R --> R2["在线检索<br/>向量 + BM25 → 加权 RRF → 精排 → 门禁"]
+    R --> R3["评测体系<br/>Recall / Precision / MRR / NDCG / Freshness"]
+    R --> R4["降级与开关<br/>RAG_MOCK_FALLBACK · 严格元数据过滤"]
+
+    G --> G1["审批门禁与风险分级<br/>6 条件二次判断 · L0 – L4"]
+    G --> G2["命令白名单与危险拦截<br/>test_runner.check_dangerous_command"]
+    G --> G3["审计双表与越权留痕<br/>audit_events + task_events"]
+    G --> G4["密钥不回显<br/>Token / API Key / JWT 不入响应与日志"]
+
+    F --> F1["页面<br/>13 个通用页面 + 7 个企业页面"]
+    F --> F2["路由权限守卫<br/>meta.permission + PermissionGate"]
+    F --> F3["实时 SSE 订阅<br/>Redis Pub/Sub → 前端重取"]
+    F --> F4["响应式<br/>桌面 / 768 / 390px"]
+
+    O --> O1["企业独立 Docker Compose<br/>agent-enterprise · 公网 8081"]
+    O --> O2["Nginx TLS 与证书续期<br/>80 → 308 → 443"]
+    O --> O3["备份恢复与回滚<br/>fail-closed 迁移 · 单一回滚点"]
+    O --> O4["监控与多副本压测<br/>Prometheus metrics · 告警"]

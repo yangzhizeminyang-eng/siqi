@@ -1,0 +1,38 @@
+sequenceDiagram
+    autonumber
+    participant AG as Agent 工具 rag_search
+    participant SV as enterprise_rag service
+    participant FL as filters 边界构造
+    participant TM as terms 查询改写
+    participant HY as hybrid 融合
+    participant BM as BM25 路
+    participant VB as 向量路
+    participant MV as Milvus
+    participant RR as reranker 精排
+    participant AU as 审计
+
+    AG->>SV: query + project_id + repository_id + commit_sha 或 ref
+    SV->>SV: 边界强制 缺版本边界直接 422
+    SV->>SV: 仓库与项目归属校验 跨租户 403
+    SV->>AU: 越权拒绝留痕 deny_and_audit
+    SV->>SV: 解析索引与新鲜度 fresh 或 stale
+    SV->>FL: build_filters tenant project repo commit index source_type
+    SV->>SV: reads.code_chunks_of_index 取受限子集真源
+    FL->>FL: filter_chunks 应用层硬过滤
+    SV->>TM: build_query_variants 原 query 恒首位
+    TM-->>SV: 变体列表 含技术术语桥接
+    loop 每个变体 权重按 decay 衰减
+        HY->>VB: _query_vector_results 带 MetadataFilters
+        VB->>MV: 向量检索 strict_metadata_filters
+        MV-->>VB: 候选
+        HY->>BM: retrieve_bm25 带 symbol_boost
+        BM-->>HY: 候选与分数
+        HY->>HY: 加权 RRF 累加
+    end
+    HY->>HY: support 支撑分门禁 + 符号加权 + 去重
+    HY-->>SV: 统一候选 retrieval_source 为 vector bm25 hybrid
+    SV->>RR: enterprise_rerank 只重排已有候选
+    RR->>RR: heuristic 或 llm 或 cross_encoder
+    RR-->>SV: 重排结果 + 可解释 trace
+    SV->>AU: rag.query 审计 不含代码正文
+    SV-->>AG: results + filters + fresh + variants + trace

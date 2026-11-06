@@ -1,0 +1,78 @@
+{
+  "schema": "fix-multi-host-validation-v1",
+  "generated_at": "2026-10-18T14:25:00+00:00",
+  "date": "2026-10-18",
+  "topology": {
+    "hosts": [
+      "Windows local workspace (D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform)",
+      "Ubuntu cloud <production-host> (tenant/enterprise host)"
+    ],
+    "broker": "temporary Redis 7.4-alpine container on cloud 127.0.0.1:16380 (no persistence), exposed to Windows via SSH tunnel",
+    "database": "temporary MySQL database siqi_multi_host on projectdream-mysql-1, accessed by cloud worker via 127.0.0.1:3306 and Windows worker via SSH tunnel 127.0.0.1:13306",
+    "cloud_worker_image": "agent-enterprise-backend:siqi-multi-host-20261018 (production image + current backend code overlay)",
+    "windows_worker": "local .venv + scripts.fix01_worker_boot:celery_app"
+  },
+  "success_runs": [
+    {
+      "run_id": "rageval_4060898c90c1",
+      "consumed_by": "cloud Worker (siqi-multi-cloud-worker)",
+      "status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "summary": {"total_cases": 32, "passed_cases": 29, "success_cases": 30},
+      "trace_count": 33,
+      "trace_categories": ["rag", "worker"],
+      "report": "/home/ubuntu/siqi-backups/multi-reports/online_rageval_4060898c90c1.json"
+    },
+    {
+      "run_id": "rageval_98867d69681e",
+      "consumed_by": "Windows Worker (windows2@127.0.0.1)",
+      "status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "summary": {"total_cases": 32, "passed_cases": 29, "success_cases": 30},
+      "trace_count": 33,
+      "trace_categories": ["rag", "worker"],
+      "report": "C:/temp/siqi-multi-context/reports/online_rageval_98867d69681e.json"
+    }
+  ],
+  "intermediate_failures": [
+    {
+      "run_id": "rageval_4165e23c882a",
+      "host": "cloud",
+      "status": "failed",
+      "error": "PermissionError writing report to /tmp/siqi-reports",
+      "conclusion": "temporary mount permission; fixed by chmod 777 on isolated temp dir; no stuck running"
+    },
+    {
+      "run_id": "rageval_65cbc72a08d3",
+      "host": "Windows",
+      "status": "failed",
+      "error": "OSError WinError 123 from escaped FIX01_REPORTS_DIR path",
+      "conclusion": "temporary env path escaping; fixed to forward-slash path; no stuck running"
+    }
+  ],
+  "checks": {
+    "cloud_worker_consumed_and_succeeded": true,
+    "windows_worker_consumed_and_succeeded": true,
+    "shared_mysql_visible_across_hosts": true,
+    "shared_redis_broker_across_hosts": true,
+    "both_runs_attempts_one": true,
+    "both_runs_trace_33": true,
+    "both_reports_readable": true,
+    "failure_runs_terminal_not_stuck": true
+  },
+  "cleanup": {
+    "windows_worker_stopped": true,
+    "ssh_tunnels_stopped": true,
+    "temp_redis_container_removed": true,
+    "temp_mysql_database_dropped": true,
+    "temp_mysql_user_dropped": true
+  },
+  "boundaries": {
+    "production_app": "not modified by this multi-host test; production migration was separate",
+    "production_data": "not used for test runs; temp DB dropped",
+    "multi_host_scope": "two-host smoke (Windows + cloud), not long-term multi-host stability",
+    "fault_injection": "not part of this run; covered separately by fix_real_redis_fault_recovery_20261018_v3.json"
+  }
+}

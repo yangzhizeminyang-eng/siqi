@@ -1,0 +1,46 @@
+
+# ---- 本地凭据与运行数据（禁止提交） ----
+.env
+backend/.env
+.data/
+backend/.data/
+# 本地产⽣的日志与运行告警（含运行的尾随空白/错误细节），禁止提交
+logs/
+backend/logs/
+# 本地非示例环境文件（保留 *.env.example）
+deploy/env/*.env
+# 前端本地运行开关（VITE_DATA_SOURCE 等），禁止提交
+frontend/.env.real
+frontend/.env.mock
+# TLS 证书、私钥和本地部署凭据（禁止进入 Git）
+deploy/certs/
+deploy/secrets/
+cloud-cookies.txt
+*.key
+*.crt
+*.csr
+*.pem
+
+# ---- Python / test generated files ----
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ---- Local runtime logs and vector database ----
+*.log
+tmp_milvus.db/
+
+# ---- Enterprise E4 local validation workspaces and evidence scratch ----
+backend/_e4_health_middle/
+backend/_ws_e4a*/
+backend/_e4_release_evidence/
+backend/scripts/e4a_evidence_*.json
+
+# ---- Local export / presentation artifacts ----
+*.zip
+*.7z
+*.rar
+*.mp4
+*.mov
+*.pptx
+*.pdf

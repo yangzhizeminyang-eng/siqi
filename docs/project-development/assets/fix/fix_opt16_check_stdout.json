@@ -1,0 +1,11 @@
+{
+  "schema": "opt16-evidence-check-v1",
+  "index": "docs/project-development/assets/opt16/opt16_evidence_index.json",
+  "doc": "docs/project-development/128-opt16-resume-evidence-pack.md",
+  "total_claims": 22,
+  "total_boundaries": 7,
+  "total_markers": 61,
+  "violation_count": 0,
+  "violations": [],
+  "ok": true
+}

@@ -1,0 +1,29 @@
+{
+  "note": "DEV-020 真实环境 Network 证据。后端 :8001（venv + agent_team MySQL 8.0.44），前端 vite :5174（VITE_API_PROXY_TARGET=:8001，VITE_DATA_SOURCE=real），admin 会话。采集时间 2026-09-09T06:26Z。",
+  "requests": [
+    {
+      "endpoint": "GET /api/tasks/TASK-8801/replay",
+      "status": 200,
+      "body_bytes": 21333,
+      "task_id": "TASK-8801",
+      "summary_source": "deterministic",
+      "input_fingerprint": "1fac8655aa871494",
+      "timeline_len": 16,
+      "artifact_keys": ["plans", "diffs", "test_runs", "pr_descriptions", "comments", "retrievals"],
+      "sample": {"code":0,"message":"success","data":{"task_id":"TASK-8801","generated_at":"2026-09-09T06:26:17.843136+00:00","timeline":[{"id":"task_evt_7821d18da38c","event_type":"TASK_CREATED","occurred_at":"2026-09-08T07:40:52.34..."}]}}
+    },
+    {
+      "endpoint": "GET /api/tasks/TASK-8801/replay/summary",
+      "status": 200,
+      "task_id": "TASK-8801",
+      "generated_at": "2026-09-09T06:26:56.601417+00:00",
+      "summary_source": "deterministic",
+      "input_fingerprint": "1fac8655aa871494",
+      "summary_text_head": "# 任务回放摘要 TASK-8801\n- 生成时间：2026-09-09T06:26:56.601417+00:00\n- 任务：TASK-8801 · 真实Gitee闭环E2E 0908153826\n- 状态：TESTED..."
+    }
+  ],
+  "screenshots": [
+    "docs/assets/dev020-replay-summary-real.png",
+    "docs/assets/dev020-replay-permission-403-real.png"
+  ]
+}

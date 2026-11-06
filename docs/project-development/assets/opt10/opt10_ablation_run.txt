@@ -1,0 +1,290 @@
+# OPT-10 RAG 消融演示完整输出（12 检索配置 + 基线复跑 + 5 切片探针，候选确定性/失败样本/环境口径见报告 JSON）
+# cmd: cd backend && APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true RAG_MOCK_FALLBACK=true RAG_QUERY_LLM=false ENV_FILE="$PWD/tests/.env.hermetic-nonexistent" .venv/Scripts/python.exe scripts/opt10_rag_ablation.py --out ../docs/project-development/assets/opt10/opt10_ablation_report.json
+# env: local / in-memory / mock-fallback / hermetic ENV_FILE；报告: assets/opt10/opt10_ablation_report.json
+
+[opt10] 检索配置完成: baseline
+[opt10] 检索配置完成: topk_4
+[opt10] 检索配置完成: topk_16
+[opt10] 检索配置完成: legs_small
+[opt10] 检索配置完成: legs_large
+[opt10] 检索配置完成: vector_only
+[opt10] 检索配置完成: bm25_only
+[opt10] 检索配置完成: vector_weight_2
+[opt10] 检索配置完成: bm25_weight_2
+[opt10] 检索配置完成: symbol_boost_0
+[opt10] 检索配置完成: symbol_boost_2
+[opt10] 检索配置完成: rerank_on
+[opt10] 基线复跑（确定性校验）完成
+[opt10] 切片配置完成: max_chars_4000
+[opt10] 切片配置完成: max_chars_1200
+[opt10] 切片配置完成: max_chars_8000
+[opt10] 切片配置完成: lines_20
+[opt10] 切片配置完成: lines_80
+消融报告已写入: ../docs/project-development/assets/opt10/opt10_ablation_report.json
+{
+  "dataset": {
+    "path": "evaluation/enterprise_rag/e3_05_baseline.jsonl",
+    "sha256": "e306b418762c6c1132fe8eb34d27959939d6a2741f969cf3d6fbe21b1668319d"
+  },
+  "baseline": {
+    "config_sha256": "c34b1dcbd9418d7c",
+    "summary": {
+      "total_cases": 32,
+      "passed_cases": 29,
+      "success_cases": 30,
+      "recall_at_k": 0.8438,
+      "recall_at_5": 0.8438,
+      "recall_at_10": 0.8438,
+      "precision_at_k": 0.1172,
+      "precision_at_5": 0.1875,
+      "mrr": 0.8281,
+      "ndcg_at_k": 0.8322,
+      "ndcg_at_5": 0.8322,
+      "freshness_rate": 0.9667,
+      "empty_result_rate": 0.0667,
+      "unauthorized_pass_rate": 1.0,
+      "latency_p50_ms": 1.9,
+      "latency_p95_ms": 3.3
+    }
+  },
+  "variants": [
+    {
+      "name": "baseline",
+      "config_sha256": "c34b1dcbd9418d7c",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "topk_4",
+      "config_sha256": "d4212a166f8b9030",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "topk_16",
+      "config_sha256": "2407f5719a552f52",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "legs_small",
+      "config_sha256": "00c8c94e6166b6ec",
+      "recall_at_k": 0.8438,
+      "mrr": 0.7979,
+      "passed_cases": 29
+    },
+    {
+      "name": "legs_large",
+      "config_sha256": "93ea89e088f111c7",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "vector_only",
+      "config_sha256": "3c031c0540f9fb62",
+      "recall_at_k": 0.8438,
+      "mrr": 0.6907,
+      "passed_cases": 29
+    },
+    {
+      "name": "bm25_only",
+      "config_sha256": "c6f717d75923d1fc",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "vector_weight_2",
+      "config_sha256": "4054490994ca16c7",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "bm25_weight_2",
+      "config_sha256": "6ca6927b41d4b250",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "symbol_boost_0",
+      "config_sha256": "dea2dd1d37a4bf44",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "symbol_boost_2",
+      "config_sha256": "c32a6cd85ad2e00e",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    },
+    {
+      "name": "rerank_on",
+      "config_sha256": "dbe42f998a47982d",
+      "recall_at_k": 0.8438,
+      "mrr": 0.8281,
+      "passed_cases": 29
+    }
+  ],
+  "metric_deltas_vs_baseline": {
+    "topk_4": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.1172,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "topk_16": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": -0.0586,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "legs_small": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": -0.0302,
+      "ndcg_at_k": -0.021,
+      "ndcg_at_5": -0.021,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "legs_large": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "vector_only": {
+      "recall_at_k": 0.0,
+      "recall_at_5": -0.125,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": -0.0313,
+      "mrr": -0.1374,
+      "ndcg_at_k": -0.1048,
+      "ndcg_at_5": -0.149,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "bm25_only": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0333,
+      "freshness_rate": 0.0
+    },
+    "vector_weight_2": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "bm25_weight_2": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "symbol_boost_0": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "symbol_boost_2": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    },
+    "rerank_on": {
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "passed_cases": 0,
+      "empty_result_rate": 0.0,
+      "freshness_rate": 0.0
+    }
+  },
+  "determinism": {
+    "checked": true,
+    "identical": true
+  },
+  "environment": {
+    "execution": "local_in_memory",
+    "validation_status": "local_only"
+  }
+}
+EXIT=0

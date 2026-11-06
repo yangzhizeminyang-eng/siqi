@@ -1,0 +1,370 @@
+{
+  "demo": "opt08_rag_online_evaluation",
+  "generated_at": "2026-10-15T18:06:19.501776+00:00",
+  "tenant_id": "tenant_default",
+  "environment": {
+    "stores": "in_memory",
+    "database": "disabled",
+    "celery": "disabled",
+    "milvus": "disabled",
+    "data_dir": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt08-demo",
+    "reports_dir": ".data\\opt08-demo\\reports-assets",
+    "production_real_executed": false
+  },
+  "permission_probe": {
+    "developer_trigger_status": 403,
+    "auditor_trigger_status": 403,
+    "developer_view_status": 200,
+    "auditor_view_status": 403
+  },
+  "trigger": {
+    "run": {
+      "run_id": "rageval_e83a40c8e922",
+      "tenant_id": "tenant_default",
+      "dataset": "e3_05_baseline.jsonl",
+      "retrieval_mode": "hybrid",
+      "top_k": 8,
+      "execution_scope": "isolated",
+      "status": "succeeded",
+      "validation_status": "local_only",
+      "report_name": "online_rageval_e83a40c8e922.json",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "precision_at_k": 0.1172,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "latency_p50_ms": 2.3,
+        "latency_p95_ms": 5.1
+      },
+      "error": "",
+      "requested_by": "user_admin",
+      "requested_role": "tenant_owner",
+      "created_at": "2026-10-15T18:06:18.877401Z",
+      "started_at": "2026-10-15T18:06:19.066077Z",
+      "finished_at": "2026-10-15T18:06:19.227247Z"
+    },
+    "dispatch": {
+      "mode": "eager(test)",
+      "enqueued": false,
+      "label": "run_rag_evaluation:rageval_e83a40c8e922"
+    }
+  },
+  "status_query": {
+    "detail_status": "succeeded",
+    "list_count": 1,
+    "run_ids": [
+      "rageval_e83a40c8e922"
+    ]
+  },
+  "report": {
+    "name": "online_rageval_e83a40c8e922.json",
+    "retrieval_mode": "hybrid",
+    "validation_status": "local_only",
+    "vector_backend": "local_no_milvus",
+    "milvus_verified": false,
+    "fallback_used": true,
+    "needs_improvement": true,
+    "dataset_size": 32,
+    "commit_sha": "e3baseline0000000000000000000000000000",
+    "index_id": null,
+    "generated_at": null,
+    "summary": {
+      "total_cases": 32,
+      "passed_cases": 29,
+      "success_cases": 30,
+      "recall_at_k": 0.8438,
+      "recall_at_5": 0.8438,
+      "recall_at_10": 0.8438,
+      "precision_at_k": 0.1172,
+      "precision_at_5": 0.1875,
+      "mrr": 0.8281,
+      "ndcg_at_k": 0.8322,
+      "ndcg_at_5": 0.8322,
+      "freshness_rate": 0.9667,
+      "empty_result_rate": 0.0667,
+      "unauthorized_pass_rate": 1.0,
+      "latency_p50_ms": 2.3,
+      "latency_p95_ms": 5.1
+    },
+    "recommended_thresholds": {
+      "recall_at_k": 0.5,
+      "precision_at_k": 0.3,
+      "mrr": 0.4,
+      "ndcg_at_k": 0.5
+    },
+    "mode_comparison": null,
+    "mode_validation": null,
+    "metrics_by_tag": {
+      "api": {
+        "count": 2,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "boundary": {
+        "count": 2,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "code": {
+        "count": 20,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.1313,
+        "mrr": 0.975,
+        "ndcg_at_k": 0.9815
+      },
+      "config": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "cross_file": {
+        "count": 2,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.25,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "empty": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "error_code": {
+        "count": 2,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "file_path": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.25,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "fresh": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "natural_language": {
+        "count": 3,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "nl": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "source_type": {
+        "count": 2,
+        "recall_at_k": 0.5,
+        "precision_at_k": 0.0625,
+        "mrr": 0.5,
+        "ndcg_at_k": 0.5
+      },
+      "stale": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "symbol": {
+        "count": 17,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 0.9706,
+        "ndcg_at_k": 0.9783
+      }
+    },
+    "failed_cases": [
+      {
+        "version": "e3baseline0000000000000000000000000000",
+        "case_id": "q18",
+        "difficulty": "medium",
+        "case_index": 17,
+        "repository_id": "repo_demo_payment",
+        "query": "handle_refund",
+        "tags": [
+          "source_type"
+        ],
+        "project_id": "proj_demo_payment",
+        "expected_status": 200,
+        "actual_status": 200,
+        "status_passed": true,
+        "retrieval_passed": false,
+        "empty": true,
+        "fresh": true,
+        "passed": false,
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "matched": 0,
+        "latency_ms": 0.6,
+        "index_id": "idx_demo_payment"
+      },
+      {
+        "version": "0000000000000000000000000000000000000000",
+        "case_id": "q20",
+        "difficulty": "easy",
+        "case_index": 19,
+        "repository_id": "repo_demo_payment",
+        "query": "health_check",
+        "tags": [
+          "stale"
+        ],
+        "project_id": "proj_demo_payment",
+        "expected_status": 200,
+        "actual_status": 200,
+        "status_passed": true,
+        "retrieval_passed": false,
+        "empty": true,
+        "fresh": false,
+        "passed": false,
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "matched": 0,
+        "latency_ms": 0.4,
+        "index_id": "idx_demo_payment"
+      },
+      {
+        "version": "e3baseline0000000000000000000000000000",
+        "case_id": "q21",
+        "difficulty": "easy",
+        "case_index": 20,
+        "repository_id": "repo_demo_payment",
+        "query": "totally_unrelated_missing_symbol_zeta_zz",
+        "tags": [
+          "empty"
+        ],
+        "project_id": "proj_demo_payment",
+        "expected_status": 200,
+        "actual_status": 200,
+        "status_passed": true,
+        "retrieval_passed": false,
+        "empty": false,
+        "fresh": true,
+        "passed": false,
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "matched": 0,
+        "latency_ms": 2.2,
+        "index_id": "idx_demo_payment"
+      }
+    ],
+    "config_snapshot": {
+      "top_k": 8,
+      "retrieval_mode": "hybrid",
+      "dry_run_in_memory": true,
+      "symbol_boost": 1.0,
+      "cross_encoder_enabled": false,
+      "cross_encoder_model": "",
+      "cross_encoder_device": "cpu"
+    },
+    "config_snapshot_sha256": "c54fdeba5c4f5dbf",
+    "dataset_sha256": "e306b418762c6c1132fe8eb34d27959939d6a2741f969cf3d6fbe21b1668319d",
+    "repository_url": null
+  },
+  "production_gate": {
+    "without_confirmation": {
+      "status": 422,
+      "message": "生产评测需显式确认：confirm_production=true（默认仅隔离数据）"
+    },
+    "runs_before": 1,
+    "runs_after_refused": 1,
+    "confirmed_run": {
+      "run_id": "rageval_025809b066c8",
+      "tenant_id": "tenant_default",
+      "dataset": "e3_05_baseline.jsonl",
+      "retrieval_mode": "hybrid",
+      "top_k": 8,
+      "execution_scope": "production",
+      "status": "blocked",
+      "validation_status": "blocked",
+      "report_name": "online_rageval_025809b066c8.json",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "precision_at_k": 0.1172,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "latency_p50_ms": 4.0,
+        "latency_p95_ms": 5.4
+      },
+      "error": "",
+      "requested_by": "user_admin",
+      "requested_role": "tenant_owner",
+      "created_at": "2026-10-15T18:06:19.319810Z",
+      "started_at": "2026-10-15T18:06:19.319810Z",
+      "finished_at": "2026-10-15T18:06:19.466621Z"
+    }
+  },
+  "audit": {
+    "counts": {
+      "tenant.tenant.denied": 3,
+      "rag.query": 60,
+      "tenant.repository.denied": 2,
+      "tenant.rag.eval.completed": 2,
+      "tenant.rag.eval.triggered": 2,
+      "tenant.rag_evaluation.denied": 1
+    },
+    "total": 70
+  },
+  "checks": {
+    "isolation_enforced": true,
+    "developer_trigger_denied": true,
+    "auditor_trigger_denied": true,
+    "status_view_permission_split": true,
+    "dispatch_eager_labeled": true,
+    "isolated_default_succeeded": true,
+    "isolation_local_only_honest": true,
+    "baseline_reproduced": true,
+    "timestamps_ordered": true,
+    "status_query_matches": true,
+    "report_view_roundtrip": true,
+    "production_requires_confirmation": true,
+    "production_confirmed_honest_blocked": true,
+    "audit_events_recorded": true,
+    "no_remote_write_module": true,
+    "all_passed": true
+  }
+}

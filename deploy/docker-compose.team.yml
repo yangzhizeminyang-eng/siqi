@@ -1,0 +1,136 @@
+name: agent-team
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+      args:
+        PIP_INDEX_URL: ${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}
+    env_file:
+      - ${TEAM_ENV_FILE:-./env/team.env}
+    environment:
+      APP_ENV: team
+      APP_PORT: "8000"
+      DATA_DIR: /var/lib/agent/data
+      ENV_FILE: ""
+    volumes:
+      - team_data:/var/lib/agent/data
+    networks:
+      - public
+      - data
+      - mysql
+    depends_on:
+      redis:
+        condition: service_healthy
+    expose:
+      - "8000"
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    mem_limit: 600m
+    cpus: 0.80
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 45s
+
+  worker:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+      args:
+        PIP_INDEX_URL: ${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}
+    env_file:
+      - ${TEAM_ENV_FILE:-./env/team.env}
+    environment:
+      APP_ENV: team
+      APP_PORT: "8000"
+      DATA_DIR: /var/lib/agent/data
+      ENV_FILE: ""
+      TEST_RUNNER_MODE: docker
+      TEST_RUNNER_HOST_DATA_DIR: ${TEST_RUNNER_HOST_DATA_DIR:-/var/lib/docker/volumes/agent_team_data/_data}
+      TEST_RUNNER_NETWORK: ${TEST_RUNNER_NETWORK:-none}
+      TEST_RUNNER_INSTALL_MODE: ${TEST_RUNNER_INSTALL_MODE:-image}
+      TEST_RUNNER_CPUS: ${TEST_RUNNER_CPUS:-0.50}
+      TEST_RUNNER_MEMORY: ${TEST_RUNNER_MEMORY:-384m}
+      TEST_RUNNER_PIDS_LIMIT: ${TEST_RUNNER_PIDS_LIMIT:-128}
+    volumes:
+      - team_data:/var/lib/agent/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - "${DOCKER_GID:-999}"
+    networks:
+      - data
+      - mysql
+    depends_on:
+      backend:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "app.workers.celery_app", "worker", "--loglevel=INFO", "--pool=solo"]
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    mem_limit: 450m
+    cpus: 0.70
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "96mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+    networks:
+      - data
+    restart: unless-stopped
+    init: true
+    mem_limit: 128m
+    cpus: 0.15
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_DATA_SOURCE: real
+    networks:
+      - public
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${TEAM_PUBLIC_PORT:-8080}:8080"
+    restart: unless-stopped
+    init: true
+    mem_limit: 96m
+    cpus: 0.20
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "http://127.0.0.1:8080/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+volumes:
+  team_data:
+    name: agent_team_data
+  redis_data:
+    name: agent_team_redis_data
+
+networks:
+  public:
+    name: agent_team_public
+  data:
+    name: agent_team_data
+    internal: true
+  mysql:
+    name: ${TEAM_MYSQL_NETWORK:-projectdream_backend_net}
+    external: true

@@ -1,0 +1,38 @@
+# OPT-06 Agent 工具安全回归（注入/跨租户/路径越权/超时/幂等/脱敏）
+# command: pytest tests/test_opt06_agent_tool_security.py -v -rs
+
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend
+configfile: pyproject.toml
+plugins: anyio-4.14.2, langsmith-0.12.2
+collecting ... collected 25 items
+
+tests/test_opt06_agent_tool_security.py::test_run_test_blocks_dangerous_compound_command_despite_allowlisted_first_token PASSED [  4%]
+tests/test_opt06_agent_tool_security.py::test_run_test_blocks_pipe_to_shell_and_non_allowlisted_command PASSED [  8%]
+tests/test_opt06_agent_tool_security.py::test_model_cannot_claim_pass_when_real_test_failed PASSED [ 12%]
+tests/test_opt06_agent_tool_security.py::test_model_cannot_self_assert_verified_release_evidence PASSED [ 16%]
+tests/test_opt06_agent_tool_security.py::test_rag_search_rejects_cross_tenant_repository PASSED [ 20%]
+tests/test_opt06_agent_tool_security.py::test_rag_search_allows_same_tenant_repository PASSED [ 24%]
+tests/test_opt06_agent_tool_security.py::test_repo_read_rejects_cross_tenant_repository PASSED [ 28%]
+tests/test_opt06_agent_tool_security.py::test_repo_read_empty_repository_id_stays_within_tenant PASSED [ 32%]
+tests/test_opt06_agent_tool_security.py::test_repo_read_fails_closed_for_unowned_repository PASSED [ 36%]
+tests/test_opt06_agent_tool_security.py::test_read_diff_rejects_cross_tenant_and_cross_task_artifacts PASSED [ 40%]
+tests/test_opt06_agent_tool_security.py::test_read_diff_allows_same_task_artifact PASSED [ 44%]
+tests/test_opt06_agent_tool_security.py::test_read_comments_is_scoped_to_current_task_in_runtime PASSED [ 48%]
+tests/test_opt06_agent_tool_security.py::test_workspace_read_blocks_parent_traversal PASSED [ 52%]
+tests/test_opt06_agent_tool_security.py::test_workspace_read_blocks_absolute_path_outside_root PASSED [ 56%]
+tests/test_opt06_agent_tool_security.py::test_workspace_read_allows_file_inside_root PASSED [ 60%]
+tests/test_opt06_agent_tool_security.py::test_workspace_write_blocks_parent_traversal_and_keeps_files_inside PASSED [ 64%]
+tests/test_opt06_agent_tool_security.py::test_workspace_tools_blocked_without_configured_root PASSED [ 68%]
+tests/test_opt06_agent_tool_security.py::test_run_test_timeout_stays_failed_and_never_fakes_success PASSED [ 72%]
+tests/test_opt06_agent_tool_security.py::test_run_test_runner_exception_leaves_no_partial_success_state PASSED [ 76%]
+tests/test_opt06_agent_tool_security.py::test_run_test_requires_docker_mode_in_default_env PASSED [ 80%]
+tests/test_opt06_agent_tool_security.py::test_draft_pr_tool_is_idempotent_and_returns_same_pr PASSED [ 84%]
+tests/test_opt06_agent_tool_security.py::test_collect_evidence_is_gated_by_real_results_and_idempotent PASSED [ 88%]
+tests/test_opt06_agent_tool_security.py::test_redact_secrets_masks_url_credentials_query_tokens_and_env_values PASSED [ 92%]
+tests/test_opt06_agent_tool_security.py::test_draft_pr_error_never_leaks_token PASSED [ 96%]
+tests/test_opt06_agent_tool_security.py::test_run_test_output_redacts_known_tokens PASSED [100%]
+
+============================= 25 passed in 0.64s ==============================

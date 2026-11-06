@@ -1,0 +1,14 @@
+# E6-01 P7 多副本：backend scaling（可选叠加）。用法：
+#   docker compose -f docker-compose.enterprise.yml -f docker-compose.enterprise.multireplica.yml up -d --scale backend=2
+# 说明：会话(agent_session JWT) 无状态可跨副本；租约/checkpoint 写透 MySQL(条件更新)，跨副本安全；
+# worker 仅单实例跑迁移，禁止并发 Alembic。
+services:
+  backend:
+    # 多副本需在生产用外部 MySQL(DATABASE_URL) 作为业务真源；内存真源仅限开发
+    deploy:
+      replicas: 2
+    env_file:
+      - ./env/enterprise.env.example
+    environment:
+      APP_ENV: enterprise
+      RUN_ALEMBIC_UPGRADE: "true"   # 仅首个副本执行迁移（见部署编排；worker=false）

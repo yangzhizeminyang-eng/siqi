@@ -1,0 +1,86 @@
+{
+  "schema": "fix-real-redis-fault-recovery-v1",
+  "generated_at": "2026-10-18T13:19:08.904744+00:00",
+  "date": "2026-10-18",
+  "redis": {
+    "version": "7.0.15",
+    "port": 16379,
+    "broker_db": 9,
+    "result_db": 10,
+    "visibility_timeout": 8
+  },
+  "run_lease_seconds": 5,
+  "run": {
+    "run_id": "rageval_bd3ba6fe8b17",
+    "tenant_id": "tenant_default",
+    "dataset": "e3_05_baseline.jsonl",
+    "retrieval_mode": "hybrid",
+    "top_k": 8,
+    "execution_scope": "isolated",
+    "status": "succeeded",
+    "validation_status": "local_only",
+    "report_name": "online_rageval_bd3ba6fe8b17.json",
+    "summary": {
+      "total_cases": 32,
+      "passed_cases": 29,
+      "success_cases": 30,
+      "recall_at_k": 0.8438,
+      "precision_at_k": 0.1172,
+      "mrr": 0.8281,
+      "ndcg_at_k": 0.8322,
+      "latency_p50_ms": 19.1,
+      "latency_p95_ms": 23.6
+    },
+    "error": "",
+    "requested_by": "user_admin",
+    "requested_role": "tenant_owner",
+    "attempts": 1,
+    "created_at": "2026-10-18T13:18:57.800814Z",
+    "started_at": "2026-10-18T13:18:58.480966Z",
+    "finished_at": "2026-10-18T13:18:59.461151Z",
+    "updated_at": "2026-10-18T13:18:59.462159Z"
+  },
+  "mid_status_after_kill": {
+    "run_id": "rageval_bd3ba6fe8b17",
+    "tenant_id": "tenant_default",
+    "dataset": "e3_05_baseline.jsonl",
+    "retrieval_mode": "hybrid",
+    "top_k": 8,
+    "execution_scope": "isolated",
+    "status": "succeeded",
+    "validation_status": "local_only",
+    "report_name": "online_rageval_bd3ba6fe8b17.json",
+    "summary": {
+      "total_cases": 32,
+      "passed_cases": 29,
+      "success_cases": 30,
+      "recall_at_k": 0.8438,
+      "precision_at_k": 0.1172,
+      "mrr": 0.8281,
+      "ndcg_at_k": 0.8322,
+      "latency_p50_ms": 19.1,
+      "latency_p95_ms": 23.6
+    },
+    "error": "",
+    "requested_by": "user_admin",
+    "requested_role": "tenant_owner",
+    "attempts": 1,
+    "created_at": "2026-10-18T13:18:57.800814Z",
+    "started_at": "2026-10-18T13:18:58.480966Z",
+    "finished_at": "2026-10-18T13:18:59.461151Z",
+    "updated_at": "2026-10-18T13:18:59.462159Z"
+  },
+  "checks": {
+    "restarted_worker_consumed": true,
+    "terminal_succeeded": true,
+    "attempts_ge_2": false,
+    "report_written": true,
+    "lease_expired_before_reclaim": true
+  },
+  "all_passed": false,
+  "worker_logs": {
+    "a": "C:\\temp\\siqi-redis-20261018\\fault_worker_a.log",
+    "b": "C:\\temp\\siqi-redis-20261018\\fault_worker_b.log"
+  },
+  "boundary": "worker crash on one host with real Redis; multi-host not executed"
+}

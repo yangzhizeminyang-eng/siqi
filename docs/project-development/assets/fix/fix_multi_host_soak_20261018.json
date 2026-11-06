@@ -1,0 +1,3579 @@
+{
+  "schema": "fix-soak-multi-host-v1",
+  "started_at": "2026-10-18T15:12:23.771461+00:00",
+  "finished_at": "2026-10-18T16:14:19.192972+00:00",
+  "config": {
+    "runs": 120,
+    "interval_seconds": 30.0,
+    "timeout_seconds": 300.0,
+    "dataset": "e3_05_baseline.jsonl",
+    "mode": "hybrid",
+    "top_k": 8
+  },
+  "runs": [
+    {
+      "index": 0,
+      "triggered_at": "2026-10-18T15:12:23.771798+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_65959f5cbbb8",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_65959f5cbbb8"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_65959f5cbbb8.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 35.6,
+        "latency_p95_ms": 57.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:12:26.139665+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 1,
+      "triggered_at": "2026-10-18T15:12:53.771896+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_68f71d124db5",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_68f71d124db5"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_68f71d124db5.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 476.7,
+        "latency_p95_ms": 589.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:13:11.946922+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 2,
+      "triggered_at": "2026-10-18T15:13:23.772110+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_a0f71bfd874e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_a0f71bfd874e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_a0f71bfd874e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 31.8,
+        "latency_p95_ms": 38.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:13:25.851728+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 3,
+      "triggered_at": "2026-10-18T15:13:53.772197+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_f8a1f7b5b2c2",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_f8a1f7b5b2c2"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_f8a1f7b5b2c2.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 31.4,
+        "latency_p95_ms": 39.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:13:55.847417+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 4,
+      "triggered_at": "2026-10-18T15:14:23.772278+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_d01b6372d696",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_d01b6372d696"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_d01b6372d696.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 32.9,
+        "latency_p95_ms": 48.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:14:25.855007+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 5,
+      "triggered_at": "2026-10-18T15:14:53.773138+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_e5b4f9d7409a",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_e5b4f9d7409a"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_e5b4f9d7409a.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 48.1,
+        "latency_p95_ms": 74.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:14:56.231359+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 6,
+      "triggered_at": "2026-10-18T15:15:23.773217+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_4e79d0383635",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_4e79d0383635"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_4e79d0383635.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 34.8,
+        "latency_p95_ms": 50.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:15:25.874380+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 7,
+      "triggered_at": "2026-10-18T15:15:53.773327+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_8641cc91c342",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_8641cc91c342"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_8641cc91c342.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 39.0,
+        "latency_p95_ms": 58.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:15:55.863568+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 8,
+      "triggered_at": "2026-10-18T15:16:23.773416+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_761a730defa3",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_761a730defa3"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_761a730defa3.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 34.0,
+        "latency_p95_ms": 48.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:16:25.852557+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 9,
+      "triggered_at": "2026-10-18T15:16:53.773499+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_c5127b05a444",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_c5127b05a444"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_c5127b05a444.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 36.1,
+        "latency_p95_ms": 44.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:16:55.861210+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 10,
+      "triggered_at": "2026-10-18T15:17:23.773603+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_8ad15c5b2b18",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_8ad15c5b2b18"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_8ad15c5b2b18.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 32.7,
+        "latency_p95_ms": 41.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:17:25.847709+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 11,
+      "triggered_at": "2026-10-18T15:17:53.773690+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_919df8db85f1",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_919df8db85f1"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_919df8db85f1.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 31.2,
+        "latency_p95_ms": 37.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:17:55.844689+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 12,
+      "triggered_at": "2026-10-18T15:18:23.773736+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_676961b50c11",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_676961b50c11"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_676961b50c11.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 33.2,
+        "latency_p95_ms": 39.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:18:25.849688+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 13,
+      "triggered_at": "2026-10-18T15:18:53.773825+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_944b8efc26be",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_944b8efc26be"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_944b8efc26be.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 40.3,
+        "latency_p95_ms": 61.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:18:55.902934+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 14,
+      "triggered_at": "2026-10-18T15:19:23.773903+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_343e0d56762f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_343e0d56762f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_343e0d56762f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 33.1,
+        "latency_p95_ms": 44.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:19:25.848371+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 15,
+      "triggered_at": "2026-10-18T15:19:53.774004+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5deef9218f48",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5deef9218f48"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5deef9218f48.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 43.6,
+        "latency_p95_ms": 64.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:19:55.892386+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 16,
+      "triggered_at": "2026-10-18T15:20:23.774120+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_18bce17e7133",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_18bce17e7133"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_18bce17e7133.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 35.5,
+        "latency_p95_ms": 43.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:20:25.850463+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 17,
+      "triggered_at": "2026-10-18T15:20:53.774213+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_a553c3367c31",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_a553c3367c31"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_a553c3367c31.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 33.9,
+        "latency_p95_ms": 41.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:20:55.864026+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 18,
+      "triggered_at": "2026-10-18T15:21:23.774363+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_f7c74bc790b7",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_f7c74bc790b7"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_f7c74bc790b7.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 30.7,
+        "latency_p95_ms": 38.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:21:25.850684+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 19,
+      "triggered_at": "2026-10-18T15:21:53.774448+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_b21e464dd782",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_b21e464dd782"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_b21e464dd782.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 34.4,
+        "latency_p95_ms": 48.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:21:55.850710+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 20,
+      "triggered_at": "2026-10-18T15:22:23.774545+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_a6fc0e5c4424",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_a6fc0e5c4424"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_a6fc0e5c4424.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 38.8,
+        "latency_p95_ms": 45.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:22:25.861588+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 21,
+      "triggered_at": "2026-10-18T15:22:53.774637+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5eff5cb40105",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5eff5cb40105"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5eff5cb40105.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 32.8,
+        "latency_p95_ms": 38.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:22:55.847786+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 22,
+      "triggered_at": "2026-10-18T15:23:23.774754+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_6824a1109430",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_6824a1109430"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_6824a1109430.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 35.8,
+        "latency_p95_ms": 41.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:23:25.866660+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 23,
+      "triggered_at": "2026-10-18T15:23:53.774817+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_f2c7b7774f53",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_f2c7b7774f53"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_f2c7b7774f53.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 34.1,
+        "latency_p95_ms": 48.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:23:55.857435+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 24,
+      "triggered_at": "2026-10-18T15:24:23.774902+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_e7709ad5842e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_e7709ad5842e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_e7709ad5842e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 32.5,
+        "latency_p95_ms": 39.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:24:25.848745+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 25,
+      "triggered_at": "2026-10-18T15:24:53.775003+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_08bd1e102050",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_08bd1e102050"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_08bd1e102050.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 31.4,
+        "latency_p95_ms": 43.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:24:55.851495+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 26,
+      "triggered_at": "2026-10-18T15:25:23.775165+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_c4d329c466b8",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_c4d329c466b8"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_c4d329c466b8.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 34.9,
+        "latency_p95_ms": 48.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:25:26.030529+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 27,
+      "triggered_at": "2026-10-18T15:25:53.775245+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7695c1b7bce2",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7695c1b7bce2"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7695c1b7bce2.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 31.3,
+        "latency_p95_ms": 37.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:25:55.848416+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 28,
+      "triggered_at": "2026-10-18T15:26:23.775331+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_c15a5ae41645",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_c15a5ae41645"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_c15a5ae41645.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 37.2,
+        "latency_p95_ms": 66.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:26:25.858240+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 29,
+      "triggered_at": "2026-10-18T15:26:53.775424+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_4700d4d621d1",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_4700d4d621d1"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_4700d4d621d1.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 30.1,
+        "latency_p95_ms": 37.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:26:55.855101+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 30,
+      "triggered_at": "2026-10-18T15:27:23.775507+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_343af416ff41",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_343af416ff41"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_343af416ff41.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 29.3,
+        "latency_p95_ms": 38.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:27:25.851112+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 31,
+      "triggered_at": "2026-10-18T15:27:53.775605+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_81197ad5b311",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_81197ad5b311"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_81197ad5b311.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 481.7,
+        "latency_p95_ms": 584.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:28:11.948729+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 32,
+      "triggered_at": "2026-10-18T15:28:23.775692+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_85f134c5e78f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_85f134c5e78f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_85f134c5e78f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 483.8,
+        "latency_p95_ms": 574.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:28:41.922969+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 33,
+      "triggered_at": "2026-10-18T15:28:53.775777+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_bafc1cba67b3",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_bafc1cba67b3"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_bafc1cba67b3.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 479.0,
+        "latency_p95_ms": 540.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:29:11.993144+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 34,
+      "triggered_at": "2026-10-18T15:29:23.775862+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_2393c008b5bb",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_2393c008b5bb"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_2393c008b5bb.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 477.9,
+        "latency_p95_ms": 500.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:29:41.919121+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 35,
+      "triggered_at": "2026-10-18T15:29:53.775945+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_c064c3dafd4c",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_c064c3dafd4c"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_c064c3dafd4c.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 487.6,
+        "latency_p95_ms": 736.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:30:13.935446+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 36,
+      "triggered_at": "2026-10-18T15:30:23.776029+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_e5047f6d3385",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_e5047f6d3385"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_e5047f6d3385.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 490.0,
+        "latency_p95_ms": 701.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:30:43.948670+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 37,
+      "triggered_at": "2026-10-18T15:30:53.776117+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_2fe240c8a18a",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_2fe240c8a18a"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_2fe240c8a18a.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 492.6,
+        "latency_p95_ms": 716.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:31:13.970408+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 38,
+      "triggered_at": "2026-10-18T15:31:23.776202+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5838267f3fed",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5838267f3fed"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5838267f3fed.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 490.5,
+        "latency_p95_ms": 513.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:31:41.959023+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 39,
+      "triggered_at": "2026-10-18T15:31:53.776325+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5a2205c8536f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5a2205c8536f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5a2205c8536f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 488.9,
+        "latency_p95_ms": 733.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:32:14.253821+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 40,
+      "triggered_at": "2026-10-18T15:32:23.776411+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_bcfa3a8e1ca1",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_bcfa3a8e1ca1"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_bcfa3a8e1ca1.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 488.7,
+        "latency_p95_ms": 723.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:32:44.128762+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 41,
+      "triggered_at": "2026-10-18T15:32:53.776889+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_ee21c5d27906",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_ee21c5d27906"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_ee21c5d27906.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 511.4,
+        "latency_p95_ms": 728.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:33:14.377494+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 42,
+      "triggered_at": "2026-10-18T15:33:23.776971+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5cc8fd7ce8eb",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5cc8fd7ce8eb"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5cc8fd7ce8eb.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 489.3,
+        "latency_p95_ms": 555.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:33:44.095296+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 43,
+      "triggered_at": "2026-10-18T15:33:53.778977+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_24c5d079b90b",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_24c5d079b90b"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_24c5d079b90b.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 489.6,
+        "latency_p95_ms": 730.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:34:12.478642+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 44,
+      "triggered_at": "2026-10-18T15:34:23.779598+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_cbc07446ba34",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_cbc07446ba34"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_cbc07446ba34.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 484.5,
+        "latency_p95_ms": 705.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:34:43.168360+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 45,
+      "triggered_at": "2026-10-18T15:34:53.779696+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_91969575bc86",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_91969575bc86"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_91969575bc86.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 484.0,
+        "latency_p95_ms": 712.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:35:12.160557+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 46,
+      "triggered_at": "2026-10-18T15:35:23.779817+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_280d9c1c0fe7",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_280d9c1c0fe7"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_280d9c1c0fe7.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 480.1,
+        "latency_p95_ms": 549.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:35:42.313487+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 47,
+      "triggered_at": "2026-10-18T15:35:53.781157+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_51295f66325f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_51295f66325f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_51295f66325f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 477.0,
+        "latency_p95_ms": 550.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:36:12.545650+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 48,
+      "triggered_at": "2026-10-18T15:36:23.781244+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_35257155e44b",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_35257155e44b"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_35257155e44b.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 482.3,
+        "latency_p95_ms": 879.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:36:44.010385+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 49,
+      "triggered_at": "2026-10-18T15:36:53.781348+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_845c4c16b223",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_845c4c16b223"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_845c4c16b223.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 477.5,
+        "latency_p95_ms": 528.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:37:11.993292+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 50,
+      "triggered_at": "2026-10-18T15:37:23.781430+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_2c5ec150b85b",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_2c5ec150b85b"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_2c5ec150b85b.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 469.5,
+        "latency_p95_ms": 490.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:37:41.985299+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 51,
+      "triggered_at": "2026-10-18T15:37:53.781534+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_d2fbc73291ce",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_d2fbc73291ce"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_d2fbc73291ce.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 471.5,
+        "latency_p95_ms": 482.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:38:11.945964+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 52,
+      "triggered_at": "2026-10-18T15:38:23.781618+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_614e10d26c9d",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_614e10d26c9d"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_614e10d26c9d.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 32.5,
+        "latency_p95_ms": 44.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:38:25.878862+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 53,
+      "triggered_at": "2026-10-18T15:38:53.781820+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_cdcbff9b0337",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_cdcbff9b0337"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_cdcbff9b0337.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 529.1,
+        "latency_p95_ms": 554.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:39:13.954759+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 54,
+      "triggered_at": "2026-10-18T15:39:23.781865+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_d638c7e13903",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_d638c7e13903"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_d638c7e13903.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 34.3,
+        "latency_p95_ms": 40.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:39:25.857505+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 55,
+      "triggered_at": "2026-10-18T15:39:53.781992+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_bdc82ef2cfa2",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_bdc82ef2cfa2"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_bdc82ef2cfa2.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 544.2,
+        "latency_p95_ms": 684.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:41:30.546001+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 56,
+      "triggered_at": "2026-10-18T15:41:30.571982+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_8c1d8347baee",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_8c1d8347baee"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_8c1d8347baee.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 535.7,
+        "latency_p95_ms": 551.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:41:50.892777+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 57,
+      "triggered_at": "2026-10-18T15:42:00.572099+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7bb452ddbf2a",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7bb452ddbf2a"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7bb452ddbf2a.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 44.3,
+        "latency_p95_ms": 64.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:42:04.698092+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 58,
+      "triggered_at": "2026-10-18T15:42:30.572179+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_ff9b61148016",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_ff9b61148016"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_ff9b61148016.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 33.6,
+        "latency_p95_ms": 44.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:42:33.431957+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 59,
+      "triggered_at": "2026-10-18T15:43:00.572272+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_86612bb71b6f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_86612bb71b6f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_86612bb71b6f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 45.3,
+        "latency_p95_ms": 78.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:43:02.708625+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 60,
+      "triggered_at": "2026-10-18T15:43:30.572377+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_9ff9624fbed9",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_9ff9624fbed9"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_9ff9624fbed9.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 37.7,
+        "latency_p95_ms": 61.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:43:42.752825+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 61,
+      "triggered_at": "2026-10-18T15:44:00.573225+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_1a36c93aa2d6",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_1a36c93aa2d6"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 2,
+      "report_name": "online_rageval_1a36c93aa2d6.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 529.9,
+        "latency_p95_ms": 592.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:45:19.129138+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 62,
+      "triggered_at": "2026-10-18T15:45:19.140082+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_8da93b5bee43",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_8da93b5bee43"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_8da93b5bee43.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 530.5,
+        "latency_p95_ms": 539.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:45:39.301461+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 63,
+      "triggered_at": "2026-10-18T15:45:49.140198+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5d5e0e85a4ac",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5d5e0e85a4ac"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5d5e0e85a4ac.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 532.1,
+        "latency_p95_ms": 572.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:46:09.297134+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 64,
+      "triggered_at": "2026-10-18T15:46:19.140306+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_9ab3d3c300e4",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_9ab3d3c300e4"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_9ab3d3c300e4.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 556.1,
+        "latency_p95_ms": 643.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:46:39.479592+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 65,
+      "triggered_at": "2026-10-18T15:46:49.140393+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7e02fa1e8cb6",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7e02fa1e8cb6"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7e02fa1e8cb6.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 541.9,
+        "latency_p95_ms": 578.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:47:09.458432+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 66,
+      "triggered_at": "2026-10-18T15:47:19.140480+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7114d168b615",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7114d168b615"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7114d168b615.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 45.4,
+        "latency_p95_ms": 64.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:47:21.224314+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 67,
+      "triggered_at": "2026-10-18T15:47:49.140936+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_2f2a08d5ca0c",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_2f2a08d5ca0c"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_2f2a08d5ca0c.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 50.9,
+        "latency_p95_ms": 94.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:47:51.356695+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 68,
+      "triggered_at": "2026-10-18T15:48:19.141029+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_0aac991f7eb2",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_0aac991f7eb2"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_0aac991f7eb2.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 39.2,
+        "latency_p95_ms": 60.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:48:21.240337+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 69,
+      "triggered_at": "2026-10-18T15:48:49.141099+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_d8b8aea72ce7",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_d8b8aea72ce7"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_d8b8aea72ce7.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 39.6,
+        "latency_p95_ms": 56.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:48:51.238614+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 70,
+      "triggered_at": "2026-10-18T15:49:19.141229+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_004d1d9c24f9",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_004d1d9c24f9"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_004d1d9c24f9.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 531.0,
+        "latency_p95_ms": 564.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:49:39.702416+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 71,
+      "triggered_at": "2026-10-18T15:49:49.141314+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_697b65bc36a6",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_697b65bc36a6"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_697b65bc36a6.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 49.4,
+        "latency_p95_ms": 125.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:49:53.274844+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 72,
+      "triggered_at": "2026-10-18T15:50:19.167806+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_fa549f3f3e0b",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_fa549f3f3e0b"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_fa549f3f3e0b.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 552.8,
+        "latency_p95_ms": 678.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:50:42.146028+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 73,
+      "triggered_at": "2026-10-18T15:50:49.157019+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_be706bb71f5c",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_be706bb71f5c"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_be706bb71f5c.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 58.1,
+        "latency_p95_ms": 84.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:50:53.449117+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 74,
+      "triggered_at": "2026-10-18T15:51:19.167690+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_021d8a50508a",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_021d8a50508a"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_021d8a50508a.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 53.4,
+        "latency_p95_ms": 75.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:51:22.263689+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 75,
+      "triggered_at": "2026-10-18T15:51:49.164298+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_ca6679fe28b5",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_ca6679fe28b5"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_ca6679fe28b5.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 39.8,
+        "latency_p95_ms": 52.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:51:51.294906+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 76,
+      "triggered_at": "2026-10-18T15:52:19.164395+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_c5c486c0670f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_c5c486c0670f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_c5c486c0670f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 543.0,
+        "latency_p95_ms": 611.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:52:39.432794+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 77,
+      "triggered_at": "2026-10-18T15:52:49.164478+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_77e48699710e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_77e48699710e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_77e48699710e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 37.7,
+        "latency_p95_ms": 61.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:52:51.286478+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 78,
+      "triggered_at": "2026-10-18T15:53:19.164971+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_2ec66f4e4d7e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_2ec66f4e4d7e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_2ec66f4e4d7e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 534.2,
+        "latency_p95_ms": 592.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:53:39.564274+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 79,
+      "triggered_at": "2026-10-18T15:53:49.165084+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_db2d0c427845",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_db2d0c427845"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_db2d0c427845.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 533.1,
+        "latency_p95_ms": 583.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:54:09.420168+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 80,
+      "triggered_at": "2026-10-18T15:54:19.165178+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_71ccb76eb3ea",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_71ccb76eb3ea"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_71ccb76eb3ea.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 36.1,
+        "latency_p95_ms": 47.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:54:21.255899+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 81,
+      "triggered_at": "2026-10-18T15:54:49.165243+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_68be5584c14a",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_68be5584c14a"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_68be5584c14a.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 42.8,
+        "latency_p95_ms": 71.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:54:51.431022+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 82,
+      "triggered_at": "2026-10-18T15:55:19.188649+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_8d820a6d237f",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_8d820a6d237f"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_8d820a6d237f.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 567.6,
+        "latency_p95_ms": 686.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:55:41.918722+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 83,
+      "triggered_at": "2026-10-18T15:55:49.184998+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7ef6d1c7d061",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7ef6d1c7d061"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7ef6d1c7d061.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 61.8,
+        "latency_p95_ms": 149.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:55:55.820095+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 84,
+      "triggered_at": "2026-10-18T15:56:19.185102+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_88cced4656b5",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_88cced4656b5"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_88cced4656b5.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 38.1,
+        "latency_p95_ms": 48.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:56:22.023632+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 85,
+      "triggered_at": "2026-10-18T15:56:49.185207+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7dd554e61bd1",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7dd554e61bd1"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7dd554e61bd1.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 47.8,
+        "latency_p95_ms": 101.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:56:51.656079+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 86,
+      "triggered_at": "2026-10-18T15:57:19.186129+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_00b0c5f1b4c3",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_00b0c5f1b4c3"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_00b0c5f1b4c3.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 553.1,
+        "latency_p95_ms": 627.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:57:41.210489+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 87,
+      "triggered_at": "2026-10-18T15:57:49.186283+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_5ff162c61a36",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_5ff162c61a36"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_5ff162c61a36.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 62.7,
+        "latency_p95_ms": 170.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:57:56.212110+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 88,
+      "triggered_at": "2026-10-18T15:58:19.186383+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_1513f5e0c255",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_1513f5e0c255"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_1513f5e0c255.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 49.4,
+        "latency_p95_ms": 67.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:58:21.296576+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 89,
+      "triggered_at": "2026-10-18T15:58:49.186499+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_6dd39b7a1de6",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_6dd39b7a1de6"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_6dd39b7a1de6.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 42.7,
+        "latency_p95_ms": 76.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:58:51.543417+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 90,
+      "triggered_at": "2026-10-18T15:59:19.186593+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_696211bc4156",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_696211bc4156"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_696211bc4156.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 545.8,
+        "latency_p95_ms": 813.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T15:59:41.481028+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 91,
+      "triggered_at": "2026-10-18T15:59:49.186673+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_bfbf5427eb50",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_bfbf5427eb50"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_bfbf5427eb50.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 544.4,
+        "latency_p95_ms": 594.5,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:00:09.540933+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 92,
+      "triggered_at": "2026-10-18T16:00:19.186788+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_93c3b976e4c2",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_93c3b976e4c2"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_93c3b976e4c2.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 541.7,
+        "latency_p95_ms": 622.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:00:39.488877+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 93,
+      "triggered_at": "2026-10-18T16:00:49.186877+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_859de3573cab",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_859de3573cab"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_859de3573cab.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 43.9,
+        "latency_p95_ms": 68.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:00:51.280007+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 94,
+      "triggered_at": "2026-10-18T16:01:19.187109+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_95ef212131a9",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_95ef212131a9"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_95ef212131a9.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 42.2,
+        "latency_p95_ms": 52.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:01:21.292303+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 95,
+      "triggered_at": "2026-10-18T16:01:49.187204+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_54ea3a499fb9",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_54ea3a499fb9"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_54ea3a499fb9.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 540.0,
+        "latency_p95_ms": 581.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:02:09.375283+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 96,
+      "triggered_at": "2026-10-18T16:02:19.187697+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_ff2ac8b77a0c",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_ff2ac8b77a0c"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_ff2ac8b77a0c.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 42.1,
+        "latency_p95_ms": 52.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:02:21.287789+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 97,
+      "triggered_at": "2026-10-18T16:02:49.187783+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_26c5d5c8308c",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_26c5d5c8308c"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_26c5d5c8308c.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 539.5,
+        "latency_p95_ms": 601.9,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:03:09.404818+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 98,
+      "triggered_at": "2026-10-18T16:03:19.188525+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_796bc8dd0fb3",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_796bc8dd0fb3"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_796bc8dd0fb3.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 39.1,
+        "latency_p95_ms": 49.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:03:21.282914+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 99,
+      "triggered_at": "2026-10-18T16:03:49.189536+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_decd2773160b",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_decd2773160b"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_decd2773160b.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 546.3,
+        "latency_p95_ms": 799.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:04:11.479976+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 100,
+      "triggered_at": "2026-10-18T16:04:19.189635+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_9b5f921cc159",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_9b5f921cc159"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_9b5f921cc159.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 538.3,
+        "latency_p95_ms": 569.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:04:39.390964+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 101,
+      "triggered_at": "2026-10-18T16:04:49.190084+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_99a87591ce76",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_99a87591ce76"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_99a87591ce76.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 46.6,
+        "latency_p95_ms": 71.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:04:51.340747+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 102,
+      "triggered_at": "2026-10-18T16:05:19.190171+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_b03cdebd1e3e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_b03cdebd1e3e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_b03cdebd1e3e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 538.2,
+        "latency_p95_ms": 570.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:05:39.378722+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 103,
+      "triggered_at": "2026-10-18T16:05:49.190264+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_7d15836d26e9",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_7d15836d26e9"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_7d15836d26e9.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 536.3,
+        "latency_p95_ms": 572.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:06:09.400504+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 104,
+      "triggered_at": "2026-10-18T16:06:19.190356+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_65031010f9d2",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_65031010f9d2"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_65031010f9d2.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 534.4,
+        "latency_p95_ms": 609.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:06:39.526866+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 105,
+      "triggered_at": "2026-10-18T16:06:49.190443+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_a64f3ba9dcd4",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_a64f3ba9dcd4"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_a64f3ba9dcd4.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 38.6,
+        "latency_p95_ms": 50.8,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:06:51.281143+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 106,
+      "triggered_at": "2026-10-18T16:07:19.190534+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_4a503d66d5eb",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_4a503d66d5eb"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_4a503d66d5eb.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 537.8,
+        "latency_p95_ms": 599.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:07:39.369962+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 107,
+      "triggered_at": "2026-10-18T16:07:49.190636+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_b5052266bea7",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_b5052266bea7"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_b5052266bea7.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 38.0,
+        "latency_p95_ms": 48.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:07:51.284521+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 108,
+      "triggered_at": "2026-10-18T16:08:19.190728+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_6a1e31187204",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_6a1e31187204"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_6a1e31187204.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 537.4,
+        "latency_p95_ms": 611.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:08:39.416858+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 109,
+      "triggered_at": "2026-10-18T16:08:49.190823+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_9cd171468b37",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_9cd171468b37"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_9cd171468b37.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 538.6,
+        "latency_p95_ms": 691.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:09:09.411208+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 110,
+      "triggered_at": "2026-10-18T16:09:19.190926+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_6fc30ac0b492",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_6fc30ac0b492"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_6fc30ac0b492.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 538.7,
+        "latency_p95_ms": 614.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:09:39.382987+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 111,
+      "triggered_at": "2026-10-18T16:09:49.191022+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_d838f63b42ec",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_d838f63b42ec"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_d838f63b42ec.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 36.9,
+        "latency_p95_ms": 47.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:09:51.267099+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 112,
+      "triggered_at": "2026-10-18T16:10:19.192094+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_dbf2a0187700",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_dbf2a0187700"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_dbf2a0187700.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 44.1,
+        "latency_p95_ms": 63.2,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:10:21.312134+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 113,
+      "triggered_at": "2026-10-18T16:10:49.192186+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_f42923e5cabb",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_f42923e5cabb"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_f42923e5cabb.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 540.6,
+        "latency_p95_ms": 648.3,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:11:09.395439+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 114,
+      "triggered_at": "2026-10-18T16:11:19.192279+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_a956d523ab07",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_a956d523ab07"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_a956d523ab07.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 541.4,
+        "latency_p95_ms": 562.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:11:39.367239+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 115,
+      "triggered_at": "2026-10-18T16:11:49.192364+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_3612bbceefee",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_3612bbceefee"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_3612bbceefee.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 41.7,
+        "latency_p95_ms": 51.7,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:11:51.276693+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 116,
+      "triggered_at": "2026-10-18T16:12:19.192478+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_306dd062bfea",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_306dd062bfea"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_306dd062bfea.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 554.2,
+        "latency_p95_ms": 819.1,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:12:42.209845+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 117,
+      "triggered_at": "2026-10-18T16:12:49.192578+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_94824776e10e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_94824776e10e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_94824776e10e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 38.0,
+        "latency_p95_ms": 47.4,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:12:51.289686+00:00",
+      "report_read_status": 200,
+      "report_dataset_size": 32
+    },
+    {
+      "index": 118,
+      "triggered_at": "2026-10-18T16:13:19.192667+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_d97e07fda873",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_d97e07fda873"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_d97e07fda873.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 568.6,
+        "latency_p95_ms": 785.6,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:13:41.448212+00:00",
+      "report_read_status": 404
+    },
+    {
+      "index": 119,
+      "triggered_at": "2026-10-18T16:13:49.192758+00:00",
+      "trigger_status": 200,
+      "run_id": "rageval_dfa0bcf97e1e",
+      "dispatch": {
+        "mode": "redis",
+        "enqueued": true,
+        "label": "run_rag_evaluation:rageval_dfa0bcf97e1e"
+      },
+      "final_status": "succeeded",
+      "validation_status": "local_only",
+      "attempts": 1,
+      "report_name": "online_rageval_dfa0bcf97e1e.json",
+      "summary": {
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "recall_at_k": 0.8438,
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "latency_p50_ms": 558.3,
+        "latency_p95_ms": 773.0,
+        "precision_at_k": 0.1172
+      },
+      "error": "",
+      "finished_at": "2026-10-18T16:14:11.414173+00:00",
+      "report_read_status": 404
+    }
+  ],
+  "checks": {
+    "run_count": 120,
+    "terminal_count": 120,
+    "succeeded_count": 120,
+    "failed_count": 0,
+    "trigger_failed_count": 0,
+    "timeout_count": 0,
+    "all_terminal": true,
+    "all_succeeded": true,
+    "attempts_recorded": true,
+    "attempts_at_least_one": true,
+    "recovered_attempts": [
+      "rageval_1a36c93aa2d6"
+    ],
+    "all_succeeded_have_report_name": true,
+    "cloud_report_read_ok_count": 64,
+    "report_404_count": 56,
+    "max_attempts": 2
+  },
+  "status": "passed"
+}

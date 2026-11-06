@@ -1,0 +1,8 @@
+SKIPPED [1] tests\test_pr_creation.py:219: GITEE_PR_E2E 未开启或 GITEE_TOKEN/OWNER/REPO_SCRATCH 未配齐
+SKIPPED [1] tests\test_rag_milvus_realtime.py:116: Milvus 跨进程子进程初始化不可用：Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\app\retrieval\llamaindex_backend.py", line 471, in build_vector_store
+    raise RuntimeError("LlamaIndex vector store unavailable")
+RuntimeError: LlamaIndex vector store unavailable
+3 failed, 1106 passed, 13 skipped, 4 warnings in 566.01s (0:09:26)
+FULL_BACKEND_EXIT=1

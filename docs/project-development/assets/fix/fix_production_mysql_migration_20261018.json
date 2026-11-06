@@ -1,0 +1,65 @@
+{
+  "schema": "fix-production-mysql-migration-v1",
+  "generated_at": "2026-10-18T14:20:00+00:00",
+  "date": "2026-10-18",
+  "target": "production enterprise MySQL (agent_enterprise @ projectdream-mysql-1)",
+  "backup": {
+    "path": "/home/ubuntu/siqi-backups/agent_enterprise_pre_c9d0e1f2_20261018_220717.sql.gz",
+    "sha256": "77718ea8d5be697ba28e084d0026a325fa894aadd1d54f0cfb461ebf0253881b",
+    "gzip_test": "OK",
+    "tables": 29,
+    "dump_completed": true,
+    "db_size_mb": 1.13
+  },
+  "migration": {
+    "before_revision": "e5f6071a2b3c",
+    "after_revision": "c9d0e1f2a3b4",
+    "applied": [
+      "e5f6071a2b3c -> f6a7b8c9d0e1",
+      "f6a7b8c9d0e1 -> a7b8c9d0e1f2",
+      "a7b8c9d0e1f2 -> c9d0e1f2a3b4"
+    ],
+    "new_tables": [
+      "enterprise_agent_artifacts",
+      "enterprise_agent_runs",
+      "enterprise_rag_evaluation_runs",
+      "enterprise_rag_index_lifecycles",
+      "enterprise_runtime_checkpoints",
+      "enterprise_runtime_tasks",
+      "enterprise_runtime_trace_spans"
+    ],
+    "ddl_transactional": false,
+    "note": "MySQL DDL 非事务；已先备份。"
+  },
+  "write_probe": {
+    "type": "INSERT inside transaction then ROLLBACK",
+    "inserted_count": 1,
+    "after_rollback_count": 0,
+    "persisted": false
+  },
+  "image_durability": {
+    "old_image": "sha256:0daca5857521ad0ccc44125e632af674a2334d33b68e4fa245e1e33655584879",
+    "rollback_tag": "agent-enterprise-backend:pre-fix2-20261018",
+    "new_image": "sha256:e48f19d47d255eed956c3be658c3a75e8fde0c5bf316f7f9e4f50de453fda5f2",
+    "new_tag": "agent-enterprise-backend:latest",
+    "purpose": "old app code + 3 migration files; ensures restart recognizes DB revision c9d0e1f2a3b4",
+    "restart_test": "restarted agent-enterprise-backend-1; healthy; alembic current=c9d0e1f2a3b4"
+  },
+  "production_health_after": {
+    "endpoint": "http://127.0.0.1:8081/api/health",
+    "db": "ok",
+    "redis": "ok",
+    "milvus": "skipped (use_milvus=false)"
+  },
+  "incident": {
+    "summary": "首次 compose up 未传 ENTERPRISE_ENV_FILE，两个 backend 使用 example env 启动并以 exit 64 重启（AUTH_JWT_SECRET 校验失败）。",
+    "detection": "docker compose ps 显示 Restarting (64)",
+    "remediation": "立即使用 ENTERPRISE_ENV_FILE=./env/enterprise.env 重新 up；两个副本恢复 healthy，DB 未回滚、数据未丢失。",
+    "post_check": "health ok; alembic current c9d0e1f2a3b4; backend replica restart healthy"
+  },
+  "boundaries": {
+    "production_app_code": "unchanged old app code (0daca...) + migration files only; new feature code not deployed",
+    "production_milvus": "disabled by config (use_milvus=false, MILVUS_URI empty); no Milvus service/container",
+    "rollback": "DB backup available; rolling back to old image alone is unsupported because DB revision is ahead; restore backup first if rollback needed"
+  }
+}

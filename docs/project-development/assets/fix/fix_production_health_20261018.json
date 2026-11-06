@@ -1,0 +1,51 @@
+{
+  "schema": "fix-production-readonly-health-v1",
+  "generated_at": "2026-10-18T13:12:53.468354+00:00",
+  "date": "2026-10-18",
+  "endpoint": "http://<production-host>:8080/api/health",
+  "read_only": true,
+  "health": {
+    "status": "ok",
+    "dependencies": {
+      "db": {
+        "status": "ok",
+        "latency_ms": 1.1,
+        "pool": {
+          "size": 10,
+          "checkedin": 6,
+          "checkedout": 0,
+          "overflow": -4
+        }
+      },
+      "milvus": {
+        "status": "skipped",
+        "reason": "local-milvus-lite",
+        "uri": "/var/lib/agent/data/milvus/code_index.db"
+      },
+      "redis": {
+        "status": "ok",
+        "latency_ms": 3.1
+      }
+    }
+  },
+  "load_smoke": {
+    "requests": 20,
+    "concurrency": 4,
+    "ok": 20,
+    "failed": 0,
+    "p50_ms": 439.1,
+    "p95_ms": 1480.5,
+    "max_ms": 1505.0,
+    "total_ms": 3897.7
+  },
+  "enterprise_8081": {
+    "reachable": false,
+    "note": "curl connect timeout during this run"
+  },
+  "boundaries": {
+    "production_db": "health probe only (SELECT 1); no migration/write",
+    "production_redis": "health probe only",
+    "production_milvus": "skipped by server (local Milvus Lite)",
+    "load": "bounded 20 read-only health requests, not a capacity test"
+  }
+}

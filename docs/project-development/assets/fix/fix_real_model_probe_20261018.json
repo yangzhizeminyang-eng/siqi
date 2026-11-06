@@ -1,0 +1,27 @@
+{
+  "schema": "fix-real-model-probe-v1",
+  "generated_at": "2026-10-18T12:58:42.876385+00:00",
+  "date": "2026-10-18",
+  "boundaries": {
+    "prompt": "synthetic probe text only",
+    "repo_code_sent": false,
+    "secrets_logged": false
+  },
+  "embedding": {
+    "configured": true,
+    "provider": "zhipu",
+    "model": "embedding-3",
+    "status": "ok",
+    "dimension": 2048,
+    "vector_count": 1,
+    "latency_ms": 1389.1
+  },
+  "llm": {
+    "configured": true,
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "status": "ok",
+    "latency_ms": 3666.4,
+    "reply_is_short": true
+  }
+}

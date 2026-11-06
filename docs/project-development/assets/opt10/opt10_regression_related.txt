@@ -1,0 +1,11 @@
+# OPT-10 相关回归（RAG/E3/Agent工具/OPT-04/06/08/09 共 14 文件）
+# cmd: cd backend && APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true ENV_FILE="$PWD/tests/.env.hermetic-nonexistent" .venv/Scripts/python.exe -m pytest tests/test_dev008_rag_index.py tests/test_enterprise_e3_rag.py tests/test_enterprise_e3_03_rerank.py tests/test_enterprise_e3_04_evaluation.py tests/test_enterprise_e3_05_quality_baseline.py tests/test_enterprise_e3_07_precision_tuning.py tests/test_enterprise_e3_09_cross_encoder.py tests/test_opt04_rag_report_contract.py tests/test_opt06_agent_tool_security.py tests/test_opt08_rag_eval_online.py tests/test_opt09_index_lifecycle.py tests/test_rag_evaluation.py tests/test_rag_parse_chain.py tests/test_rag_retrieval_quality.py -q -rs
+# env: local / in-memory / mock-fallback / hermetic ENV_FILE；skip 为 Milvus 环境门控
+
+........................................................................ [ 38%]
+........................................................................ [ 76%]
+................................s............                            [100%]
+=========================== short............................................................... [ 38%]
+.......e_chain.py:178: Milvus 不可用，完整召回链路以节点化为准
+188 passed, 1 skipped in 586.44s (0:09:46)
+EXIT=0

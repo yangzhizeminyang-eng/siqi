@@ -1,0 +1,8 @@
+{
+  "run_id": "rageval_1c86dcee1db5",
+  "status": "running",
+  "attempts": 1,
+  "container": "siqi-prod-eval-worker-1",
+  "docker_response": "HTTP/1.1 204 No Content",
+  "killed_at": "2026-10-18T16:17:09.096011+00:00"
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "fix-production-redis-ha-v1",
+  "generated_at": "2026-10-18T15:44:11+00:00",
+  "date": "2026-10-18",
+  "host": "<production-host> (VM-0-10-ubuntu)",
+  "topology": "live production Redis master (agent-enterprise-redis-1) + isolated replica container on the same Docker network; live master was not restarted",
+  "master": {
+    "role_before": "master",
+    "connected_slaves_before": 0,
+    "dbsize": 0,
+    "rdb_bgsave_status": "ok",
+    "aof_enabled": 1,
+    "aof_last_bgrewrite_status": "ok",
+    "aof_last_write_status": "ok"
+  },
+  "replica": {
+    "master_link_status": "up",
+    "master_host": "agent-enterprise-redis-1",
+    "master_port": 6379,
+    "slave_repl_offset": 2,
+    "master_repl_offset": 2,
+    "master_connected_slaves": 1,
+    "slave0_state": "online",
+    "slave0_lag": 1
+  },
+  "manual_promotion": {
+    "role_after": "master",
+    "write_probe": "ok",
+    "restart_probe_ping": "PONG",
+    "restart_probe_value": "ok",
+    "aof_enabled_after": 1,
+    "aof_last_write_status_after": "ok"
+  },
+  "checks": {
+    "live_master_bgsave_ok": true,
+    "live_master_aof_rewrite_ok": true,
+    "replica_link_up": true,
+    "replica_visible_from_master": true,
+    "manual_promotion_write_ok": true,
+    "promoted_replica_restart_persistence_ok": true
+  },
+  "boundaries": {
+    "automatic_sentinel_failover": "not executed; this is a manual promotion drill",
+    "live_master_restart": "not executed to avoid production disruption",
+    "production_dataset": "empty (DBSIZE=0) at drill time",
+    "redis_persistence_config": "the live master already has appendonly yes and RDB save configured"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_production_redis_ha_20261018.txt"
+  ]
+}

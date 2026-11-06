@@ -1,0 +1,1025 @@
+{
+  "demo": "opt03_multi_agent_e2e",
+  "generated_at": "2026-10-15T15:23:47.211854+00:00",
+  "tenant_id": "tenant_default",
+  "seed": {
+    "project_id": "proj_demo_payment",
+    "repository_id": "repo_demo_payment"
+  },
+  "environment": {
+    "agent_provider": "deterministic",
+    "stores": "in_memory",
+    "database": "disabled",
+    "celery": "disabled",
+    "workspace_root": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt03-demo\\workspace",
+    "data_dir": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt03-demo",
+    "real_model_opt_in": false,
+    "remote_write_module_loaded": false
+  },
+  "rag": {
+    "query": "retry_refund 回调重试",
+    "mode": "bm25",
+    "commit_sha": "e3baseline0000000000000000000000000000",
+    "hit_count": 1,
+    "hits": [
+      {
+        "file": "src/payment/refund.py",
+        "symbol": "retry_refund",
+        "score": 0.877132
+      }
+    ]
+  },
+  "scenario_main": {
+    "task_id": "opt03_demo_main",
+    "final_status": "succeeded",
+    "repair_round": 0,
+    "approval_state": "approved",
+    "steps": [
+      {
+        "name": "requirement_agent",
+        "agent_type": "requirement_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"summary\": \"为退款回调补充可复现的重试说明与校验（OPT-03 隔离演示）\", \"requirements\": [{\"id\": \"r1\", \"description\": \"为退款回调补充可复现的重试说明与校验（OPT-03 隔离演示）\", \"acceptance\": \"看得见的行为可验证\"}, {\"id\""
+      },
+      {
+        "name": "repository_research_agent",
+        "agent_type": "repository_research_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"findings\": [{\"file\": \"src/main.py\", \"summary\": \"核心入口\", \"relevance\": \"high\"}], \"files\": [\"src/main.py\", \"src/service.py\"], \"symbols\": [\"run_app\", \"Service.hand"
+      },
+      {
+        "name": "planner_agent",
+        "agent_type": "planner_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"objectives\": [\"实现需求\", \"补充测试\"], \"steps\": [{\"file\": \"src/service.py\", \"change\": \"新增 handle 逻辑\", \"reason\": \"满足需求\", \"risk\": \"low\"}, {\"file\": \"tests/test_service.p"
+      },
+      {
+        "name": "code_change_agent",
+        "agent_type": "code_change_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"workspace_path\": \"/isolated/ws\", \"files_changed\": [\"src/service.py\", \"tests/test_service.py\"], \"patch\": \"diff --git a/src/service.py b/src/service.py\\n+def ha"
+      },
+      {
+        "name": "review_security_agent",
+        "agent_type": "review_security_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"approved\": true, \"conclusions\": [\"通过\"], \"issues\": [], \"security_risks\": []}"
+      },
+      {
+        "name": "test_release_agent",
+        "agent_type": "test_release_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"passed\": true, \"summary\": \"全部通过，可以发布\", \"test_cases\": [{\"name\": \"test_handle\", \"status\": \"passed\"}], \"pr_description\": \"PR: 实现需求（deterministic）\", \"release_evid"
+      }
+    ],
+    "agent_runs": [
+      {
+        "agent_type": "requirement_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_main_requirement_agent_1_1792077827",
+        "input_refs": [],
+        "output_refs": [
+          "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "repository_research_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_main_repository_research_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0",
+          "art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "planner_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_main_planner_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0",
+          "art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0",
+          "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "code_change_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_main_code_change_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_code_change_agent_PatchArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "review_security_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_main_review_security_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_main_review_security_agent_ReviewArtifact_1.0",
+          "art_opt03_demo_main_review_security_agent_SecurityRiskArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "test_release_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_main_test_release_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_review_security_agent_ReviewArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_main_test_release_agent_PRDescriptionArtifact_1.0",
+          "art_opt03_demo_main_test_release_agent_ReleaseEvidenceArtifact_1.0",
+          "art_opt03_demo_main_test_release_agent_TestReportArtifact_1.0"
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+        "artifact_type": "DiffArtifact",
+        "agent_type": "code_change_agent",
+        "input_refs": [
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_code_change_agent_PatchArtifact_1.0",
+        "artifact_type": "PatchArtifact",
+        "agent_type": "code_change_agent",
+        "input_refs": [
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_planner_agent_PlanArtifact_1.0",
+        "artifact_type": "PlanArtifact",
+        "agent_type": "planner_agent",
+        "input_refs": [
+          "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0",
+          "art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0",
+          "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0",
+        "artifact_type": "CodeContextArtifact",
+        "agent_type": "repository_research_agent",
+        "input_refs": [
+          "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0",
+        "artifact_type": "ResearchArtifact",
+        "agent_type": "repository_research_agent",
+        "input_refs": [
+          "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0",
+        "artifact_type": "RequirementArtifact",
+        "agent_type": "requirement_agent",
+        "input_refs": []
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_review_security_agent_ReviewArtifact_1.0",
+        "artifact_type": "ReviewArtifact",
+        "agent_type": "review_security_agent",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_review_security_agent_SecurityRiskArtifact_1.0",
+        "artifact_type": "SecurityRiskArtifact",
+        "agent_type": "review_security_agent",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_main_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_test_release_agent_PRDescriptionArtifact_1.0",
+        "artifact_type": "PRDescriptionArtifact",
+        "agent_type": "test_release_agent",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_review_security_agent_ReviewArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_test_release_agent_ReleaseEvidenceArtifact_1.0",
+        "artifact_type": "ReleaseEvidenceArtifact",
+        "agent_type": "test_release_agent",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_review_security_agent_ReviewArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_main_test_release_agent_TestReportArtifact_1.0",
+        "artifact_type": "TestReportArtifact",
+        "agent_type": "test_release_agent",
+        "input_refs": [
+          "art_opt03_demo_main_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_main_review_security_agent_ReviewArtifact_1.0"
+        ]
+      }
+    ],
+    "dangling_refs": [],
+    "approval": {
+      "approval_id": "appr_38a9da780611",
+      "status": "approved",
+      "approved_at": "2026-10-15T15:23:47.184717+00:00",
+      "code_change_started_after_approval": true
+    },
+    "audit_replay": [
+      {
+        "event_type": "runtime.task.started",
+        "actor_id": "user_demo",
+        "actor_name": "演示操作者",
+        "summary": "创建 Runtime 任务 opt03_demo_main",
+        "created_at": "2026-10-15T15:23:47.115236+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "requirement_agent",
+        "summary": "requirement_agent 成功 attempt=1 round=0 artifacts=1",
+        "created_at": "2026-10-15T15:23:47.166178+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "repository_research_agent",
+        "summary": "repository_research_agent 成功 attempt=1 round=0 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.178439+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "planner_agent",
+        "summary": "planner_agent 成功 attempt=1 round=0 artifacts=1",
+        "created_at": "2026-10-15T15:23:47.181397+00:00"
+      },
+      {
+        "event_type": "runtime.approval.decided",
+        "actor_id": "user_approver",
+        "actor_name": "审批人",
+        "summary": "审批通过 opt03_demo_main",
+        "created_at": "2026-10-15T15:23:47.184717+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "类型越权 art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['CodeContextArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.184717+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "类型越权 art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['CodeContextArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.184717+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "code_change_agent 拒绝 2 个引用",
+        "created_at": "2026-10-15T15:23:47.184717+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "code_change_agent 成功 attempt=1 round=0 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.185816+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.188776+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0（CodeContextArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.188776+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.188776+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "review_security_agent 拒绝 3 个引用",
+        "created_at": "2026-10-15T15:23:47.188776+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "review_security_agent 成功 attempt=1 round=0 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.189835+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_main_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.192821+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_main_repository_research_agent_CodeContextArtifact_1.0（CodeContextArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_main_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_main_planner_agent_PlanArtifact_1.0（PlanArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_main_code_change_agent_PatchArtifact_1.0（PatchArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_main_review_security_agent_SecurityRiskArtifact_1.0（SecurityRiskArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "test_release_agent 拒绝 6 个引用",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "test_release_agent 成功 attempt=1 round=0 artifacts=3",
+        "created_at": "2026-10-15T15:23:47.193438+00:00"
+      },
+      {
+        "event_type": "runtime.task.succeeded",
+        "actor_id": "worker",
+        "actor_name": "demo-worker",
+        "summary": "多 Agent 协作成功 opt03_demo_main",
+        "created_at": "2026-10-15T15:23:47.196240+00:00"
+      }
+    ]
+  },
+  "scenario_repair": {
+    "task_id": "opt03_demo_repair",
+    "final_status": "succeeded",
+    "repair_round": 1,
+    "approval_state": "approved",
+    "steps": [
+      {
+        "name": "requirement_agent",
+        "agent_type": "requirement_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"summary\": \"为退款回调补充可复现的重试说明与校验（OPT-03 隔离演示）（修复分支）\", \"requirements\": [{\"id\": \"r1\", \"description\": \"为退款回调补充可复现的重试说明与校验（OPT-03 隔离演示）（修复分支）\", \"acceptance\": \"看得见的行为"
+      },
+      {
+        "name": "repository_research_agent",
+        "agent_type": "repository_research_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"findings\": [{\"file\": \"src/main.py\", \"summary\": \"核心入口\", \"relevance\": \"high\"}], \"files\": [\"src/main.py\", \"src/service.py\"], \"symbols\": [\"run_app\", \"Service.hand"
+      },
+      {
+        "name": "planner_agent",
+        "agent_type": "planner_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"objectives\": [\"实现需求\", \"补充测试\"], \"steps\": [{\"file\": \"src/service.py\", \"change\": \"新增 handle 逻辑\", \"reason\": \"满足需求\", \"risk\": \"low\"}, {\"file\": \"tests/test_service.p"
+      },
+      {
+        "name": "code_change_agent",
+        "agent_type": "code_change_agent",
+        "status": "succeeded",
+        "attempt": 2,
+        "output_summary": "{\"workspace_path\": \"/isolated/ws\", \"files_changed\": [\"src/service.py\", \"tests/test_service.py\"], \"patch\": \"diff --git a/src/service.py b/src/service.py\\n+def ha"
+      },
+      {
+        "name": "review_security_agent",
+        "agent_type": "review_security_agent",
+        "status": "succeeded",
+        "attempt": 2,
+        "output_summary": "{\"approved\": true, \"conclusions\": [\"通过\"], \"issues\": [], \"security_risks\": []}"
+      },
+      {
+        "name": "test_release_agent",
+        "agent_type": "test_release_agent",
+        "status": "succeeded",
+        "attempt": 1,
+        "output_summary": "{\"passed\": true, \"summary\": \"全部通过，可以发布\", \"test_cases\": [{\"name\": \"test_handle\", \"status\": \"passed\"}], \"pr_description\": \"PR: 实现需求（deterministic）\", \"release_evid"
+      }
+    ],
+    "agent_runs": [
+      {
+        "agent_type": "requirement_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_requirement_agent_1_1792077827",
+        "input_refs": [],
+        "output_refs": [
+          "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "repository_research_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_repository_research_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "planner_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_planner_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0",
+          "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "code_change_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_code_change_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "review_security_agent",
+        "attempt": 1,
+        "repair_round": 0,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_review_security_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_1.0",
+          "art_opt03_demo_repair_review_security_agent_SecurityRiskArtifact_1.0"
+        ]
+      },
+      {
+        "agent_type": "code_change_agent",
+        "attempt": 2,
+        "repair_round": 1,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_code_change_agent_2_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_2.1"
+        ]
+      },
+      {
+        "agent_type": "review_security_agent",
+        "attempt": 2,
+        "repair_round": 1,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_review_security_agent_2_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_2.1",
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_2.1",
+          "art_opt03_demo_repair_review_security_agent_SecurityRiskArtifact_2.1"
+        ]
+      },
+      {
+        "agent_type": "test_release_agent",
+        "attempt": 1,
+        "repair_round": 1,
+        "status": "succeeded",
+        "run_id": "run_opt03_demo_repair_test_release_agent_1_1792077827",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_1.0",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_2.1"
+        ],
+        "output_refs": [
+          "art_opt03_demo_repair_test_release_agent_PRDescriptionArtifact_1.1",
+          "art_opt03_demo_repair_test_release_agent_ReleaseEvidenceArtifact_1.1",
+          "art_opt03_demo_repair_test_release_agent_TestReportArtifact_1.1"
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+        "artifact_type": "DiffArtifact",
+        "agent_type": "code_change_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+        "artifact_type": "DiffArtifact",
+        "agent_type": "code_change_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+        "artifact_type": "PatchArtifact",
+        "agent_type": "code_change_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_code_change_agent_PatchArtifact_2.1",
+        "artifact_type": "PatchArtifact",
+        "agent_type": "code_change_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0",
+        "artifact_type": "PlanArtifact",
+        "agent_type": "planner_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0",
+          "art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0",
+          "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0",
+        "artifact_type": "CodeContextArtifact",
+        "agent_type": "repository_research_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0",
+        "artifact_type": "ResearchArtifact",
+        "agent_type": "repository_research_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0",
+        "artifact_type": "RequirementArtifact",
+        "agent_type": "requirement_agent",
+        "input_refs": []
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_review_security_agent_ReviewArtifact_1.0",
+        "artifact_type": "ReviewArtifact",
+        "agent_type": "review_security_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_review_security_agent_ReviewArtifact_2.1",
+        "artifact_type": "ReviewArtifact",
+        "agent_type": "review_security_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_2.1",
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_review_security_agent_SecurityRiskArtifact_1.0",
+        "artifact_type": "SecurityRiskArtifact",
+        "agent_type": "review_security_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_review_security_agent_SecurityRiskArtifact_2.1",
+        "artifact_type": "SecurityRiskArtifact",
+        "agent_type": "review_security_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_PatchArtifact_2.1",
+          "art_opt03_demo_repair_planner_agent_PlanArtifact_1.0"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_test_release_agent_PRDescriptionArtifact_1.1",
+        "artifact_type": "PRDescriptionArtifact",
+        "agent_type": "test_release_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_1.0",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_2.1"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_test_release_agent_ReleaseEvidenceArtifact_1.1",
+        "artifact_type": "ReleaseEvidenceArtifact",
+        "agent_type": "test_release_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_1.0",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_2.1"
+        ]
+      },
+      {
+        "artifact_id": "art_opt03_demo_repair_test_release_agent_TestReportArtifact_1.1",
+        "artifact_type": "TestReportArtifact",
+        "agent_type": "test_release_agent",
+        "input_refs": [
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_1.0",
+          "art_opt03_demo_repair_code_change_agent_DiffArtifact_2.1",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_1.0",
+          "art_opt03_demo_repair_review_security_agent_ReviewArtifact_2.1"
+        ]
+      }
+    ],
+    "dangling_refs": [],
+    "approval": {
+      "approval_id": "appr_6ce73398a870",
+      "status": "approved",
+      "approved_at": "2026-10-15T15:23:47.201247+00:00",
+      "code_change_started_after_approval": true
+    },
+    "audit_replay": [
+      {
+        "event_type": "runtime.task.started",
+        "actor_id": "user_demo",
+        "actor_name": "演示操作者",
+        "summary": "创建 Runtime 任务 opt03_demo_repair",
+        "created_at": "2026-10-15T15:23:47.196240+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "requirement_agent",
+        "summary": "requirement_agent 成功 attempt=1 round=0 artifacts=1",
+        "created_at": "2026-10-15T15:23:47.197243+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "repository_research_agent",
+        "summary": "repository_research_agent 成功 attempt=1 round=0 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.198194+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "planner_agent",
+        "summary": "planner_agent 成功 attempt=1 round=0 artifacts=1",
+        "created_at": "2026-10-15T15:23:47.200242+00:00"
+      },
+      {
+        "event_type": "runtime.approval.decided",
+        "actor_id": "user_approver",
+        "actor_name": "审批人",
+        "summary": "审批通过 opt03_demo_repair",
+        "created_at": "2026-10-15T15:23:47.201247+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "类型越权 art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['CodeContextArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.201247+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['CodeContextArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.201247+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "code_change_agent 拒绝 2 个引用",
+        "created_at": "2026-10-15T15:23:47.201247+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "code_change_agent 成功 attempt=1 round=0 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.202242+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.204645+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0（CodeContextArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.204645+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.204645+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "review_security_agent 拒绝 3 个引用",
+        "created_at": "2026-10-15T15:23:47.204645+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "review_security_agent 成功 attempt=1 round=0 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.205273+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "类型越权 art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['CodeContextArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.207220+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['CodeContextArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.207220+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "code_change_agent 拒绝 2 个引用",
+        "created_at": "2026-10-15T15:23:47.207220+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "code_change_agent",
+        "summary": "code_change_agent 成功 attempt=2 round=1 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.207220+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.208158+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0（CodeContextArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.208158+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['DiffArtifact', 'PatchArtifact', 'PlanArtifact']）",
+        "created_at": "2026-10-15T15:23:47.208158+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "review_security_agent 拒绝 3 个引用",
+        "created_at": "2026-10-15T15:23:47.208158+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "review_security_agent",
+        "summary": "review_security_agent 成功 attempt=2 round=1 artifacts=2",
+        "created_at": "2026-10-15T15:23:47.209155+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_requirement_agent_RequirementArtifact_1.0（RequirementArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_CodeContextArtifact_1.0（CodeContextArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_repository_research_agent_ResearchArtifact_1.0（ResearchArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_planner_agent_PlanArtifact_1.0（PlanArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_code_change_agent_PatchArtifact_1.0（PatchArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_code_change_agent_PatchArtifact_2.1（PatchArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_review_security_agent_SecurityRiskArtifact_1.0（SecurityRiskArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "类型越权 art_opt03_demo_repair_review_security_agent_SecurityRiskArtifact_2.1（SecurityRiskArtifact not in ['DiffArtifact', 'ReviewArtifact']）",
+        "created_at": "2026-10-15T15:23:47.209758+00:00"
+      },
+      {
+        "event_type": "runtime.artifact.denied_count",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "test_release_agent 拒绝 8 个引用",
+        "created_at": "2026-10-15T15:23:47.210856+00:00"
+      },
+      {
+        "event_type": "runtime.agent.succeeded",
+        "actor_id": "agent",
+        "actor_name": "test_release_agent",
+        "summary": "test_release_agent 成功 attempt=1 round=1 artifacts=3",
+        "created_at": "2026-10-15T15:23:47.210856+00:00"
+      },
+      {
+        "event_type": "runtime.task.succeeded",
+        "actor_id": "worker",
+        "actor_name": "demo-worker",
+        "summary": "多 Agent 协作成功 opt03_demo_repair",
+        "created_at": "2026-10-15T15:23:47.211854+00:00"
+      }
+    ],
+    "planner_run_count": 1
+  },
+  "checks": {
+    "six_agent_runs_succeeded": true,
+    "agent_chain_order_ok": true,
+    "approval_gate_held": true,
+    "approval_via_e2_service": true,
+    "code_change_started_after_approval": true,
+    "artifact_chain_no_dangling_refs": true,
+    "rag_bm25_expected_hit": true,
+    "audit_replay_complete": true,
+    "final_succeeded": true,
+    "repair_loop_triggered": true,
+    "planner_not_rerun": true,
+    "approval_not_duplicated": true,
+    "no_remote_write_module": true,
+    "all_passed": true
+  }
+}

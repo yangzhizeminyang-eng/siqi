@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "dataset_id": "enterprise-agent-eval-v1",
+    "dataset_sha256": "9789e0c03b2688573ffe57b7b4bc51f81083da58b0ea69d115ec40f2ef24a78d",
+    "case_count": 2,
+    "workflow_version": 2
+  },
+  "versions": {
+    "model": "deterministic-v1",
+    "prompt": "agent-prompts-v1"
+  },
+  "environment": {
+    "agent_provider": "deterministic",
+    "workspace_root": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\agent-eval-sandbox",
+    "stores": "in_memory",
+    "database": "disabled",
+    "celery": "disabled",
+    "real_model_opt_in": false
+  },
+  "agent_metrics": {
+    "code_change_agent": {
+      "runs": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "p50": 0.06,
+        "p95": 0.06
+      },
+      "tool_calls": 0,
+      "failure_classes": {
+        "none": 1
+      }
+    },
+    "planner_agent": {
+      "runs": 2,
+      "succeeded": 2,
+      "failed": 0,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "p50": 0.05,
+        "p95": 0.06
+      },
+      "tool_calls": 0,
+      "failure_classes": {
+        "none": 2
+      }
+    },
+    "repository_research_agent": {
+      "runs": 2,
+      "succeeded": 2,
+      "failed": 0,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "p50": 0.04,
+        "p95": 0.04
+      },
+      "tool_calls": 0,
+      "failure_classes": {
+        "none": 2
+      }
+    },
+    "requirement_agent": {
+      "runs": 2,
+      "succeeded": 2,
+      "failed": 0,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "p50": 27.92,
+        "p95": 52.97
+      },
+      "tool_calls": 0,
+      "failure_classes": {
+        "none": 2
+      }
+    },
+    "review_security_agent": {
+      "runs": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "p50": 0.03,
+        "p95": 0.03
+      },
+      "tool_calls": 0,
+      "failure_classes": {
+        "none": 1
+      }
+    },
+    "test_release_agent": {
+      "runs": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "p50": 0.06,
+        "p95": 0.06
+      },
+      "tool_calls": 0,
+      "failure_classes": {
+        "none": 1
+      }
+    }
+  },
+  "summary": {
+    "total_cases": 2,
+    "passed_cases": 2,
+    "failed_cases": 0,
+    "success_rate": 1.0,
+    "latency_ms": {
+      "p50": 55.25,
+      "p95": 96.36
+    },
+    "cost": {
+      "status": "not_collected",
+      "value": null
+    }
+  },
+  "cases": [
+    {
+      "case_id": "approved-happy-path",
+      "passed": true,
+      "workflow_status": "succeeded",
+      "agent_types": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent",
+        "code_change_agent",
+        "review_security_agent",
+        "test_release_agent"
+      ],
+      "artifact_types": [
+        "CodeContextArtifact",
+        "DiffArtifact",
+        "PRDescriptionArtifact",
+        "PatchArtifact",
+        "PlanArtifact",
+        "ReleaseEvidenceArtifact",
+        "RequirementArtifact",
+        "ResearchArtifact",
+        "ReviewArtifact",
+        "SecurityRiskArtifact",
+        "TestReportArtifact"
+      ],
+      "tool_policy": {
+        "requirement_agent": [
+          "read_comments",
+          "read_history",
+          "read_issue"
+        ],
+        "repository_research_agent": [
+          "rag_search",
+          "repo_read"
+        ],
+        "planner_agent": [],
+        "code_change_agent": [
+          "build_diff",
+          "workspace_read",
+          "workspace_write"
+        ],
+        "review_security_agent": [
+          "read_deps",
+          "read_diff",
+          "read_plan",
+          "read_security_policy",
+          "semgrep_scan",
+          "workspace_read"
+        ],
+        "test_release_agent": [
+          "collect_evidence",
+          "draft_pr",
+          "read_diff",
+          "run_test",
+          "workspace_read"
+        ]
+      },
+      "tool_trace": {},
+      "agent_runs": [
+        {
+          "agent_type": "requirement_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 55.75,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "repository_research_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.04,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "planner_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.04,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "code_change_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.06,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "review_security_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.03,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "test_release_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.06,
+          "tool_call_count": 0
+        }
+      ],
+      "approval_events": [
+        "requested",
+        "approved",
+        "code_change_started"
+      ],
+      "approval_boundary": {
+        "expected": "approved_before_code_change",
+        "passed": true
+      },
+      "failure_class": "none",
+      "failure_reasons": [],
+      "duration_ms": 100.93,
+      "cost": {
+        "status": "not_collected",
+        "value": null
+      }
+    },
+    {
+      "case_id": "approval-rejected",
+      "passed": true,
+      "workflow_status": "failed",
+      "agent_types": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent"
+      ],
+      "artifact_types": [
+        "CodeContextArtifact",
+        "PlanArtifact",
+        "RequirementArtifact",
+        "ResearchArtifact"
+      ],
+      "tool_policy": {
+        "requirement_agent": [
+          "read_comments",
+          "read_history",
+          "read_issue"
+        ],
+        "repository_research_agent": [
+          "rag_search",
+          "repo_read"
+        ],
+        "planner_agent": []
+      },
+      "tool_trace": {},
+      "agent_runs": [
+        {
+          "agent_type": "requirement_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.09,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "repository_research_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.03,
+          "tool_call_count": 0
+        },
+        {
+          "agent_type": "planner_agent",
+          "status": "succeeded",
+          "failure_class": "none",
+          "duration_ms": 0.06,
+          "tool_call_count": 0
+        }
+      ],
+      "approval_events": [
+        "requested",
+        "rejected"
+      ],
+      "approval_boundary": {
+        "expected": "rejected_before_code_change",
+        "passed": true
+      },
+      "failure_class": "approval_rejected",
+      "failure_reasons": [],
+      "duration_ms": 9.56,
+      "cost": {
+        "status": "not_collected",
+        "value": null
+      }
+    }
+  ]
+}

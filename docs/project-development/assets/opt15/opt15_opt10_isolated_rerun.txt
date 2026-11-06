@@ -1,0 +1,9 @@
+commit: 847a4bb99f89145c77818e463dddf61f27acbdbc (working tree 含未提交的 OPT-15 变更)
+context: run1 全量中 3 个 OPT-10 子进程用例因 OpenBLAS 内存分配失败而 failed（负载/内存压力性，
+         失败详情见 opt15_full_pytest.txt，错误均为 "OpenBLAS error: Memory allocation still failed after 10 retries"）
+command: cd backend && .venv/Scripts/python.exe -m pytest \
+  tests/test_opt10_rag_ablation.py::test_parsing_config_env_override_subprocess \
+  tests/test_opt10_rag_ablation.py::test_parsing_config_invalid_falls_back_and_clamps \
+  tests/test_opt10_rag_ablation_cli.py::test_ablation_cli_quick_end_to_end -q
+result: 3 passed in 84.17s (0:01:24)
+ISOLATED_EXIT=0

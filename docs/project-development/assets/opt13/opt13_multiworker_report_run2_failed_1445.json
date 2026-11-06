@@ -1,0 +1,194 @@
+{
+  "harness": "opt13_multiworker_verify",
+  "generated_at": "2026-10-16T06:44:37.980363+00:00",
+  "environment": {
+    "broker_port": 56297,
+    "broker": "fakeredis TcpFakeServer（真实 RESP 协议 + Lua；非本机 redis-server）",
+    "database": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt13-exp\\run\\app.db",
+    "workers": [
+      "opt13a@127.0.0.1",
+      "opt13b@127.0.0.1"
+    ],
+    "constants": {
+      "dispatch_ttl_s": 15,
+      "step_lease_ttl_s": 10,
+      "visibility_timeout_s": 30,
+      "probe_sleep_s": {
+        "s2_a": 25,
+        "s3_a": 40,
+        "s4_victim_b": 40
+      }
+    },
+    "agent_provider": "deterministic（tests-only；不调真实模型）"
+  },
+  "validation_status": {
+    "broker_type": "fakeredis_simulated（真实单机 Redis 服务未验证：validated=false）",
+    "real_model_calls": false,
+    "prod_multi_host_fault_drill": "not_collected：需生产 Redis/多机环境人工演练（本 harness 仅单机进程级）"
+  },
+  "scenarios": {
+    "s1": {
+      "scenario": "s1_smoke_exactly_once",
+      "wall_seconds": 33.83,
+      "consumed_counts": {
+        "s1-000": 1,
+        "s1-001": 1,
+        "s1-002": 1,
+        "s1-003": 1,
+        "s1-004": 1,
+        "s1-005": 1
+      },
+      "per_worker_counts": {
+        "opt13a": {
+          "s1-000": 1,
+          "s1-001": 0,
+          "s1-002": 0,
+          "s1-003": 1,
+          "s1-004": 1,
+          "s1-005": 0
+        },
+        "opt13b": {
+          "s1-000": 0,
+          "s1-001": 1,
+          "s1-002": 1,
+          "s1-003": 0,
+          "s1-004": 0,
+          "s1-005": 1
+        }
+      },
+      "worker_distribution": {
+        "opt13a": 3,
+        "opt13b": 3
+      },
+      "checks": {
+        "smoke_results_ok": true,
+        "consumed_exactly_once": true,
+        "no_result_failures": true,
+        "all_passed": true
+      }
+    },
+    "s2": {
+      "scenario": "s2_double_dispatch",
+      "wall_seconds": 128.6,
+      "task_id": "T2-double",
+      "running_step_at_dup": {
+        "step_id": "T2-double:requirement_agent",
+        "task_id": "T2-double",
+        "tenant_id": "tenant_default",
+        "name": "requirement_agent",
+        "agent_type": "requirement_agent",
+        "status": "running",
+        "retry_count": 0,
+        "max_retries": 3,
+        "backoff_seconds": 1.0,
+        "failure_kind": null,
+        "failure_reason": null,
+        "output_summary": "",
+        "idempotency_key": "T2-double:requirement_agent:ik-T2-double",
+        "worker_id": "opt13a@127.0.0.1",
+        "repair_round": 0,
+        "agent_attempt": 0,
+        "return_to": null,
+        "return_reason": null,
+        "started_at": null,
+        "finished_at": null
+      },
+      "b_busy_retry_count": 0,
+      "final_status": "waiting_approval",
+      "completed_steps": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent"
+      ],
+      "ledger": [
+        {
+          "agent_type": "requirement_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T2-double_requirement_agent_1_1792133291",
+              "task_id": "T2-double",
+              "agent_type": "requirement_agent",
+              "step_id": "T2-double:requirement_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T2-double:requirement_agent:1:0"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "agent_type": "repository_research_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T2-double_repository_research_agent_1_1792133317",
+              "task_id": "T2-double",
+              "agent_type": "repository_research_agent",
+              "step_id": "T2-double:repository_research_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T2-double:repository_research_agent:1:0"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "agent_type": "planner_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T2-double_planner_agent_1_1792133317",
+              "task_id": "T2-double",
+              "agent_type": "planner_agent",
+              "step_id": "T2-double:planner_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T2-double:planner_agent:1:0"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "dispatch_err_hits": {
+        "opt13a": 0,
+        "opt13b": 0
+      },
+      "checks": {
+        "running_seen_before_dup": true,
+        "running_held_by_a": true,
+        "duplicate_sent": true,
+        "b_busy_retry_observed": false,
+        "final_waiting_approval": true,
+        "completed_steps_ok": true,
+        "per_step_single_succeeded_run": true,
+        "no_dangling_runs": true,
+        "no_dispatch_err": true,
+        "all_passed": false
+      }
+    }
+  },
+  "fatal_error": "TimeoutExpired: Command '['D:\\\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\\\backend\\\\.venv\\\\Scripts\\\\python.exe', '-m', 'scripts.opt13_multiworker_verify', '--mode', 'seed', '--task-id', 'T3-crash', '--title', 'OPT13-S3 崩溃恢复']' timed out after 90 seconds",
+  "checks_all_passed": false
+}

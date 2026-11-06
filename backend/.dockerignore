@@ -1,0 +1,12 @@
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+.data
+*.db
+*.log
+.env
+.env.*
+evaluation
+tests

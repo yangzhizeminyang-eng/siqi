@@ -1,0 +1,23 @@
+# E3-07 专用 Milvus 叠加：全新数据卷 + 宿主机 19530 端口，避免与既有 enterprise 卷的 minio 凭据冲突。
+# 用法：
+#   export ENTERPRISE_MINIO_ROOT_USER=enterprise-minio
+#   export ENTERPRISE_MINIO_ROOT_PASSWORD=<你的随机>
+#   docker compose -f deploy/docker-compose.enterprise.yml -f deploy/docker-compose.milvus-e307.override.yml \
+#       up -d etcd-enterprise minio-enterprise milvus-enterprise
+services:
+  etcd-enterprise:
+    volumes:
+      - e307_milvus_etcd_data:/etcd
+  minio-enterprise:
+    volumes:
+      - e307_milvus_minio_data:/minio_data
+  milvus-enterprise:
+    volumes:
+      - e307_milvus_data:/var/lib/milvus
+    ports:
+      - "19530:19530"
+
+volumes:
+  e307_milvus_data: {}
+  e307_milvus_etcd_data: {}
+  e307_milvus_minio_data: {}

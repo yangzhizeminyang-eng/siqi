@@ -1,0 +1,43 @@
+mindmap
+  root((司契 Siqi · 企业级 AI Agent 研发协作平台))
+    版本分层
+      MVP版 单Agent任务闭环
+      团队版 多人协作与治理
+      企业版 多租户与受治理MultiAgent
+    领域模型
+      租户域 Tenant Organization Membership
+      研发域 Project Repository Index CodeChunk
+      任务域 Task Plan Diff TestRun PrDescription
+      企业域 RuntimeTask RuntimeStep Checkpoint Lease Artifact
+      审计域 AuditEvent TaskEvent ExecutionStep
+    任务状态机
+      前序 CREATED ISSUE_FETCHED CONTEXT_INDEXED ANALYSIS_QUEUED
+      分析计划 ANALYZED PLAN_GENERATED
+      审批 WAITING_APPROVAL APPROVED
+      执行 DIFF_GENERATED TEST_RUNNING TEST_FAILED TESTED
+      终态 COMPLETED FAILED CANCELLED
+    Agent编排
+      单Agent主链 LangGraph九节点
+      企业6AgentRuntime 编排加租约
+      驱动 CeleryWorker 与 DeepAgents
+    RAG检索
+      离线索引 同步解析切片向量化入库
+      在线检索 双路召回RRF融合精排
+      评测体系 Recall Precision MRR NDCG
+      降级开关 Mock兜底与严格过滤
+    治理与安全
+      审批门禁与风险分级
+      命令白名单与危险拦截
+      审计双表与越权留痕
+      密钥不回显
+    前端
+      13个通用页面
+      7个企业页面
+      路由权限守卫
+      实时SSE订阅
+      响应式390px
+    交付与运维
+      企业独立Compose
+      NginxTLS与证书续期
+      备份恢复与回滚
+      监控与多副本压测

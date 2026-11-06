@@ -1,0 +1,1046 @@
+{
+  "harness": "opt13_multiworker_verify",
+  "generated_at": "2026-10-16T07:02:33.979920+00:00",
+  "environment": {
+    "broker_port": 52115,
+    "broker": "fakeredis TcpFakeServer（真实 RESP 协议 + Lua；非本机 redis-server）",
+    "database": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt13-exp\\run\\app.db",
+    "workers": [
+      "opt13a@127.0.0.1",
+      "opt13b@127.0.0.1"
+    ],
+    "constants": {
+      "dispatch_ttl_s": 15,
+      "step_lease_ttl_s": 10,
+      "visibility_timeout_s": 30,
+      "probe_sleep_s": {
+        "s2_a": 150,
+        "s3_a": 90,
+        "s4_victim_b": 150
+      }
+    },
+    "agent_provider": "deterministic（tests-only；不调真实模型）"
+  },
+  "validation_status": {
+    "broker_type": "fakeredis_simulated（真实单机 Redis 服务未验证：validated=false）",
+    "real_model_calls": false,
+    "prod_multi_host_fault_drill": "not_collected：需生产 Redis/多机环境人工演练（本 harness 仅单机进程级）"
+  },
+  "scenarios": {
+    "s1": {
+      "scenario": "s1_smoke_exactly_once",
+      "wall_seconds": 88.62,
+      "consumed_counts": {
+        "s1-000": 1,
+        "s1-001": 1,
+        "s1-002": 1,
+        "s1-003": 1,
+        "s1-004": 1,
+        "s1-005": 1
+      },
+      "per_worker_counts": {
+        "opt13a": {
+          "s1-000": 1,
+          "s1-001": 1,
+          "s1-002": 0,
+          "s1-003": 1,
+          "s1-004": 0,
+          "s1-005": 1
+        },
+        "opt13b": {
+          "s1-000": 0,
+          "s1-001": 0,
+          "s1-002": 1,
+          "s1-003": 0,
+          "s1-004": 1,
+          "s1-005": 0
+        }
+      },
+      "worker_distribution": {
+        "opt13a": 4,
+        "opt13b": 2
+      },
+      "checks": {
+        "smoke_results_ok": true,
+        "consumed_exactly_once": true,
+        "no_result_failures": true,
+        "all_passed": true
+      }
+    },
+    "s2": {
+      "scenario": "s2_double_dispatch",
+      "wall_seconds": 177.86,
+      "task_id": "T2-double",
+      "running_step_at_dup": {
+        "step_id": "T2-double:requirement_agent",
+        "task_id": "T2-double",
+        "tenant_id": "tenant_default",
+        "name": "requirement_agent",
+        "agent_type": "requirement_agent",
+        "status": "running",
+        "retry_count": 0,
+        "max_retries": 3,
+        "backoff_seconds": 1.0,
+        "failure_kind": null,
+        "failure_reason": null,
+        "output_summary": "",
+        "idempotency_key": "T2-double:requirement_agent:ik-T2-double",
+        "worker_id": "opt13a@127.0.0.1",
+        "repair_round": 0,
+        "agent_attempt": 0,
+        "return_to": null,
+        "return_reason": null,
+        "started_at": null,
+        "finished_at": null
+      },
+      "b_busy_retry_count": 10,
+      "final_status": "waiting_approval",
+      "completed_steps": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent"
+      ],
+      "ledger": [
+        {
+          "agent_type": "requirement_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T2-double_requirement_agent_1_1792134506",
+              "task_id": "T2-double",
+              "agent_type": "requirement_agent",
+              "step_id": "T2-double:requirement_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T2-double:requirement_agent:1:0"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "agent_type": "repository_research_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T2-double_repository_research_agent_1_1792134659",
+              "task_id": "T2-double",
+              "agent_type": "repository_research_agent",
+              "step_id": "T2-double:repository_research_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T2-double:repository_research_agent:1:0"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "agent_type": "planner_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T2-double_planner_agent_1_1792134660",
+              "task_id": "T2-double",
+              "agent_type": "planner_agent",
+              "step_id": "T2-double:planner_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T2-double:planner_agent:1:0"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "dispatch_err_hits": {
+        "opt13a": 0,
+        "opt13b": 0
+      },
+      "checks": {
+        "running_seen_before_dup": true,
+        "running_held_by_a": true,
+        "duplicate_sent": true,
+        "b_busy_retry_observed": true,
+        "final_waiting_approval": true,
+        "completed_steps_ok": true,
+        "per_step_single_succeeded_run": true,
+        "no_dangling_runs": true,
+        "no_dispatch_err": true,
+        "all_passed": true
+      }
+    },
+    "s3": {
+      "scenario": "s3_crash_recovery",
+      "wall_seconds": 159.65,
+      "task_id": "T3-crash",
+      "recovery_seconds": 111.28,
+      "timeline": [
+        {
+          "event": "seeded",
+          "at": "2026-10-16T07:13:10.212115+00:00"
+        },
+        {
+          "event": "step_running_on_a",
+          "at": "2026-10-16T07:13:10.223273+00:00",
+          "worker_id": "opt13a@127.0.0.1",
+          "agent_attempt": 0
+        },
+        {
+          "event": "worker_a_killed",
+          "at": "2026-10-16T07:13:11.498565+00:00",
+          "exit_code": 1,
+          "probe_seen": true,
+          "broker": {
+            "keys": [
+              "_kombu.binding.celery",
+              "_kombu.binding.celery.pidbox",
+              "_kombu.binding.celeryev",
+              "agent_run:T3-crash",
+              "unacked",
+              "unacked_index"
+            ],
+            "unacked_index_entries": [
+              [
+                "940a9ba2-08f3-49a4-93c1-eae362589a32",
+                1792134782.222815
+              ]
+            ],
+            "unacked_hlen": 1,
+            "unacked_mutex": {
+              "exists": false,
+              "ttl_seconds": -2
+            },
+            "other_keys": {
+              "_kombu.binding.celery": {
+                "type": "set"
+              },
+              "_kombu.binding.celery.pidbox": {
+                "type": "set"
+              },
+              "_kombu.binding.celeryev": {
+                "type": "set"
+              },
+              "agent_run:T3-crash": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "event": "visibility_elapsed",
+          "at": "2026-10-16T07:13:50.940806+00:00",
+          "waited_seconds": 40.7
+        },
+        {
+          "event": "broker_before_recovery_worker",
+          "at": "2026-10-16T07:13:50.970407+00:00",
+          "broker": {
+            "keys": [
+              "_kombu.binding.celery",
+              "_kombu.binding.celery.pidbox",
+              "_kombu.binding.celeryev",
+              "unacked",
+              "unacked_index"
+            ],
+            "unacked_index_entries": [
+              [
+                "940a9ba2-08f3-49a4-93c1-eae362589a32",
+                1792134782.222815
+              ]
+            ],
+            "unacked_hlen": 1,
+            "unacked_mutex": {
+              "exists": false,
+              "ttl_seconds": -2
+            },
+            "other_keys": {
+              "_kombu.binding.celery": {
+                "type": "set"
+              },
+              "_kombu.binding.celery.pidbox": {
+                "type": "set"
+              },
+              "_kombu.binding.celeryev": {
+                "type": "set"
+              }
+            }
+          }
+        },
+        {
+          "event": "worker_b_started",
+          "at": "2026-10-16T07:14:59.443675+00:00"
+        },
+        {
+          "event": "recovered",
+          "at": "2026-10-16T07:15:01.549674+00:00",
+          "recovery_seconds": 111.28,
+          "status": "waiting_approval"
+        }
+      ],
+      "ledger": [
+        {
+          "agent_type": "requirement_agent",
+          "succeeded": 1,
+          "failed": 1,
+          "running_dangling": 0,
+          "attempts": [
+            1,
+            2
+          ],
+          "runs": [
+            {
+              "run_id": "run_T3-crash_requirement_agent_1_1792134783",
+              "task_id": "T3-crash",
+              "agent_type": "requirement_agent",
+              "step_id": "T3-crash:requirement_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "failed",
+              "error_reason": "crash: step lease reclaimed (OPT-13), superseded by retry",
+              "idempotency_key": "T3-crash:requirement_agent:1:0"
+            },
+            {
+              "run_id": "run_T3-crash_requirement_agent_2_1792134900",
+              "task_id": "T3-crash",
+              "agent_type": "requirement_agent",
+              "step_id": "T3-crash:requirement_agent",
+              "attempt": 2,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T3-crash:requirement_agent:2:0"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "agent_type": "repository_research_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T3-crash_repository_research_agent_1_1792134901",
+              "task_id": "T3-crash",
+              "agent_type": "repository_research_agent",
+              "step_id": "T3-crash:repository_research_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T3-crash:repository_research_agent:1:0"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "agent_type": "planner_agent",
+          "succeeded": 1,
+          "failed": 0,
+          "running_dangling": 0,
+          "attempts": [
+            1
+          ],
+          "runs": [
+            {
+              "run_id": "run_T3-crash_planner_agent_1_1792134901",
+              "task_id": "T3-crash",
+              "agent_type": "planner_agent",
+              "step_id": "T3-crash:planner_agent",
+              "attempt": 1,
+              "repair_round": 0,
+              "status": "succeeded",
+              "error_reason": null,
+              "idempotency_key": "T3-crash:planner_agent:1:0"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "redelivered_received_count": 1,
+      "dispatch_err_hits": {
+        "opt13a": 0,
+        "opt13b": 0
+      },
+      "broker_after_kill": {
+        "keys": [
+          "_kombu.binding.celery",
+          "_kombu.binding.celery.pidbox",
+          "_kombu.binding.celeryev",
+          "agent_run:T3-crash",
+          "unacked",
+          "unacked_index"
+        ],
+        "unacked_index_entries": [
+          [
+            "940a9ba2-08f3-49a4-93c1-eae362589a32",
+            1792134782.222815
+          ]
+        ],
+        "unacked_hlen": 1,
+        "unacked_mutex": {
+          "exists": false,
+          "ttl_seconds": -2
+        },
+        "other_keys": {
+          "_kombu.binding.celery": {
+            "type": "set"
+          },
+          "_kombu.binding.celery.pidbox": {
+            "type": "set"
+          },
+          "_kombu.binding.celeryev": {
+            "type": "set"
+          },
+          "agent_run:T3-crash": {
+            "type": "string"
+          }
+        }
+      },
+      "broker_before_recovery": {
+        "keys": [
+          "_kombu.binding.celery",
+          "_kombu.binding.celery.pidbox",
+          "_kombu.binding.celeryev",
+          "unacked",
+          "unacked_index"
+        ],
+        "unacked_index_entries": [
+          [
+            "940a9ba2-08f3-49a4-93c1-eae362589a32",
+            1792134782.222815
+          ]
+        ],
+        "unacked_hlen": 1,
+        "unacked_mutex": {
+          "exists": false,
+          "ttl_seconds": -2
+        },
+        "other_keys": {
+          "_kombu.binding.celery": {
+            "type": "set"
+          },
+          "_kombu.binding.celery.pidbox": {
+            "type": "set"
+          },
+          "_kombu.binding.celeryev": {
+            "type": "set"
+          }
+        }
+      },
+      "checks": {
+        "step_running_seen_on_a": true,
+        "killed_mid_probe_window": true,
+        "worker_a_dead": true,
+        "in_flight_unacked_present": true,
+        "no_stale_mutex_before_recovery": true,
+        "redelivered_to_b": true,
+        "recovered_in_budget": true,
+        "final_waiting_approval": true,
+        "completed_steps_ok": true,
+        "crash_run_failed_and_redo_attempt2": true,
+        "later_steps_single_clean_run": true,
+        "step0_redone_by_b": true,
+        "no_dangling_runs": true,
+        "no_dispatch_err": true,
+        "all_passed": true
+      }
+    },
+    "s4": {
+      "scenario": "s4_bounded_longrun",
+      "wall_seconds": 183.89,
+      "recovery_seconds": 104.7,
+      "total_wall_seconds": 183.89,
+      "killed_mid_step": true,
+      "victim_task": "T4-1",
+      "victim_running": true,
+      "probe_seen": true,
+      "victim_still_running_at_kill": true,
+      "victim_step": {
+        "step_id": "T4-1:requirement_agent",
+        "task_id": "T4-1",
+        "tenant_id": "tenant_default",
+        "name": "requirement_agent",
+        "agent_type": "requirement_agent",
+        "status": "running",
+        "retry_count": 0,
+        "max_retries": 3,
+        "backoff_seconds": 1.0,
+        "failure_kind": null,
+        "failure_reason": null,
+        "output_summary": "",
+        "idempotency_key": "T4-1:requirement_agent:ik-T4-1",
+        "worker_id": "opt13b@127.0.0.1",
+        "repair_round": 0,
+        "agent_attempt": 0,
+        "return_to": null,
+        "return_reason": null,
+        "started_at": null,
+        "finished_at": null
+      },
+      "kill_to_restart_wait_s": 40,
+      "per_task": {
+        "T4-1": {
+          "status": "waiting_approval",
+          "completed_steps": [
+            "requirement_agent",
+            "repository_research_agent",
+            "planner_agent"
+          ],
+          "ledger_ok": true,
+          "ledger": [
+            {
+              "agent_type": "requirement_agent",
+              "succeeded": 1,
+              "failed": 1,
+              "running_dangling": 0,
+              "attempts": [
+                1,
+                2
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-1_requirement_agent_1_1792134948",
+                  "task_id": "T4-1",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-1:requirement_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "failed",
+                  "error_reason": "crash: step lease reclaimed (OPT-13), superseded by retry",
+                  "idempotency_key": "T4-1:requirement_agent:1:0"
+                },
+                {
+                  "run_id": "run_T4-1_requirement_agent_2_1792134996",
+                  "task_id": "T4-1",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-1:requirement_agent",
+                  "attempt": 2,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-1:requirement_agent:2:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "repository_research_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-1_repository_research_agent_1_1792134997",
+                  "task_id": "T4-1",
+                  "agent_type": "repository_research_agent",
+                  "step_id": "T4-1:repository_research_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-1:repository_research_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "planner_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-1_planner_agent_1_1792134997",
+                  "task_id": "T4-1",
+                  "agent_type": "planner_agent",
+                  "step_id": "T4-1:planner_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-1:planner_agent:1:0"
+                }
+              ],
+              "ok": true
+            }
+          ]
+        },
+        "T4-2": {
+          "status": "waiting_approval",
+          "completed_steps": [
+            "requirement_agent",
+            "repository_research_agent",
+            "planner_agent"
+          ],
+          "ledger_ok": true,
+          "ledger": [
+            {
+              "agent_type": "requirement_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-2_requirement_agent_1_1792135082",
+                  "task_id": "T4-2",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-2:requirement_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-2:requirement_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "repository_research_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-2_repository_research_agent_1_1792135082",
+                  "task_id": "T4-2",
+                  "agent_type": "repository_research_agent",
+                  "step_id": "T4-2:repository_research_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-2:repository_research_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "planner_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-2_planner_agent_1_1792135083",
+                  "task_id": "T4-2",
+                  "agent_type": "planner_agent",
+                  "step_id": "T4-2:planner_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-2:planner_agent:1:0"
+                }
+              ],
+              "ok": true
+            }
+          ]
+        },
+        "T4-3": {
+          "status": "waiting_approval",
+          "completed_steps": [
+            "requirement_agent",
+            "repository_research_agent",
+            "planner_agent"
+          ],
+          "ledger_ok": true,
+          "ledger": [
+            {
+              "agent_type": "requirement_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-3_requirement_agent_1_1792135083",
+                  "task_id": "T4-3",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-3:requirement_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-3:requirement_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "repository_research_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-3_repository_research_agent_1_1792135083",
+                  "task_id": "T4-3",
+                  "agent_type": "repository_research_agent",
+                  "step_id": "T4-3:repository_research_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-3:repository_research_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "planner_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-3_planner_agent_1_1792135084",
+                  "task_id": "T4-3",
+                  "agent_type": "planner_agent",
+                  "step_id": "T4-3:planner_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-3:planner_agent:1:0"
+                }
+              ],
+              "ok": true
+            }
+          ]
+        },
+        "T4-4": {
+          "status": "waiting_approval",
+          "completed_steps": [
+            "requirement_agent",
+            "repository_research_agent",
+            "planner_agent"
+          ],
+          "ledger_ok": true,
+          "ledger": [
+            {
+              "agent_type": "requirement_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-4_requirement_agent_1_1792135081",
+                  "task_id": "T4-4",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-4:requirement_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-4:requirement_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "repository_research_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-4_repository_research_agent_1_1792135081",
+                  "task_id": "T4-4",
+                  "agent_type": "repository_research_agent",
+                  "step_id": "T4-4:repository_research_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-4:repository_research_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "planner_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-4_planner_agent_1_1792135082",
+                  "task_id": "T4-4",
+                  "agent_type": "planner_agent",
+                  "step_id": "T4-4:planner_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-4:planner_agent:1:0"
+                }
+              ],
+              "ok": true
+            }
+          ]
+        },
+        "T4-5": {
+          "status": "waiting_approval",
+          "completed_steps": [
+            "requirement_agent",
+            "repository_research_agent",
+            "planner_agent"
+          ],
+          "ledger_ok": true,
+          "ledger": [
+            {
+              "agent_type": "requirement_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-5_requirement_agent_1_1792135079",
+                  "task_id": "T4-5",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-5:requirement_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-5:requirement_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "repository_research_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-5_repository_research_agent_1_1792135079",
+                  "task_id": "T4-5",
+                  "agent_type": "repository_research_agent",
+                  "step_id": "T4-5:repository_research_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-5:repository_research_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "planner_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-5_planner_agent_1_1792135080",
+                  "task_id": "T4-5",
+                  "agent_type": "planner_agent",
+                  "step_id": "T4-5:planner_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-5:planner_agent:1:0"
+                }
+              ],
+              "ok": true
+            }
+          ]
+        },
+        "T4-6": {
+          "status": "waiting_approval",
+          "completed_steps": [
+            "requirement_agent",
+            "repository_research_agent",
+            "planner_agent"
+          ],
+          "ledger_ok": true,
+          "ledger": [
+            {
+              "agent_type": "requirement_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-6_requirement_agent_1_1792135074",
+                  "task_id": "T4-6",
+                  "agent_type": "requirement_agent",
+                  "step_id": "T4-6:requirement_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-6:requirement_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "repository_research_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-6_repository_research_agent_1_1792135075",
+                  "task_id": "T4-6",
+                  "agent_type": "repository_research_agent",
+                  "step_id": "T4-6:repository_research_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-6:repository_research_agent:1:0"
+                }
+              ],
+              "ok": true
+            },
+            {
+              "agent_type": "planner_agent",
+              "succeeded": 1,
+              "failed": 0,
+              "running_dangling": 0,
+              "attempts": [
+                1
+              ],
+              "runs": [
+                {
+                  "run_id": "run_T4-6_planner_agent_1_1792135076",
+                  "task_id": "T4-6",
+                  "agent_type": "planner_agent",
+                  "step_id": "T4-6:planner_agent",
+                  "attempt": 1,
+                  "repair_round": 0,
+                  "status": "succeeded",
+                  "error_reason": null,
+                  "idempotency_key": "T4-6:planner_agent:1:0"
+                }
+              ],
+              "ok": true
+            }
+          ]
+        }
+      },
+      "post_smoke_ok": true,
+      "broker_after_kill": {
+        "keys": [
+          "_kombu.binding.celery",
+          "_kombu.binding.celery.pidbox",
+          "_kombu.binding.celeryev",
+          "agent_run:T4-1",
+          "unacked",
+          "unacked_index"
+        ],
+        "unacked_index_entries": [
+          [
+            "035507a2-c728-4253-8043-b1c61d4cc9ca",
+            1792134980.8702242
+          ]
+        ],
+        "unacked_hlen": 1,
+        "unacked_mutex": {
+          "exists": false,
+          "ttl_seconds": -2
+        },
+        "other_keys": {
+          "_kombu.binding.celery": {
+            "type": "set"
+          },
+          "_kombu.binding.celery.pidbox": {
+            "type": "set"
+          },
+          "_kombu.binding.celeryev": {
+            "type": "set"
+          },
+          "agent_run:T4-1": {
+            "type": "string"
+          }
+        }
+      },
+      "checks": {
+        "all_tasks_waiting_approval": true,
+        "killed_mid_step": true,
+        "per_task_ledgers_ok": true,
+        "no_dangling_runs": true,
+        "post_recovery_smoke_once": true,
+        "wall_bound_ok": true,
+        "all_passed": true
+      }
+    }
+  },
+  "checks_all_passed": true
+}

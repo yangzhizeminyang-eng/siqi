@@ -1,0 +1,288 @@
+{
+  "schema": "opt14-evidence-v1",
+  "harness": "opt14_verify",
+  "generated_at": "2026-10-16T08:16:16.936547+00:00",
+  "environment": {
+    "python": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.venv\\Scripts\\python.exe",
+    "backend_root": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend",
+    "model_mode": "deterministic/mock（不调真实模型）",
+    "server": {
+      "port": 56042,
+      "mode": "内存态（USE_SQLALCHEMY=false）",
+      "log": ".data\\opt14-exp\\opt14_uvicorn.log"
+    }
+  },
+  "validation_status": {
+    "real_model_calls": false,
+    "real_oidc_provider": "not_collected：OIDC 未实现（边界声明 + fail-closed 已验证）",
+    "prod_mysql_rls": "not_implemented：共享 schema + 应用层租户作用域（演进路径见 doc 126）",
+    "http_server": "真实 uvicorn 子进程（内存态）；生产部署外的 UI 浏览器路径未采集"
+  },
+  "checks": [
+    {
+      "id": "A1-cross-tenant-deny",
+      "desc": "切到租户 B 后读默认租户项目 → 403 且留 B 侧审计",
+      "status": "pass",
+      "evidence": {
+        "create_tenant": 200,
+        "tenant_b": "tenant_47804da8a8b9",
+        "read_proj_payment": 403
+      }
+    },
+    {
+      "id": "A2-tenant-b-audit-scope",
+      "desc": "租户 B 审计列表仅含 B 事件（含越权拒绝事件）",
+      "status": "pass",
+      "evidence": {
+        "count": 1,
+        "sample": [
+          {
+            "id": "audit_37511a7ef8f64bf7",
+            "type": "tenant.project.denied",
+            "tenant": "tenant_47804da8a8b9"
+          }
+        ]
+      }
+    },
+    {
+      "id": "A3-default-scope-isolation",
+      "desc": "默认租户列表/导出不含 B 事件（导出 JSONL）",
+      "status": "pass",
+      "evidence": {
+        "list_count": 2,
+        "export_status": 200,
+        "export_rows": 2,
+        "b_ids_leak": [],
+        "headers": {
+          "content-type": "application/x-ndjson",
+          "content-disposition": "attachment; filename=\"audit-events.jsonl\"",
+          "x-audit-export-count": "2",
+          "x-audit-export-truncated": "false",
+          "x-audit-export-format": "jsonl"
+        },
+        "sample_row_keys": [
+          "actor_id",
+          "actor_name",
+          "created_at",
+          "diff_summary",
+          "event_type",
+          "execution_step_ids",
+          "id",
+          "resource_id",
+          "resource_type",
+          "summary",
+          "tenant_id"
+        ]
+      }
+    },
+    {
+      "id": "A4-export-self-audit",
+      "desc": "导出动作留审计（tenant.audit.exported），下一次导出可见",
+      "status": "pass",
+      "evidence": {
+        "first_export_count": 2,
+        "second_export_count": 3,
+        "export_audit_events": [
+          {
+            "type": "tenant.audit.exported",
+            "summary": "审计导出 format=jsonl count=2 truncated=false"
+          },
+          {
+            "type": "tenant.audit.exported",
+            "summary": "审计导出 format=jsonl count=3 truncated=false"
+          }
+        ]
+      }
+    },
+    {
+      "id": "A5-csv-format",
+      "desc": "CSV 导出：content-type=text/csv 且首列为 id 表头",
+      "status": "pass",
+      "evidence": {
+        "status": 200,
+        "content-type": "text/csv; charset=utf-8",
+        "header_row_head": "id,event_type,tenant_id,resource_type,resource_id,actor_id,actor_name,summary,di",
+        "rows": 4
+      }
+    },
+    {
+      "id": "A6-permission-gate",
+      "desc": "导出权限门：developer=403，observer(auditor)=200",
+      "status": "pass",
+      "evidence": {
+        "developer": 403,
+        "observer": 200
+      }
+    },
+    {
+      "id": "A7-param-validation",
+      "desc": "非法导出参数 → 422",
+      "status": "pass",
+      "evidence": {
+        "limit=0": 422,
+        "format=xml": 422,
+        "since=not-a-date": 422
+      }
+    },
+    {
+      "id": "B0-seed-sqlite",
+      "desc": "真实 SQLite 落库 2 条审计事件（100 天前 / 2 天前）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "stdout": "{\"seeded\": [\"opt14_old\", \"opt14_new\"]}",
+        "db": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt14-exp\\opt14_retention.db"
+      }
+    },
+    {
+      "id": "B1-cli-dry-run-default",
+      "desc": "CLI 默认 dry-run：候选=1、删除=0、数据未动",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "payload": {
+          "days": 90,
+          "cutoff": "2026-07-18T08:17:08.469609+00:00",
+          "total": 2,
+          "candidates": 1,
+          "deleted": 0,
+          "deleted_memory": 0,
+          "deleted_db": 0,
+          "dry_run": true,
+          "truncated": false,
+          "refused": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "id": "B2-cli-refuses-below-min",
+      "desc": "CLI 低于 min_days 默认拒绝（rc=1，refused=true）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 1,
+        "payload": {
+          "days": 7,
+          "cutoff": null,
+          "total": 0,
+          "candidates": 0,
+          "deleted": 0,
+          "deleted_memory": 0,
+          "deleted_db": 0,
+          "dry_run": false,
+          "truncated": false,
+          "refused": true,
+          "reason": "days=7 低于 min_days=30 防误删下限，需显式 allow_below_min 放行"
+        }
+      }
+    },
+    {
+      "id": "B3-cli-apply-deletes",
+      "desc": "CLI apply 真删旧事件（deleted_db=1；DB 仅剩新事件）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "payload": {
+          "days": 90,
+          "cutoff": "2026-07-18T08:17:24.603859+00:00",
+          "total": 2,
+          "candidates": 1,
+          "deleted": 1,
+          "deleted_memory": 0,
+          "deleted_db": 1,
+          "dry_run": false,
+          "truncated": false,
+          "refused": false,
+          "reason": ""
+        },
+        "db_ids_after": [
+          "opt14_new"
+        ]
+      }
+    },
+    {
+      "id": "B4-cli-requires-days",
+      "desc": "CLI 缺少 --days → argparse 参数错误 rc=2",
+      "status": "pass",
+      "evidence": {
+        "returncode": 2,
+        "stderr_tail": "usage: audit_retention [-h] --days DAYS [--apply] [--json] [--allow-below-min]\n                       [--max-delete MAX_DELETE]\naudit_retention: error: the following arguments are required: --days"
+      }
+    },
+    {
+      "id": "C1-auth-mode-local-default",
+      "desc": "AUTH_MODE 默认 local",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "stdout": "local"
+      }
+    },
+    {
+      "id": "C2-auth-mode-fail-closed",
+      "desc": "AUTH_MODE=oidc（未实现）→ 拒绝启动，报错含 AUTH_MODE/fail-closed",
+      "status": "pass",
+      "evidence": {
+        "returncode": 1,
+        "stderr_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\app\\core\\runtime_config.py\", line 236, in load_runtime_settings\n    auth_mode=_auth_mode(),\n              ^^^^^^^^^^^^\n  File \"D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\app\\core\\runtime_config.py\", line 81, in _auth_mode\n    raise RuntimeError(\nRuntimeError: AUTH_MODE=oidc 未实现（OIDC/MFA 规划中）：fail-closed 拒绝启动，绝不静默降级到 local 认证。见 docs/project-development/126。"
+      }
+    },
+    {
+      "id": "D1-orm-tenant-classification",
+      "desc": "ORM 全表租户分类快照（30 表：15 直挂 tenant_id）",
+      "status": "pass",
+      "evidence": {
+        "total": 30,
+        "direct_count": 15,
+        "direct": [
+          "approval_applications",
+          "audit_events",
+          "code_chunks",
+          "enterprise_agent_artifacts",
+          "enterprise_agent_runs",
+          "enterprise_runtime_checkpoints",
+          "enterprise_runtime_tasks",
+          "organizations",
+          "projects",
+          "repositories",
+          "repository_indexes",
+          "retrieval_records",
+          "tasks",
+          "team_requests",
+          "tenant_memberships"
+        ]
+      }
+    },
+    {
+      "id": "D2-role-matrix-audit-view",
+      "desc": "audit:view 仅 owner/admin/security_admin/auditor 四角色持有",
+      "status": "pass",
+      "evidence": {
+        "matrix": {
+          "tenant_owner": true,
+          "tenant_admin": true,
+          "security_admin": true,
+          "project_owner": false,
+          "developer": false,
+          "reviewer": false,
+          "auditor": true
+        }
+      }
+    },
+    {
+      "id": "E1-pytest-gate",
+      "desc": "专项 pytest 门禁（OPT-14 22 条 + OPT-11 冻结 4 条）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "summary": "26 passed in 41.41s",
+        "log": ".data\\opt14-exp\\opt14_pytest.txt"
+      }
+    }
+  ],
+  "summary": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0
+  }
+}

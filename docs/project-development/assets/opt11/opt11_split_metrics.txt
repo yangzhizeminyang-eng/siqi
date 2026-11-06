@@ -1,0 +1,24 @@
+# OPT-11 拆分规模度量（main.py 行数对比 + app/api 模块清单）
+# cmd: cd backend && git show HEAD:backend/app/main.py | wc -l && wc -l app/main.py app/api/*.py
+# env: git worktree 当前分支 feature/test-env-real-exec
+
+== main.py 行数（分支基线 HEAD 与当前工作区）
+HEAD: 9177
+NOW : 7651
+
+== app/api 领域模块清单
+    8 app/api/__init__.py
+   43 app/api/dashboard.py
+   44 app/api/users.py
+   49 app/api/system.py
+   56 app/api/audit.py
+  113 app/api/history.py
+  136 app/api/projects.py
+  159 app/api/auth.py
+  162 app/api/notifications.py
+  203 app/api/comments.py
+  269 app/api/repositories.py
+  274 app/api/repository_indexes.py
+  526 app/api/team_requests.py
+ 2042 total
+EXIT=0

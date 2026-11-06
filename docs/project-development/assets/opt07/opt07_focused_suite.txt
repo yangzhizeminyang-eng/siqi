@@ -1,0 +1,32 @@
+# OPT-07 focused: observability unit/integration + CLI demo
+# cmd: pytest tests/test_opt07_observability.py tests/test_opt07_trace_demo_cli.py -v -rs
+# env: APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true ENV_FILE=tests/.env.hermetic-nonexistent
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend
+configfile: pyproject.toml
+plugins: anyio-4.14.2, langsmith-0.12.2
+collecting ... collected 19 items
+
+tests/test_opt07_observability.py::test_record_and_query_tenant_isolation_and_order PASSED [  5%]
+tests/test_opt07_observability.py::test_query_filters_trace_category_status_and_limit PASSED [ 10%]
+tests/test_opt07_observability.py::test_retention_cap_drops_oldest_and_tracks_dropped PASSED [ 15%]
+tests/test_opt07_observability.py::test_scrub_attributes_redacts_sensitive_keys_and_env_values PASSED [ 21%]
+tests/test_opt07_observability.py::test_scrub_not_collected_tokens_shape PASSED [ 26%]
+tests/test_opt07_observability.py::test_bind_trace_and_span_inherits_context PASSED [ 31%]
+tests/test_opt07_observability.py::test_span_error_kind_recorded_and_exception_reraised PASSED [ 36%]
+tests/test_opt07_observability.py::test_executor_run_emits_model_and_artifact_spans PASSED [ 42%]
+tests/test_opt07_observability.py::test_executor_emits_tool_spans_and_passes_real_usage PASSED [ 47%]
+tests/test_opt07_observability.py::test_executor_does_not_duplicate_wrapper_tool_spans PASSED [ 52%]
+tests/test_opt07_observability.py::test_executor_invoke_failure_emits_error_span PASSED [ 57%]
+tests/test_opt07_observability.py::test_built_tool_invocation_emits_tool_span_only_in_context PASSED [ 63%]
+tests/test_opt07_observability.py::test_rag_search_wrapper_emits_ok_span PASSED [ 68%]
+tests/test_opt07_observability.py::test_rag_search_wrapper_emits_error_spans_and_inherits_ambient_trace PASSED [ 73%]
+tests/test_opt07_observability.py::test_approval_approve_and_reject_emit_spans PASSED [ 78%]
+tests/test_opt07_observability.py::test_worker_step_span_chains_workflow_trace PASSED [ 84%]
+tests/test_opt07_observability.py::test_traces_api_permission_tenant_scoping_and_filters PASSED [ 89%]
+tests/test_opt07_trace_demo_cli.py::test_opt07_demo_cli_isolated_all_checks_pass PASSED [ 94%]
+tests/test_opt07_trace_demo_cli.py::test_opt07_demo_reproducible_across_cwd PASSED [100%]
+
+============================= 19 passed in 19.26s =============================

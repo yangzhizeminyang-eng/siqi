@@ -1,0 +1,53 @@
+{
+  "schema": "fix-mysql-real-validation-v1",
+  "generated_at": "2026-10-18T12:19:36.175372+00:00",
+  "date": "2026-10-18",
+  "engine": "MySQL 8.0.44 (local isolated instance)",
+  "isolated": true,
+  "port": 50521,
+  "datadir": "C:\\temp\\siqi-fix2-mysql-20261018_201445\\data",
+  "command": "mysqld --no-defaults --basedir=D:/mysql/mysql-8.0.44-winx64 --datadir=C:/temp/.../data --port=50521 --bind-address=127.0.0.1 --console",
+  "exit_code": 0,
+  "checks": {
+    "migration_to_head": "c9d0e1f2a3b4",
+    "tenant_scoped_supersede": {
+      "a_old": "superseded",
+      "a_old_by": "idx_mysql_a_new",
+      "b_old": "ready",
+      "a_new": "ready"
+    },
+    "supersede_audit_ids": [
+      "idx_mysql_a_old"
+    ],
+    "supersede_audit_tenants": [
+      "tenant_a"
+    ],
+    "tokens_persisted": {
+      "url": "https://user:***@gitee.com/x.git",
+      "nested": {
+        "list": [
+          "***",
+          7,
+          true
+        ],
+        "usage": {
+          "total_tokens": 9
+        },
+        "password": "***"
+      },
+      "secret": "***",
+      "api_key": "***",
+      "input_tokens": 12,
+      "total_tokens": 46,
+      "output_tokens": 34
+    },
+    "tokens_secret_in_raw_json": false,
+    "total_tokens_type": "int"
+  },
+  "boundaries": {
+    "production_mysql": "not_used",
+    "real_redis": "not_used",
+    "milvus": "not_used",
+    "real_model": "not_used"
+  }
+}

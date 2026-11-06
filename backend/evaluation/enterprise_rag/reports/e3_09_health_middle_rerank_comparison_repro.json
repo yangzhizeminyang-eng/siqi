@@ -1,0 +1,505 @@
+{
+  "dataset_sha256": "d8909bfb98f0358ba983ac093ba7295f21f1946cb00a8af4b8cabb3e51ff1a75",
+  "config_snapshot_sha256": "c54fdeba5c4f5dbf",
+  "dataset_size": 67,
+  "repository_url": "https://gitee.com/yang-zhizemin/health-middle",
+  "repository_id": "repo_health_middle",
+  "project_id": "proj_health_middle",
+  "commit_sha": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+  "collection_name": "enterprise_code_idx_health_middle_73e7e54",
+  "index_id": null,
+  "embedding_provider": "zhipu",
+  "embedding_model": "embedding-3",
+  "embedding_dimension": 2048,
+  "baseline_metrics": {
+    "recall_at_k": 0.8955,
+    "precision_at_k": 0.3396,
+    "mrr": 0.8172,
+    "ndcg_at_k": 0.7981,
+    "validation_status": "verified",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "latency_ms": 10311.1
+  },
+  "heuristic_metrics": {
+    "recall_at_k": 0.8955,
+    "precision_at_k": 0.3396,
+    "mrr": 0.8116,
+    "ndcg_at_k": 0.7934,
+    "validation_status": "verified",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "latency_ms": 7593.9
+  },
+  "llm_metrics": {
+    "recall_at_k": 0.8955,
+    "precision_at_k": 0.3396,
+    "mrr": 0.7668,
+    "ndcg_at_k": 0.7812,
+    "validation_status": "verified",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "latency_ms": 444041.6
+  },
+  "cross_encoder_metrics": {
+    "recall_at_k": 0.8955,
+    "precision_at_k": 0.3396,
+    "mrr": 0.8507,
+    "ndcg_at_k": 0.809,
+    "validation_status": "verified",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "latency_ms": 28663.0,
+    "status": "executed",
+    "fallback_reason": "",
+    "model_name": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "model_version": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "device": "cpu"
+  },
+  "mode_comparison": {
+    "baseline_hybrid": {
+      "total_cases": 67,
+      "passed_cases": 61,
+      "success_cases": 66,
+      "recall_at_k": 0.8955,
+      "recall_at_5": 0.8955,
+      "recall_at_10": 0.8955,
+      "precision_at_k": 0.3396,
+      "precision_at_5": 0.406,
+      "mrr": 0.8172,
+      "ndcg_at_k": 0.7981,
+      "ndcg_at_5": 0.7255,
+      "freshness_rate": 0.9848,
+      "empty_result_rate": 0.0303,
+      "unauthorized_pass_rate": 1.0,
+      "latency_p50_ms": 129.0,
+      "latency_p95_ms": 274.6
+    },
+    "heuristic_rerank": {
+      "total_cases": 67,
+      "passed_cases": 61,
+      "success_cases": 66,
+      "recall_at_k": 0.8955,
+      "recall_at_5": 0.8806,
+      "recall_at_10": 0.8955,
+      "precision_at_k": 0.3396,
+      "precision_at_5": 0.403,
+      "mrr": 0.8116,
+      "ndcg_at_k": 0.7934,
+      "ndcg_at_5": 0.7161,
+      "freshness_rate": 0.9848,
+      "empty_result_rate": 0.0303,
+      "unauthorized_pass_rate": 1.0,
+      "latency_p50_ms": 118.7,
+      "latency_p95_ms": 178.0
+    },
+    "llm_rerank": {
+      "total_cases": 67,
+      "passed_cases": 61,
+      "success_cases": 66,
+      "recall_at_k": 0.8955,
+      "recall_at_5": 0.8806,
+      "recall_at_10": 0.8955,
+      "precision_at_k": 0.3396,
+      "precision_at_5": 0.4418,
+      "mrr": 0.7668,
+      "ndcg_at_k": 0.7812,
+      "ndcg_at_5": 0.7273,
+      "freshness_rate": 0.9848,
+      "empty_result_rate": 0.0303,
+      "unauthorized_pass_rate": 1.0,
+      "latency_p50_ms": 3972.1,
+      "latency_p95_ms": 18546.5
+    },
+    "cross_encoder_rerank": {
+      "total_cases": 67,
+      "passed_cases": 61,
+      "success_cases": 66,
+      "recall_at_k": 0.8955,
+      "recall_at_5": 0.8955,
+      "recall_at_10": 0.8955,
+      "precision_at_k": 0.3396,
+      "precision_at_5": 0.403,
+      "mrr": 0.8507,
+      "ndcg_at_k": 0.809,
+      "ndcg_at_5": 0.7328,
+      "freshness_rate": 0.9848,
+      "empty_result_rate": 0.0303,
+      "unauthorized_pass_rate": 1.0,
+      "latency_p50_ms": 331.0,
+      "latency_p95_ms": 892.3
+    }
+  },
+  "per_tag_metrics": {
+    "baseline_hybrid": {
+      "api": {
+        "count": 3,
+        "recall_at_k": 0.6667,
+        "precision_at_k": 0.2083,
+        "mrr": 0.6667,
+        "ndcg_at_k": 0.648
+      },
+      "boundary": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "code": {
+        "count": 57,
+        "recall_at_k": 0.9825,
+        "precision_at_k": 0.386,
+        "mrr": 0.9123,
+        "ndcg_at_k": 0.8852
+      },
+      "config": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.25,
+        "mrr": 1.0,
+        "ndcg_at_k": 0.8772
+      },
+      "cross_file": {
+        "count": 2,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "empty": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "fresh": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "natural_language": {
+        "count": 3,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.1667,
+        "mrr": 0.5833,
+        "ndcg_at_k": 0.6998
+      },
+      "source_type": {
+        "count": 2,
+        "recall_at_k": 0.5,
+        "precision_at_k": 0.125,
+        "mrr": 0.5,
+        "ndcg_at_k": 0.4598
+      },
+      "stale": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "symbol": {
+        "count": 56,
+        "recall_at_k": 0.9821,
+        "precision_at_k": 0.3839,
+        "mrr": 0.8884,
+        "ndcg_at_k": 0.8702
+      }
+    },
+    "cross_encoder": {
+      "api": {
+        "count": 3,
+        "recall_at_k": 0.6667,
+        "precision_at_k": 0.2083,
+        "mrr": 0.6667,
+        "ndcg_at_k": 0.6519
+      },
+      "boundary": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "code": {
+        "count": 57,
+        "recall_at_k": 0.9825,
+        "precision_at_k": 0.386,
+        "mrr": 0.9386,
+        "ndcg_at_k": 0.8907
+      },
+      "config": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.25,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "cross_file": {
+        "count": 2,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "empty": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "fresh": {
+        "count": 1,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.125,
+        "mrr": 1.0,
+        "ndcg_at_k": 1.0
+      },
+      "natural_language": {
+        "count": 3,
+        "recall_at_k": 1.0,
+        "precision_at_k": 0.1667,
+        "mrr": 0.8333,
+        "ndcg_at_k": 0.8125
+      },
+      "source_type": {
+        "count": 2,
+        "recall_at_k": 0.5,
+        "precision_at_k": 0.125,
+        "mrr": 0.5,
+        "ndcg_at_k": 0.5
+      },
+      "stale": {
+        "count": 1,
+        "recall_at_k": 0.0,
+        "precision_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0
+      },
+      "symbol": {
+        "count": 56,
+        "recall_at_k": 0.9821,
+        "precision_at_k": 0.3839,
+        "mrr": 0.9286,
+        "ndcg_at_k": 0.8795
+      }
+    }
+  },
+  "latency_p50_p95_ms": {
+    "baseline": [
+      129.0,
+      274.6
+    ],
+    "heuristic": [
+      118.7,
+      178.0
+    ],
+    "llm": [
+      3972.1,
+      18546.5
+    ],
+    "cross_encoder": [
+      331.0,
+      892.3
+    ]
+  },
+  "model_loading": {
+    "status": "executed",
+    "model_name": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "device": "cpu",
+    "model_version": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "reason": ""
+  },
+  "fallback_used": false,
+  "needs_improvement": false,
+  "failed_cases": [
+    {
+      "version": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+      "case_index": 53,
+      "tags": [
+        "code",
+        "api"
+      ],
+      "project_id": "proj_health_middle",
+      "query": "/api/chat/send",
+      "repository_id": "repo_health_middle",
+      "difficulty": "medium",
+      "case_id": "hm054",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status_passed": true,
+      "retrieval_passed": false,
+      "empty": false,
+      "fresh": true,
+      "passed": false,
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "matched": 0,
+      "latency_ms": 318.7,
+      "index_id": "idx_health_middle_73e7e54"
+    },
+    {
+      "version": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+      "case_index": 57,
+      "tags": [
+        "cross_file",
+        "symbol"
+      ],
+      "project_id": "proj_health_middle",
+      "query": "登录与密码哈希 hash_password 在哪个文件",
+      "repository_id": "repo_health_middle",
+      "difficulty": "medium",
+      "case_id": "hm058",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status_passed": true,
+      "retrieval_passed": false,
+      "empty": false,
+      "fresh": true,
+      "passed": false,
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "matched": 0,
+      "latency_ms": 299.6,
+      "index_id": "idx_health_middle_73e7e54"
+    },
+    {
+      "version": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+      "case_index": 58,
+      "tags": [
+        "cross_file"
+      ],
+      "project_id": "proj_health_middle",
+      "query": "chat 会话与 metrics 报告联动",
+      "repository_id": "repo_health_middle",
+      "difficulty": "hard",
+      "case_id": "hm059",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status_passed": true,
+      "retrieval_passed": false,
+      "empty": false,
+      "fresh": true,
+      "passed": false,
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "matched": 0,
+      "latency_ms": 371.3,
+      "index_id": "idx_health_middle_73e7e54"
+    },
+    {
+      "version": "0000000000000000000000000000000000000000",
+      "case_index": 62,
+      "tags": [
+        "stale"
+      ],
+      "project_id": "proj_health_middle",
+      "query": "hash_password 密码哈希",
+      "repository_id": "repo_health_middle",
+      "difficulty": "easy",
+      "case_id": "hm063",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status_passed": true,
+      "retrieval_passed": false,
+      "empty": true,
+      "fresh": false,
+      "passed": false,
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "matched": 0,
+      "latency_ms": 1.3,
+      "index_id": "idx_health_middle_73e7e54"
+    },
+    {
+      "version": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+      "case_index": 64,
+      "tags": [
+        "source_type"
+      ],
+      "project_id": "proj_health_middle",
+      "query": "hash_password",
+      "repository_id": "repo_health_middle",
+      "difficulty": "medium",
+      "case_id": "hm065",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status_passed": true,
+      "retrieval_passed": false,
+      "empty": true,
+      "fresh": true,
+      "passed": false,
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "matched": 0,
+      "latency_ms": 4.4,
+      "index_id": "idx_health_middle_73e7e54"
+    },
+    {
+      "version": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+      "case_index": 65,
+      "tags": [
+        "empty"
+      ],
+      "project_id": "proj_health_middle",
+      "query": "definitely_not_a_real_symbol_zzz_hm",
+      "repository_id": "repo_health_middle",
+      "difficulty": "easy",
+      "case_id": "hm066",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status_passed": true,
+      "retrieval_passed": false,
+      "empty": false,
+      "fresh": true,
+      "passed": false,
+      "recall_at_k": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_k": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "ndcg_at_5": 0.0,
+      "matched": 0,
+      "latency_ms": 291.4,
+      "index_id": "idx_health_middle_73e7e54"
+    }
+  ],
+  "generated_at": "2026-09-20T06:40:54.997667+00:00"
+}

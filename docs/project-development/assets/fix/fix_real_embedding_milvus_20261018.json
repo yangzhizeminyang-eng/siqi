@@ -1,0 +1,36 @@
+{
+  "schema": "fix-real-embedding-milvus-v1",
+  "generated_at": "2026-10-18T13:06:29.856849+00:00",
+  "date": "2026-10-18",
+  "milvus_uri": "C:\\temp\\siqi-milvus-20261018\\code_index.db",
+  "source_db_copy": ".data\\milvus\\code_index.db",
+  "boundaries": {
+    "original_milvus_untouched": true,
+    "repo_code_sent_to_model": false,
+    "synthetic_text_only": true
+  },
+  "embedding": {
+    "provider": "zhipu",
+    "model": "embedding-3",
+    "configured": true,
+    "status": "ok",
+    "dimension": 2048,
+    "latency_ms": 2028.6
+  },
+  "milvus": {
+    "status": "ok",
+    "collection": "siqi_real_probe_1792328791885",
+    "hit_count": 2,
+    "sources": [
+      "milvus"
+    ],
+    "build_latency_ms": 20104.2,
+    "query_latency_ms": 919.4
+  },
+  "checks": {
+    "embedding_2048": true,
+    "milvus_source": true,
+    "synthetic_only": true
+  },
+  "all_passed": true
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "health-middle-local-practice-v1",
+  "generated_at": "2026-10-19T05:00:00Z",
+  "date": "2026-10-19",
+  "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+  "commit_sha": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+  "clone_path": "C:/temp/health-middle",
+  "scope": "local-only read-only practice; no production DB/Redis/Milvus, no real model, no Gitee writes",
+  "dataset": "e3_06_health_middle.jsonl",
+  "dataset_size": 67,
+  "index_chunks": 303,
+  "results": {
+    "bm25": {
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "milvus_verified": false,
+      "fallback_used": true,
+      "summary": {
+        "total_cases": 67,
+        "passed_cases": 61,
+        "success_cases": 66,
+        "recall_at_k": 0.8881,
+        "recall_at_5": 0.8881,
+        "recall_at_10": 0.8881,
+        "precision_at_k": 0.2034,
+        "precision_at_5": 0.3134,
+        "mrr": 0.8632,
+        "ndcg_at_k": 0.862,
+        "ndcg_at_5": 0.8524,
+        "freshness_rate": 0.9848,
+        "empty_result_rate": 0.0455,
+        "unauthorized_pass_rate": 1.0
+      },
+      "needs_improvement": true,
+      "failed_case_ids": ["hm054", "hm057", "hm058", "hm063", "hm065", "hm066"]
+    },
+    "hybrid": {
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "milvus_verified": false,
+      "fallback_used": true,
+      "summary": {
+        "total_cases": 67,
+        "passed_cases": 1,
+        "success_cases": 0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "empty_result_rate": 0.0
+      },
+      "metrics_note": "hybrid fell back without local Milvus; zero metrics are not a quality claim"
+    }
+  },
+  "checks": {
+    "clone_head_matches_dataset_commit": true,
+    "local_index_built": true,
+    "bm25_evaluated": true,
+    "hybrid_evaluated_with_fallback": true,
+    "production_services_used": false,
+    "gitee_writes": false
+  },
+  "boundaries": {
+    "local_only": true,
+    "vector_quality": "not claimed; hybrid had no Milvus",
+    "production_state": "not touched; production state/cleanup remains pending independent ops verification"
+  }
+}

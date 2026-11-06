@@ -1,0 +1,244 @@
+
+> frontend@0.0.0 test
+> node node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1 --no-file-parallelism
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.0 [39m[90mD:/Enterprise‑Grade AI Agent R&D Collaboration Platform/frontend[39m
+
+ [32m✓[39m src/views/__tests__/TaskDetailView.spec.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 1626[2mms[22m[39m
+   [32m✓[39m TaskDetailView：PR 描述摘要（DEV-013） [2m(4)[22m
+     [33m[2m✓[22m[39m TESTED 携带已生成记录：详情展示 PR 摘要、版本信息与去 Diff 页入口[32m 300[2mms[22m[39m
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：直达/刷新从后端读取真实事件回放[2m > [22m[2m直达访问且 store 为空时拉取任务，渲染 ANALYSIS_ANSWERED 事件完整字段
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/tasks/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：直达/刷新从后端读取真实事件回放[2m > [22m[2m刷新时 store 只有陈旧任务，仍重新拉取并用真实事件替换
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/tasks/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：直达/刷新从后端读取真实事件回放[2m > [22m[2m路由切换竞态：A 尚未返回时切到 B，A 返回后不能覆盖 B
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/tasks/TASK-9002"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：Diff 生成/失败事件在回放时间线显著标记[2m > [22m[2mDIFF_GENERATED 事件带「Diff 生成 + 演示兜底」标记，审计信息保留版本与兜底原因
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：Diff 生成/失败事件在回放时间线显著标记[2m > [22m[2mDIFF_GENERATION_FAILED 事件标记失败，任务 FAILED 不被误标为演示兜底
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：测试执行事件在回放时间线标记（DEV-012）[2m > [22m[2mTEST_RUN_STARTED / TEST_RUN_PASSED 事件标记「测试执行/测试通过」，点击可见完整审计信息
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：测试执行事件在回放时间线标记（DEV-012）[2m > [22m[2mTEST_RUN_FAILED / TEST_BLOCKED 事件标记「测试失败/测试拦截」，被拦截审计信息可查
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：PR 描述生成事件在回放时间线标记（DEV-013）[2m > [22m[2mPR_DESC_FAILED / PR_DESC_GENERATED 事件分别标记失败与成功，审计信息含版本与关联产物
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：执行步骤展开与关联跳转（DEV-014）[2m > [22m[2mTEST_RUN_PASSED 事件带执行步骤，展开后可见输入/输出/耗时/完成标签
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：执行步骤展开与关联跳转（DEV-014）[2m > [22m[2mTEST_RUN_FAILED 失败节点展开显示红色失败原因
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：执行步骤展开与关联跳转（DEV-014）[2m > [22m[2mTEST_BLOCKED 拦截节点展开显示拦截原因与拦截标签
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：执行步骤展开与关联跳转（DEV-014）[2m > [22m[2m审批/计划事件可跳任务详情，Diff/测试/PR 事件可跳 Diff 页
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：执行步骤展开与关联跳转（DEV-014）[2m > [22m[2m审批/计划事件可跳任务详情，Diff/测试/PR 事件可跳 Diff 页
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/tasks/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayView.spec.ts[2m > [22m[2mReplayView：执行步骤展开与关联跳转（DEV-014）[2m > [22m[2m审批/计划事件可跳任务详情，Diff/测试/PR 事件可跳 Diff 页
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ [32m✓[39m src/views/__tests__/ReplayView.spec.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1236[2mms[22m[39m
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 侧栏任务级链接[2m > [22m[2m回放页直达/刷新时跟随路由任务，不再指向快照里的旧选中任务
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 侧栏任务级链接[2m > [22m[2m任务详情页时链接指向详情任务，切换详情任务后响应式更新
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 侧栏任务级链接[2m > [22m[2m非任务页跟随当前选中任务，选中变化后链接更新
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 侧栏任务级链接[2m > [22m[2m没有任何任务上下文时回退到任务列表，不拼出悬空任务链接
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 企业权限导航[2m > [22m[2m企业 audit:view/member:view 可以显示审计中心和成员管理入口
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 企业权限导航[2m > [22m[2m没有团队或企业权限时隐藏审计中心和成员管理入口
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 租户切换器[2m > [22m[2m展开时显示租户数量、角色和可读状态，并标记当前租户
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 租户切换器[2m > [22m[2m切换租户时锁定重复操作并在成功后关闭菜单
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 租户切换器[2m > [22m[2m没有可切换租户时显示明确空态
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 租户切换器[2m > [22m[2m待激活租户使用待处理状态点，而不是显示为已启用
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 项目切换器[2m > [22m[2m点击时展开并可通过外部点击收起
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 项目切换器[2m > [22m[2m项目、通知和账户浮层互斥展开
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 项目切换器[2m > [22m[2m账户菜单保留语言设置、主题设置和退出登录入口
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 项目切换器[2m > [22m[2m真实通知将所有未读项置顶分组，并与未读角标数量对应
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 项目切换器[2m > [22m[2m真实项目名称和缓存 id 不一致时按后端项目纠正勾选状态
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/components/__tests__/AppShell.spec.ts[2m > [22m[2mAppShell 工作台摘要同步[2m > [22m[2m真实模式挂载时会立即刷新项目健康度摘要
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/enterprise/dashboard"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ [32m✓[39m src/components/__tests__/AppShell.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1155[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/DiffViewPrDescription.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 652[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/SettingsAutoCreate.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 394[2mms[22m[39m
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2mreal 模式默认渲染回放概览，完整事件按需查看
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2mreal 模式默认渲染回放概览，完整事件按需查看
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m失败节点在完整审计中默认展开显示失败原因与重试
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m失败节点在完整审计中默认展开显示失败原因与重试
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m复制摘要调用 clipboard 并提示成功
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m不使用静态 dashboard 事件作为数据源
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m不使用静态 dashboard 事件作为数据源
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m完整审计支持只看异常和只看人工操作筛选
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+[90mstderr[2m | src/views/__tests__/ReplayViewReal.spec.ts[2m > [22m[2mDEV-020 ReplayView 真实 DB 回放[2m > [22m[2m完整审计支持只看异常和只看人工操作筛选
+[22m[39m[VUE_ROUTER_R0004] No match found for location with path "/diff/TASK-9001"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ [32m✓[39m src/views/__tests__/ReplayViewReal.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 436[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/ApprovalView.spec.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 712[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/RequestDetailCreateTask.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 363[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/DiffView.spec.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 588[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/ModificationPlanPanel.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 506[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/RequestDetailSync.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 319[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/DashboardView.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 290[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/E5Views.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 338[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/AuditCenterView.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 288[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/IndexView.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 339[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/RequestViews.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 312[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/TaskListView.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 316[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/RagConsoleView.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 277[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/CodeContextPanel.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m src/views/__tests__/EnterpriseApprovalsView.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 299[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/TaskCommentsPanel.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 199[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/HistoricalTasksPanel.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 163[2mms[22m[39m
+ [32m✓[39m src/stores/__tests__/workspace.spec.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+ [32m✓[39m src/theme-contract.spec.mts [2m([22m[2m5 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m src/stores/__tests__/approvals.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/stores/__tests__/rag.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/stores/__tests__/tenancy.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/services/__tests__/taskData.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/services/__tests__/api.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/services/__tests__/realtime.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/utils/__tests__/failureReason.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m31 passed[39m[22m[90m (31)[39m
+[2m      Tests [22m [1m[32m272 passed[39m[22m[90m (272)[39m
+[2m   Start at [22m 18:26:51
+[2m   Duration [22m 169.36s[2m (environment 62%, import 26%, tests 7%, transform 5%)[22m
+
+[2m     Import [22m [33m115 modules were evaluated 303 times[39m[2m · 41.84s total, 26% of tracked time[22m
+[2m            [22m [2m~25.96s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m

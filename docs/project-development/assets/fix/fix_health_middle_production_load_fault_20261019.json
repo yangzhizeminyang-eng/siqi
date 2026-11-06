@@ -1,0 +1,79 @@
+{
+  "schema": "health-middle-production-load-fault-v1",
+  "generated_at": "2026-10-19T04:11:00Z",
+  "date": "2026-10-19",
+  "authorization": {
+    "log": "docs/project-development/assets/fix/fix_external_operation_authorization_20261019_round2.json",
+    "operation": "AUTH2-OP-03",
+    "preflight_exit": 0,
+    "confirmation_artifact": "docs/project-development/assets/fix/fix_authorization_confirmation_20261019_round2.md"
+  },
+  "topology": {
+    "host": "<production-host> (production)",
+    "database": "agent_enterprise @ projectdream-mysql-1",
+    "broker": "production Redis agent-enterprise-redis-1",
+    "milvus": "production-host siqi-milvus v2.4.15",
+    "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+    "index_id": "idx_06c94b555213",
+    "index_status": "COMPLETED",
+    "index_chunks": 6,
+    "workers": ["siqi-health-worker (killed)", "siqi-health-worker-2 (recovery)"],
+    "lease_seconds": 60
+  },
+  "load": {
+    "run_count": 10,
+    "succeeded": 10,
+    "verified": 10,
+    "max_attempts": 1,
+    "runs": [
+      {"run_id": "rageval_29f4fac75520", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_4591207eafb8", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_aed9e4ac92ff", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_f4034851d1bf", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_b993245e5d65", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_1112981ba747", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_e7a1fe90e436", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_8c9a4c0089ed", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_762b41a9195f", "status": "succeeded", "validation_status": "verified", "attempts": 1},
+      {"run_id": "rageval_7022d5cff859", "status": "succeeded", "validation_status": "verified", "attempts": 1}
+    ]
+  },
+  "fault": {
+    "run_id": "rageval_6ec0400a3b09",
+    "target_container": "siqi-health-worker",
+    "killed_at": "2026-10-19T04:09:30.608105+00:00",
+    "state_at_kill": {"status": "running", "attempts": 1},
+    "docker_response": "HTTP/1.1 204 No Content",
+    "recovery_container": "siqi-health-worker-2",
+    "busy_retry_seconds": 20,
+    "completed_at": "2026-10-19T04:10:32.248+00:00",
+    "final_status": "succeeded",
+    "validation_status": "verified",
+    "attempts": 2,
+    "report_name": "online_rageval_6ec0400a3b09.json"
+  },
+  "checks": {
+    "load_all_succeeded": true,
+    "load_all_verified": true,
+    "load_attempts_one": true,
+    "fault_run_was_running_before_kill": true,
+    "worker_killed_with_sigkill": true,
+    "recovery_attempts_incremented": true,
+    "fault_run_verified": true,
+    "fault_report_readable": true,
+    "production_db_rows_visible": true,
+    "production_redis_dispatch": true
+  },
+  "boundaries": {
+    "metrics": "small max_files=5 index; zero/low retrieval metrics are not a quality claim",
+    "live_app": "production live app still USE_MILVUS=false/pre-FIX; this used temporary current-code workers",
+    "cleanup": "temporary API/workers/project/repository/index/chunks/lifecycle and Milvus collection are removed; load/fault runs and reports remain as evidence"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_health_middle_production_load_fault_20261019.load.json",
+    "docs/project-development/assets/fix/fix_health_middle_production_load_fault_20261019.kill.json",
+    "docs/project-development/assets/fix/fix_health_middle_production_load_fault_20261019.report.json",
+    "docs/project-development/assets/fix/fix_health_middle_production_load_fault_20261019.worker1.log",
+    "docs/project-development/assets/fix/fix_health_middle_production_load_fault_20261019.worker2.log"
+  ]
+}

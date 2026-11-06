@@ -1,0 +1,306 @@
+{
+  "provider": "deterministic",
+  "approval": {
+    "at_iteration": 2,
+    "state": "waiting_approval",
+    "approved": true,
+    "before_completed": [
+      "requirement_agent",
+      "repository_research_agent",
+      "planner_agent"
+    ]
+  },
+  "final": {
+    "status": "succeeded",
+    "repair_round": 0,
+    "completed_steps": [
+      "requirement_agent",
+      "repository_research_agent",
+      "planner_agent",
+      "code_change_agent",
+      "review_security_agent",
+      "test_release_agent"
+    ],
+    "approval_state": "approved"
+  },
+  "rounds_trace": [
+    {
+      "i": 0,
+      "status": "running",
+      "current_step": "repository_research_agent",
+      "repair_round": 0,
+      "completed": [
+        "requirement_agent"
+      ]
+    },
+    {
+      "i": 1,
+      "status": "running",
+      "current_step": "planner_agent",
+      "repair_round": 0,
+      "completed": [
+        "requirement_agent",
+        "repository_research_agent"
+      ]
+    },
+    {
+      "i": 2,
+      "status": "waiting_approval",
+      "current_step": "planner_agent",
+      "repair_round": 0,
+      "completed": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent"
+      ]
+    },
+    {
+      "i": 3,
+      "status": "running",
+      "current_step": "review_security_agent",
+      "repair_round": 0,
+      "completed": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent",
+        "code_change_agent"
+      ]
+    },
+    {
+      "i": 4,
+      "status": "running",
+      "current_step": "test_release_agent",
+      "repair_round": 0,
+      "completed": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent",
+        "code_change_agent",
+        "review_security_agent"
+      ]
+    },
+    {
+      "i": 5,
+      "status": "succeeded",
+      "current_step": null,
+      "repair_round": 0,
+      "completed": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent",
+        "code_change_agent",
+        "review_security_agent",
+        "test_release_agent"
+      ]
+    }
+  ],
+  "agent_runs": [
+    {
+      "run_id": "run_rt_e4a_170824_requirement_agent_1_1790096905",
+      "agent_type": "requirement_agent",
+      "attempt": 1,
+      "repair_round": 0,
+      "status": "succeeded",
+      "input_refs": [],
+      "output_refs": [
+        "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0"
+      ]
+    },
+    {
+      "run_id": "run_rt_e4a_170824_repository_research_agent_1_1790096905",
+      "agent_type": "repository_research_agent",
+      "attempt": 1,
+      "repair_round": 0,
+      "status": "succeeded",
+      "input_refs": [
+        "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0"
+      ],
+      "output_refs": [
+        "art_rt_e4a_170824_repository_research_agent_ResearchArtifact_1.0",
+        "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0"
+      ]
+    },
+    {
+      "run_id": "run_rt_e4a_170824_planner_agent_1_1790096905",
+      "agent_type": "planner_agent",
+      "attempt": 1,
+      "repair_round": 0,
+      "status": "succeeded",
+      "input_refs": [
+        "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0",
+        "art_rt_e4a_170824_repository_research_agent_ResearchArtifact_1.0",
+        "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0"
+      ],
+      "output_refs": [
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0"
+      ]
+    },
+    {
+      "run_id": "run_rt_e4a_170824_code_change_agent_1_1790096905",
+      "agent_type": "code_change_agent",
+      "attempt": 1,
+      "repair_round": 0,
+      "status": "succeeded",
+      "input_refs": [
+        "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0",
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0"
+      ],
+      "output_refs": [
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_PatchArtifact_1.0"
+      ]
+    },
+    {
+      "run_id": "run_rt_e4a_170824_review_security_agent_1_1790096905",
+      "agent_type": "review_security_agent",
+      "attempt": 1,
+      "repair_round": 0,
+      "status": "succeeded",
+      "input_refs": [
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_PatchArtifact_1.0"
+      ],
+      "output_refs": [
+        "art_rt_e4a_170824_review_security_agent_SecurityRiskArtifact_1.0",
+        "art_rt_e4a_170824_review_security_agent_ReviewArtifact_1.0"
+      ]
+    },
+    {
+      "run_id": "run_rt_e4a_170824_test_release_agent_1_1790096905",
+      "agent_type": "test_release_agent",
+      "attempt": 1,
+      "repair_round": 0,
+      "status": "succeeded",
+      "input_refs": [
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_review_security_agent_ReviewArtifact_1.0"
+      ],
+      "output_refs": [
+        "art_rt_e4a_170824_test_release_agent_ReleaseEvidenceArtifact_1.0",
+        "art_rt_e4a_170824_test_release_agent_TestReportArtifact_1.0",
+        "art_rt_e4a_170824_test_release_agent_PRDescriptionArtifact_1.0"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0",
+      "artifact_type": "RequirementArtifact",
+      "agent_type": "requirement_agent",
+      "version": 1,
+      "input_refs": []
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_repository_research_agent_ResearchArtifact_1.0",
+      "artifact_type": "ResearchArtifact",
+      "agent_type": "repository_research_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0",
+      "artifact_type": "CodeContextArtifact",
+      "agent_type": "repository_research_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0",
+      "artifact_type": "PlanArtifact",
+      "agent_type": "planner_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_requirement_agent_RequirementArtifact_1.0",
+        "art_rt_e4a_170824_repository_research_agent_ResearchArtifact_1.0",
+        "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+      "artifact_type": "DiffArtifact",
+      "agent_type": "code_change_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0",
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_code_change_agent_PatchArtifact_1.0",
+      "artifact_type": "PatchArtifact",
+      "agent_type": "code_change_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_repository_research_agent_CodeContextArtifact_1.0",
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_review_security_agent_SecurityRiskArtifact_1.0",
+      "artifact_type": "SecurityRiskArtifact",
+      "agent_type": "review_security_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_PatchArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_review_security_agent_ReviewArtifact_1.0",
+      "artifact_type": "ReviewArtifact",
+      "agent_type": "review_security_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_planner_agent_PlanArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_code_change_agent_PatchArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_test_release_agent_ReleaseEvidenceArtifact_1.0",
+      "artifact_type": "ReleaseEvidenceArtifact",
+      "agent_type": "test_release_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_review_security_agent_ReviewArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_test_release_agent_TestReportArtifact_1.0",
+      "artifact_type": "TestReportArtifact",
+      "agent_type": "test_release_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_review_security_agent_ReviewArtifact_1.0"
+      ]
+    },
+    {
+      "artifact_id": "art_rt_e4a_170824_test_release_agent_PRDescriptionArtifact_1.0",
+      "artifact_type": "PRDescriptionArtifact",
+      "agent_type": "test_release_agent",
+      "version": 1,
+      "input_refs": [
+        "art_rt_e4a_170824_code_change_agent_DiffArtifact_1.0",
+        "art_rt_e4a_170824_review_security_agent_ReviewArtifact_1.0"
+      ]
+    }
+  ],
+  "dangling_refs": [],
+  "audit_events": [
+    "runtime.agent.succeeded",
+    "runtime.approval.decided",
+    "runtime.artifact.denied",
+    "runtime.artifact.denied_count",
+    "runtime.task.started",
+    "runtime.task.succeeded"
+  ],
+  "completed": true
+}

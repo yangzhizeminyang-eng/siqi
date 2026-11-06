@@ -1,0 +1,88 @@
+{
+  "schema": "fix-production-milvus-v1",
+  "generated_at": "2026-10-18T15:58:00+00:00",
+  "date": "2026-10-18",
+  "host": "<production-host> (VM-0-10-ubuntu)",
+  "project": "siqi-milvus",
+  "compose_file": "/home/ubuntu/siqi-milvus/docker-compose.yml",
+  "images": {
+    "milvus": "milvusdb/milvus:v2.4.15",
+    "etcd": "quay.io/coreos/etcd:v3.5.5",
+    "minio": "minio/minio:RELEASE.2024-12-18T13-15-44Z"
+  },
+  "resource_limits": {
+    "etcd": "96m / 0.15 cpu",
+    "minio": "160m / 0.15 cpu",
+    "milvus": "640m / 0.40 cpu"
+  },
+  "status": {
+    "etcd": "healthy",
+    "minio": "healthy",
+    "milvus": "healthy",
+    "milvus_http_healthz": "OK",
+    "published_ports": ["127.0.0.1:19530", "127.0.0.1:9091"]
+  },
+  "vector_probe": {
+    "server_version": "v2.4.15",
+    "collection": "siqi_prod_milvus_probe",
+    "inserted_entities": 3,
+    "index": {"index_type": "AUTOINDEX", "metric_type": "L2"},
+    "search_top2": [
+      {"id": 1, "distance": 0.0, "label": "alpha"},
+      {"id": 2, "distance": 2.0, "label": "beta"}
+    ],
+    "collection_dropped_after_probe": true
+  },
+  "image_acquisition": {
+    "docker_hub_direct": "failed (i/o timeout)",
+    "docker_pull_via_mirrors": "stalled after layers at the final manifest step",
+    "final_method": "skopeo copy via docker.1panel.live to docker-archive, then docker load and tag",
+    "archive_size_bytes_approx": 1610612736
+  },
+  "application_path": {
+    "temp_current_code_api_health": {
+      "db": "ok",
+      "milvus": "ok",
+      "redis": "ok",
+      "milvus_uri": "http://milvus:19530"
+    },
+    "verified_eval_temp_db": {
+      "run_id": "rageval_0d59e4fb1142",
+      "status": "succeeded",
+      "validation_status": "verified",
+      "vector_backend": "milvus",
+      "milvus_verified": true,
+      "fallback_used": false,
+      "dataset_size": 67,
+      "retrieval_mode": "hybrid",
+      "index_id": "idx_f4e1bbcef0d4",
+      "index_build_seconds": 13.2,
+      "index_max_files": 5,
+      "metrics_note": "small index; metrics are zero and are not a retrieval-quality claim"
+    },
+    "verified_eval_production_db": {
+      "run_id": "rageval_3695980027a6",
+      "status": "succeeded",
+      "validation_status": "verified",
+      "vector_backend": "milvus",
+      "milvus_verified": true,
+      "fallback_used": false,
+      "dataset_size": 32,
+      "retrieval_mode": "bm25",
+      "metrics_note": "production DB has no code_chunks/index; this validates the production write + Milvus health path, not retrieval quality"
+    }
+  },
+  "boundaries": {
+    "live_app_use_milvus": "still false; the live app was not switched to the new Milvus service",
+    "production_milvus_service": "running on the production host as an independent compose project",
+    "memory": "host has 1.7Gi total; the stack uses about 200MiB and is subject to swap pressure",
+    "index_quality": "small-index/temp-db eval only; zero metrics are not a quality claim",
+    "heavy_index_build": "a max_files=200 health-middle build was stopped after causing swap pressure; a max_files=5 build completed in 13.2s"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_production_milvus_probe_20261018.log",
+    "docs/project-development/assets/fix/fix_production_milvus_stack_20261018.json",
+    "docs/project-development/assets/fix/fix_temp_milvus_verified_eval_20261018.report.json",
+    "docs/project-development/assets/fix/fix_production_db_verified_eval_20261018.report.json"
+  ]
+}

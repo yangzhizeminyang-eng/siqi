@@ -1,0 +1,65 @@
+{
+  "schema": "fix-temp-milvus-eval-v1",
+  "generated_at": "2026-10-18T16:00:00+00:00",
+  "date": "2026-10-18",
+  "host": "<production-host> (VM-0-10-ubuntu)",
+  "database": "temporary MySQL database siqi_prod_eval_20261018_232828",
+  "code": "current backend code image agent-enterprise-backend:siqi-multi-host-20261018",
+  "embedding": {
+    "provider": "zhipu",
+    "model": "embedding-3",
+    "dimensions": "auto (2048 observed by the embedding service)"
+  },
+  "milvus": {
+    "endpoint": "http://milvus:19530",
+    "server_version": "v2.4.15",
+    "health": "ok"
+  },
+  "index": {
+    "index_id": "idx_f4e1bbcef0d4",
+    "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+    "max_files": 5,
+    "status": "COMPLETED",
+    "build_seconds": 13.2,
+    "note": "a larger max_files=200 build was stopped after causing swap pressure on the 1.7Gi host"
+  },
+  "evaluation": {
+    "run_id": "rageval_0d59e4fb1142",
+    "dataset": "e3_06_health_middle.jsonl",
+    "dataset_size": 67,
+    "retrieval_mode": "hybrid",
+    "status": "succeeded",
+    "validation_status": "verified",
+    "vector_backend": "milvus",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "attempts": 1,
+    "report_name": "online_rageval_0d59e4fb1142.json",
+    "metrics": {
+      "total_cases": 67,
+      "passed_cases": 1,
+      "success_cases": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "empty_result_rate": 0.0
+    },
+    "metrics_note": "max_files=5 small index; zero metrics are not a retrieval-quality claim, only proof that the real Milvus + real embedding production path executes and reports verified"
+  },
+  "checks": {
+    "real_milvus_service_used": true,
+    "real_zhipu_embedding_used": true,
+    "no_fallback": true,
+    "verified_validation_status": true,
+    "run_and_report_persisted": true
+  },
+  "boundaries": {
+    "database": "temporary DB, not the production agent_enterprise database",
+    "quality": "small index only; zero metrics not claimed as quality",
+    "live_app": "not modified"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_temp_milvus_verified_eval_20261018.report.json",
+    "docs/project-development/assets/fix/fix_production_milvus_probe_20261018.log"
+  ]
+}

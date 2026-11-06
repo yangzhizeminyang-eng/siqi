@@ -1,0 +1,82 @@
+{
+  "schema": "health-middle-production-eval-v1",
+  "generated_at": "2026-10-19T04:08:00Z",
+  "date": "2026-10-19",
+  "authorization": {
+    "log": "docs/project-development/assets/fix/fix_external_operation_authorization_20261019_round2.json",
+    "operation": "AUTH2-OP-02",
+    "preflight_exit": 0,
+    "confirmation_artifact": "docs/project-development/assets/fix/fix_authorization_confirmation_20261019_round2.md"
+  },
+  "topology": {
+    "host": "<production-host> (production)",
+    "database": "agent_enterprise @ projectdream-mysql-1",
+    "broker": "production Redis agent-enterprise-redis-1",
+    "milvus": "production-host siqi-milvus v2.4.15",
+    "code": "current backend image agent-enterprise-backend:siqi-multi-host-20261018 with fixed app/main.py mounted",
+    "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+    "embedding": "zhipu embedding-3 (real)"
+  },
+  "index": {
+    "project_id": "proj_cec736662622",
+    "repository_id": "repo_a8400628c390",
+    "index_id": "idx_06c94b555213",
+    "status": "COMPLETED",
+    "chunk_count": 6,
+    "milvus_collection": "enterprise_code_idx_06c94b555213",
+    "lifecycle_status": "ready",
+    "milvus_num_entities": 6,
+    "max_files": 5,
+    "note": "small index; 6 chunks are not enough for the 67-case dataset"
+  },
+  "evaluation": {
+    "run_id": "rageval_6fce765e2c31",
+    "dataset": "e3_06_health_middle.jsonl",
+    "dataset_size": 67,
+    "retrieval_mode": "hybrid",
+    "status": "succeeded",
+    "validation_status": "verified",
+    "vector_backend": "milvus",
+    "milvus_verified": true,
+    "fallback_used": false,
+    "attempts": 1,
+    "report_name": "online_rageval_6fce765e2c31.json",
+    "metrics": {
+      "total_cases": 67,
+      "passed_cases": 1,
+      "success_cases": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0
+    },
+    "metrics_note": "metrics are zero because the temporary index is limited to max_files=5; this is a path/verified-backend check, not a quality claim"
+  },
+  "bug_found_and_fixed": {
+    "symptom": "first index idx_53a5c3cfd6d9: repository_indexes stayed PARSING/0/pending while code_chunks=6 and lifecycle=ready; API GET also showed PARSING",
+    "root_cause": "in Celery mode the API process and Celery worker both called progress_single_repository_index on the same index; the API's stale in-memory record persisted PARSING after the worker completed",
+    "fix": "app/main.py progress_repository_index_jobs now returns immediately when USE_CELERY=true and CELERY_BROKER_URL is configured; the worker is the single driver, API queries read the DB",
+    "regression": "backend/tests/test_index_single_driver.py -> 2 passed",
+    "validation_after_fix": "idx_06c94b555213: API status COMPLETED, DB repository_indexes status COMPLETED/chunk_count=6/collection=enterprise_code_idx_06c94b555213, lifecycle ready"
+  },
+  "checks": {
+    "real_gitee_repository_used": true,
+    "production_db_write": true,
+    "production_redis_dispatch": true,
+    "real_milvus_used": true,
+    "real_zhipu_embedding_used": true,
+    "index_persisted_consistently": true,
+    "verified_eval": true,
+    "report_readable": true
+  },
+  "boundaries": {
+    "live_app_unchanged": "production live app still USE_MILVUS=false/pre-FIX; this used a temporary current-code API/worker against the production DB/Redis/Milvus",
+    "metrics": "zero metrics are not a quality claim",
+    "cleanup": "temporary project/repository/index/chunks/lifecycle and Milvus collection are removed after the round; the evaluation run/report remain as evidence"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_health_middle_production_eval_20261019.db.txt",
+    "docs/project-development/assets/fix/fix_health_middle_production_eval_20261019.worker.log",
+    "docs/project-development/assets/fix/fix_health_middle_production_eval_20261019.report.json",
+    "docs/project-development/assets/fix/fix_gitee_health_middle_20261019.json"
+  ]
+}

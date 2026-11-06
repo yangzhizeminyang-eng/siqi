@@ -1,0 +1,29 @@
+........................................................................ [  6%]
+........................................................................ [ 13%]
+........................................................................ [ 20%]
+........................................................................ [ 26%]
+...................................................s.................... [ 33%]
+........s............................................................... [ 40%]
+........................................................................ [ 47%]
+........................................................................ [ 53%]
+........................................................................ [ 60%]
+.s...................................................................s.. [ 67%]
+..........s...............ssssss........................................ [ 73%]
+........................................................................ [ 80%]
+........................................................................ [ 87%]
+....................s......ssss......s.................................. [ 94%]
+................................................................         [100%]
+============================== warnings summary ===============================
+tests/test_pr_creation.py::test_create_pr_rejections
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\app\main.py:7603: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    task = create_task_pull_request(task, user)
+
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\.venv\Lib\site-packages\starlette\testclient.py:455: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return super().request(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1055 passed, 17 skipped, 4 warnings in 1338.55s (0:22:18)
+PYTEST_EXIT=0

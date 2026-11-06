@@ -1,0 +1,7 @@
+# OPT-08 related regression: 触达模块（租户 E1 / 硬化 E2 / E3-01 RAG 检索 / E3-04 离线评测 / E3-08 报告控制台 / OPT-04 报告契约 / Celery worker / E4 Runtime）上下游
+# cmd: cd backend && .venv/Scripts/python.exe -m pytest tests/test_enterprise_e1_tenancy.py tests/test_enterprise_e2_hardening.py tests/test_enterprise_e3_rag.py tests/test_enterprise_e3_04_evaluation.py tests/test_enterprise_e3_08_rag_console.py tests/test_opt04_rag_report_contract.py tests/test_celery_worker_runtime.py tests/test_enterprise_e4_runtime.py -q -rs
+# env: tests/conftest.py 顶部隔离块（OPT-05 口径：不读本地 .env/凭据、内存态、Celery 导入即 eager；无需外部服务）
+........................................................................ [ 70%]
+..............................                                           [100%]
+102 passed in 77.38s (0:01:17)
+EXIT=0

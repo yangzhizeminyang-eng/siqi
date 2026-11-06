@@ -1,0 +1,28 @@
+{
+  "schema": "fix-real-gitee-write-v1",
+  "generated_at": "2026-10-18T13:09:20.516808+00:00",
+  "date": "2026-10-18",
+  "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+  "marker": "siqi-fix2-real-gitee-write-20261018",
+  "issue": {
+    "number": "IKNBM2",
+    "html_url": "https://gitee.com/yang-zhizemin/health-middle/issues/IKNBM2",
+    "created_by_probe": true
+  },
+  "close": {
+    "status_code": 200,
+    "endpoint": "PATCH /repos/{owner}/issues/{number} with repo body",
+    "verified_state": "closed"
+  },
+  "checks": {
+    "real_remote_write": true,
+    "issue_created": true,
+    "issue_closed": true
+  },
+  "all_passed": true,
+  "boundaries": {
+    "real_remote_write": true,
+    "target": "health-middle scratch/test repo",
+    "token_logged": false
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema": "fix-health-middle-local-vector-practice-v1",
+  "generated_at": "2026-10-19T07:46:58.558398+00:00",
+  "scope": "local_only_no_external_writes",
+  "evidence_kind": "local_offline",
+  "command": "backend/.venv/Scripts/python.exe -m scripts.health_middle_local_practice --repo-root C:/temp/health-middle --data-dir backend/.data/health_middle_local_practice",
+  "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+  "commit_sha": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+  "milvus_backend": "milvus-lite",
+  "root_cause_of_previous_failure": "MILVUS_URI was set to a local .db path before importing pymilvus; pymilvus validates MILVUS_URI as a remote URI at import time and raised ConnectionConfigException, which the LlamaIndex import guard converted into 'dependencies unavailable'. Dependencies were already installed. The local Lite path must instead come from DATA_DIR.",
+  "fixes": [
+    "scripts/health_middle_local_practice.py removes MILVUS_URI and derives the Lite path from DATA_DIR",
+    "practice harness fails closed unless lifecycle=ready, rows>0, and the direct probe source is exactly milvus",
+    "evaluation reports vector_backend=local_milvus_lite and fallback_used=false when local Lite actually serves queries",
+    "evaluation falls back to unavailable when the Milvus integration itself is not importable"
+  ],
+  "result": {
+    "repository": "https://gitee.com/yang-zhizemin/health-middle.git",
+    "commit_sha": "73e7e5497addc74f67fe49a875d7afdd8d8c190b",
+    "index_id": "idx_health_middle_73e7e54",
+    "collection_name": "code_idx_health_middle_73e7e54",
+    "chunks": 303,
+    "milvus_lite_path": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\health_middle_local_practice\\milvus\\code_index.db",
+    "milvus_collection_row_count": 303,
+    "lifecycle": {
+      "status": "ready",
+      "embedding_model": "token-hash-64",
+      "embedding_dimension": 64,
+      "embedding_fingerprint": "6f354f12bcc5b395"
+    },
+    "direct_vector_probe": {
+      "query": "build_login_response",
+      "expected_path": "backend/app/api/auth.py",
+      "sources": [
+        "milvus"
+      ],
+      "top": [
+        {
+          "file_path": "backend/app/data/sample_data.py",
+          "symbol_name": "create_ocr_job",
+          "score": 0.1875,
+          "source": "milvus"
+        },
+        {
+          "file_path": "backend/app/services/persistence.py",
+          "symbol_name": "create_ocr_job",
+          "score": 0.17582418024539948,
+          "source": "milvus"
+        },
+        {
+          "file_path": "backend/app/services/persistence.py",
+          "symbol_name": "delete_report",
+          "score": 0.12096773833036423,
+          "source": "milvus"
+        }
+      ]
+    },
+    "mock_embedding": true,
+    "quality_claim": false,
+    "dataset_size": 67,
+    "results": {
+      "vector": {
+        "validation_status": "local_only",
+        "vector_backend": "local_milvus_lite",
+        "milvus_verified": false,
+        "fallback_used": false,
+        "summary": {
+          "total_cases": 67,
+          "passed_cases": 34,
+          "success_cases": 66,
+          "recall_at_k": 0.4925,
+          "recall_at_5": 0.3731,
+          "recall_at_10": 0.4925,
+          "precision_at_k": 0.1418,
+          "precision_at_5": 0.1343,
+          "mrr": 0.2294,
+          "ndcg_at_k": 0.2899,
+          "ndcg_at_5": 0.2023,
+          "freshness_rate": 0.9848,
+          "empty_result_rate": 0.0303,
+          "unauthorized_pass_rate": 1.0,
+          "latency_p50_ms": 53.7,
+          "latency_p95_ms": 61.3
+        },
+        "needs_improvement": true
+      },
+      "hybrid": {
+        "validation_status": "local_only",
+        "vector_backend": "local_milvus_lite",
+        "milvus_verified": false,
+        "fallback_used": false,
+        "summary": {
+          "total_cases": 67,
+          "passed_cases": 60,
+          "success_cases": 66,
+          "recall_at_k": 0.8806,
+          "recall_at_5": 0.8806,
+          "recall_at_10": 0.8806,
+          "precision_at_k": 0.2892,
+          "precision_at_5": 0.3642,
+          "mrr": 0.8109,
+          "ndcg_at_k": 0.7979,
+          "ndcg_at_5": 0.7471,
+          "freshness_rate": 0.9848,
+          "empty_result_rate": 0.0303,
+          "unauthorized_pass_rate": 1.0,
+          "latency_p50_ms": 235.8,
+          "latency_p95_ms": 303.7
+        },
+        "needs_improvement": true
+      },
+      "bm25": {
+        "validation_status": "local_only",
+        "vector_backend": "local_milvus_lite",
+        "milvus_verified": false,
+        "fallback_used": false,
+        "summary": {
+          "total_cases": 67,
+          "passed_cases": 61,
+          "success_cases": 66,
+          "recall_at_k": 0.8881,
+          "recall_at_5": 0.8881,
+          "recall_at_10": 0.8881,
+          "precision_at_k": 0.2034,
+          "precision_at_5": 0.3134,
+          "mrr": 0.8632,
+          "ndcg_at_k": 0.862,
+          "ndcg_at_5": 0.8524,
+          "freshness_rate": 0.9848,
+          "empty_result_rate": 0.0455,
+          "unauthorized_pass_rate": 1.0,
+          "latency_p50_ms": 29.4,
+          "latency_p95_ms": 37.7
+        },
+        "needs_improvement": true
+      }
+    }
+  },
+  "caveats": [
+    "Mock token-hash embeddings (64d) are used; metrics demonstrate wiring, not retrieval quality.",
+    "milvus_verified=false and validation_status=local_only: local Milvus Lite is not a cloud/production verification.",
+    "No production DB/Redis/Milvus, Gitee write, or real model call was performed."
+  ]
+}

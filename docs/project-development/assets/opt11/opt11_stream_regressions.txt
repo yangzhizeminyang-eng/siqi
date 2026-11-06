@@ -1,0 +1,9 @@
+# OPT-11 六个迁移步骤的代表性回归链（认证/评论通知/仓库索引/看板审计/历史/平台需求/Celery 链）
+# cmd: cd backend && APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true ENV_FILE="$PWD/tests/.env.hermetic-nonexistent" .venv/Scripts/python.exe -m pytest tests/test_opt11_main_split.py tests/test_dev019_comments_notifications.py tests/test_dev010_approval_module.py tests/test_dev016b_sync_gitee.py tests/test_dev016c_create_task.py tests/test_dev021_history.py tests/test_celery_async_chains.py tests/test_dashboard_summary.py tests/test_dev008_rag_index.py tests/test_opt09_index_lifecycle.py -q -rs
+# env: local / in-memory / mock-fallback / hermetic ENV_FILE
+
+........................................................................ [ 47%]
+........................................................................ [ 95%]
+.......                                                                  [100%]
+151 passed in 125.82s (0:02:05)
+EXIT=0

@@ -1,0 +1,98 @@
+# 企业版「应用-only」Compose：面向低配（≤2 vCPU / 2 GB）云端主机。
+# 与 docker-compose.enterprise.yml 区别：不包含 worker / Milvus/etcd/MinIO 服务，
+# 默认 USE_MILVUS=false；仅后端 + Redis + 前端。E1-01 auditor 走查不需要 RAG/Milvus。
+# 仍强制 APP_ENV=enterprise + MySQL（外部网络）+ 独立数据卷/网络/端口（默认 8081）。
+# 正式 HTTPS 部署请叠加 docker-compose.enterprise.host-tls.yml，
+# 将 8081 收敛到 127.0.0.1，公网只从宿主机 Nginx 的 80/443 进入。
+name: agent-enterprise
+
+x-backend-env: &backend-env
+  APP_ENV: enterprise
+  APP_PORT: "8000"
+  DATA_DIR: /var/lib/agent/data
+  ENV_FILE: ""
+
+services:
+  backend:
+    image: ${ENTERPRISE_BACKEND_IMAGE:-agent-enterprise-backend:latest}
+    env_file:
+      - ${ENTERPRISE_ENV_FILE:-./env/enterprise.env.example}
+    environment: *backend-env
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    volumes:
+      - enterprise_data:/var/lib/agent/data
+    networks:
+      - public
+      - data
+      - mysql
+    depends_on:
+      redis:
+        condition: service_healthy
+    expose:
+      - "8000"
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    mem_limit: 420m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 45s
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "64mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+    networks:
+      - data
+    restart: unless-stopped
+    init: true
+    mem_limit: 96m
+    cpus: 0.15
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
+
+  # 外部 MySQL：通过外部网络（默认 projectdream_backend_net）连接，独立库 agent_enterprise。
+  frontend:
+    image: ${ENTERPRISE_FRONTEND_IMAGE:-agent-enterprise-frontend:latest}
+    networks:
+      - public
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${ENTERPRISE_PUBLIC_PORT:-8081}:8080"
+    restart: unless-stopped
+    init: true
+    mem_limit: 96m
+    cpus: 0.20
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "http://127.0.0.1:8080/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+volumes:
+  enterprise_data:
+    name: agent_enterprise_data
+  redis_data:
+    name: agent_enterprise_redis_data
+
+networks:
+  public:
+    name: agent_enterprise_public
+  data:
+    name: agent_enterprise_data
+    internal: true
+  mysql:
+    name: ${ENTERPRISE_MYSQL_NETWORK:-projectdream_backend_net}
+    external: true

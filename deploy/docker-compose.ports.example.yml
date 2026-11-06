@@ -1,0 +1,32 @@
+services:
+  mvp:
+    image: your-app:latest
+    env_file:
+      - ./env/mvp.env.example
+    ports:
+      - "8001:8000"
+    # 进程挂掉自动拉起；/api/health 返回 dependencies 供编排判断依赖
+    restart: unless-stopped
+
+  team:
+    image: your-app:latest
+    env_file:
+      - ./env/team.env.example
+    ports:
+      - "8002:8000"
+    restart: unless-stopped
+    # 依赖健康可观测：/api/health 返回 db/milvus 的 ok/degraded 状态，编排据此重启或摘流。
+    # Milvus 容器自身 Exited(134) 需在 Milvus 服务定义上同样配 restart: unless-stopped 与 livenessProbe。
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  enterprise:
+    image: your-app:latest
+    env_file:
+      - ./env/enterprise.env.example
+    ports:
+      - "8003:8000"
+    restart: unless-stopped

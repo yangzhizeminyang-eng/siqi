@@ -1,0 +1,48 @@
+........................................................................ [  6%]
+........................................................................ [ 12%]
+........................................................................ [ 19%]
+........................................................................ [ 25%]
+...................................................s.................... [ 31%]
+........s............................................................... [ 38%]
+........................................................................ [ 44%]
+........................................................................ [ 50%]
+........................................................................ [ 57%]
+.s...................................................................... [ 63%]
+.........................................s.............s...............s [ 70%]
+sssss................................................................... [ 76%]
+........................................................................ [ 82%]
+........................................................................ [ 89%]
+.......s.......s........................................................ [ 95%]
+...................................................                      [100%]
+============================== warnings summary ===============================
+tests/test_pr_creation.py::test_create_pr_rejections
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\app\main.py:7603: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    task = create_task_pull_request(task, user)
+
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\.venv\Lib\site-packages\starlette\testclient.py:455: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return super().request(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_dev019_notifications_mysql.py:70: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 DEV-019 MySQL 真实落库校验
+SKIPPED [1] tests\test_dev021_history_mysql.py:57: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 DEV-021 MySQL 校验
+SKIPPED [1] tests\test_enterprise_e4_agents.py:526: requires_redis: broker 不可达（127.0.0.1:6379，TCP 探测超时 0.6s）——环境缺失分类 → skip（非代码失败）；启动本地 Redis 或设置 TEST_REDIS_URL 后重跑
+SKIPPED [1] tests\test_gitee_e2e_live.py:34: GITEE_E2E 未开启或 GITEE_TOKEN/OWNER/REPO 未配齐
+SKIPPED [1] tests\test_milvus_standalone.py:20: MILVUS_STANDALONE_TEST 未开启或 MILVUS_URI 未配置
+SKIPPED [1] tests\test_mysql_integration.py:34: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试
+SKIPPED [1] tests\test_mysql_integration.py:41: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试
+SKIPPED [1] tests\test_mysql_integration.py:60: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试
+SKIPPED [1] tests\test_mysql_integration.py:127: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试
+SKIPPED [1] tests\test_mysql_integration.py:153: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试
+SKIPPED [1] tests\test_mysql_integration.py:165: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试
+SKIPPED [1] tests\test_pr_creation.py:219: GITEE_PR_E2E 未开启或 GITEE_TOKEN/OWNER/REPO_SCRATCH 未配齐
+SKIPPED [1] tests\test_rag_milvus_realtime.py:120: Milvus 跨进程子进程初始化不可用：Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\app\retrieval\llamaindex_backend.py", line 471, in build_vector_store
+    raise RuntimeError("LlamaIndex vector store unavailable")
+RuntimeError: LlamaIndex vector store unavailable
+1118 passed, 13 skipped, 4 warnings in 774.88s (0:12:54)
+FULL_BACKEND_EXIT=0

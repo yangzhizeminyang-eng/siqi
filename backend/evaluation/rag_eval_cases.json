@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {
+      "id": "payment-callback-idempotency",
+      "query": "Fix duplicate accounting when payment callback retries and ensure idempotency.",
+      "expected_file_paths": ["services/payment/callback.py"]
+    },
+    {
+      "id": "payment-validator-compatibility",
+      "query": "Validate legacy and current identity card formats.",
+      "expected_file_paths": ["services/payment/validator.py"]
+    }
+  ]
+}

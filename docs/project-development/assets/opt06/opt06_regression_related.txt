@@ -1,0 +1,8 @@
+# OPT-06 相关既有回归（E4 Agents / Agent Eval / MCP / Dev012 / OPT-03/04/05/06）
+# command: pytest tests/test_enterprise_e4_agents.py tests/test_enterprise_agent_evaluation.py tests/test_enterprise_agent_evaluation_cli.py tests/test_enterprise_mcp_client.py tests/test_enterprise_mcp_server.py tests/test_dev012_test_execution_module.py tests/test_opt03_e2e_demo.py tests/test_opt04_rag_report_contract.py tests/test_opt05_service_classification.py tests/test_opt06_agent_tool_security.py -q -rs
+
+....................s................................................... [ 50%]
+........................................................................ [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_enterprise_e4_agents.py:526: requires_redis: broker 不可达（127.0.0.1:6379，TCP 探测超时 0.6s）——环境缺失分类 → skip（非代码失败）；启动本地 Redis 或设置 TEST_REDIS_URL 后重跑
+143 passed, 1 skipped in 108.91s (0:01:48)

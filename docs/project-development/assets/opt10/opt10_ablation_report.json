@@ -1,0 +1,6065 @@
+{
+  "schema_version": "rag-ablation-report-v1",
+  "generated_at": "2026-10-16T00:59:58.935821+00:00",
+  "dataset": {
+    "path": "evaluation/enterprise_rag/e3_05_baseline.jsonl",
+    "sha256": "e306b418762c6c1132fe8eb34d27959939d6a2741f969cf3d6fbe21b1668319d"
+  },
+  "environment": {
+    "execution": "local_in_memory",
+    "validation_status": "local_only",
+    "vector_backend": "local_no_milvus",
+    "milvus_verified": false,
+    "fallback_used": true,
+    "use_milvus": false,
+    "query_llm_enabled": false,
+    "rerank_provider": "heuristic",
+    "note": "本地/内存/脱敏合成语料消融：validation_status=local_only 即非云端质量；无真实模型/外网调用口径由子进程强制环境保证（USE_MILVUS=false / mock embedding / LLM 关闭）；生产/云端评测需显式确认后另行执行"
+  },
+  "configs": [
+    {
+      "name": "baseline",
+      "env_requested": {},
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "c34b1dcbd9418d7c",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 1.9,
+        "latency_p95_ms": 3.3
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "topk_4",
+      "env_requested": {
+        "RAG_FINAL_TOP_K": "4"
+      },
+      "knobs": {
+        "top_k": 4,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 4,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "d4212a166f8b9030",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.2344,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 2.2,
+        "latency_p95_ms": 3.4
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "topk_16",
+      "env_requested": {
+        "RAG_FINAL_TOP_K": "16"
+      },
+      "knobs": {
+        "top_k": 16,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 16,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "2407f5719a552f52",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.0586,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 7.7,
+        "latency_p95_ms": 13.0
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "legs_small",
+      "env_requested": {
+        "RAG_VECTOR_TOP_K": "10",
+        "RAG_BM25_TOP_K": "5"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 10,
+        "rag_bm25_top_k": 5,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "00c8c94e6166b6ec",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.7979,
+        "ndcg_at_k": 0.8112,
+        "ndcg_at_5": 0.8112,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 8.4,
+        "latency_p95_ms": 18.6
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.2,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.3333,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "legs_large",
+      "env_requested": {
+        "RAG_VECTOR_TOP_K": "40",
+        "RAG_BM25_TOP_K": "20"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 40,
+        "rag_bm25_top_k": 20,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "93ea89e088f111c7",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 6.2,
+        "latency_p95_ms": 15.0
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vector_only",
+      "env_requested": {
+        "RAG_HYBRID_BM25_WEIGHT": "0.0"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 0.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "3c031c0540f9fb62",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.7188,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1562,
+        "mrr": 0.6907,
+        "ndcg_at_k": 0.7274,
+        "ndcg_at_5": 0.6832,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 4.1,
+        "latency_p95_ms": 6.7
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.1429,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.125,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.1667,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.25,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.25,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.1667,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bm25_only",
+      "env_requested": {
+        "RAG_HYBRID_VECTOR_WEIGHT": "0.0"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 0.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "c6f717d75923d1fc",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.1,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 3.2,
+        "latency_p95_ms": 5.4
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vector_weight_2",
+      "env_requested": {
+        "RAG_HYBRID_VECTOR_WEIGHT": "2.0"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 2.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "4054490994ca16c7",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 7.8,
+        "latency_p95_ms": 14.8
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bm25_weight_2",
+      "env_requested": {
+        "RAG_HYBRID_BM25_WEIGHT": "2.0"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 2.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "6ca6927b41d4b250",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 6.6,
+        "latency_p95_ms": 10.4
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "symbol_boost_0",
+      "env_requested": {
+        "RAG_SYMBOL_BOOST": "0.0"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 0.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "dea2dd1d37a4bf44",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 7.7,
+        "latency_p95_ms": 12.6
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "symbol_boost_2",
+      "env_requested": {
+        "RAG_SYMBOL_BOOST": "2.0"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 2.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": false,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "c32a6cd85ad2e00e",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 7.0,
+        "latency_p95_ms": 10.7
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rerank_on",
+      "env_requested": {
+        "RAG_RERANK_ENABLED": "true"
+      },
+      "knobs": {
+        "top_k": 8,
+        "mode": "hybrid",
+        "rag_vector_top_k": 20,
+        "rag_bm25_top_k": 10,
+        "rag_final_top_k": 8,
+        "rag_symbol_boost": 1.0,
+        "rag_hybrid_vector_weight": 1.0,
+        "rag_hybrid_bm25_weight": 1.0,
+        "rag_rerank_enabled": true,
+        "rag_rerank_provider": "heuristic",
+        "rag_query_variant_decay": 0.85,
+        "rag_query_llm": false,
+        "rag_query_rewrite_enabled": true,
+        "use_milvus": false
+      },
+      "config_sha256": "dbe42f998a47982d",
+      "summary": {
+        "total_cases": 32,
+        "passed_cases": 29,
+        "success_cases": 30,
+        "recall_at_k": 0.8438,
+        "recall_at_5": 0.8438,
+        "recall_at_10": 0.8438,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.1875,
+        "mrr": 0.8281,
+        "ndcg_at_k": 0.8322,
+        "ndcg_at_5": 0.8322,
+        "freshness_rate": 0.9667,
+        "empty_result_rate": 0.0667,
+        "unauthorized_pass_rate": 1.0,
+        "latency_p50_ms": 6.8,
+        "latency_p95_ms": 15.0
+      },
+      "validation_status": "local_only",
+      "vector_backend": "local_no_milvus",
+      "per_case": [
+        {
+          "case_id": "q01",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q02",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "error_code"
+          ]
+        },
+        {
+          "case_id": "q03",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q04",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "api"
+          ]
+        },
+        {
+          "case_id": "q05",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q06",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "config"
+          ]
+        },
+        {
+          "case_id": "q07",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q08",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q09",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q10",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q11",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "file_path"
+          ]
+        },
+        {
+          "case_id": "q12",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q13",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q14",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "natural_language",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q15",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q16",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "cross_file"
+          ]
+        },
+        {
+          "case_id": "q17",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q18",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "source_type"
+          ]
+        },
+        {
+          "case_id": "q19",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "fresh"
+          ]
+        },
+        {
+          "case_id": "q20",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "stale"
+          ]
+        },
+        {
+          "case_id": "q21",
+          "passed": false,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "empty"
+          ]
+        },
+        {
+          "case_id": "q22",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 403,
+          "expected_status": 403,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q23",
+          "passed": true,
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "actual_status": 422,
+          "expected_status": 422,
+          "tags": [
+            "boundary"
+          ]
+        },
+        {
+          "case_id": "q24",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "nl"
+          ]
+        },
+        {
+          "case_id": "q25",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q26",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q27",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q28",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q29",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q30",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q31",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        },
+        {
+          "case_id": "q32",
+          "passed": true,
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "actual_status": 200,
+          "expected_status": 200,
+          "tags": [
+            "code",
+            "symbol"
+          ]
+        }
+      ]
+    }
+  ],
+  "deltas_vs_baseline": {
+    "topk_4": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.1172,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "topk_16": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": -0.0586,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "legs_small": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": -0.0302,
+        "ndcg_at_k": -0.021,
+        "ndcg_at_5": -0.021,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "legs_large": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "vector_only": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": -0.125,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": -0.0313,
+        "mrr": -0.1374,
+        "ndcg_at_k": -0.1048,
+        "ndcg_at_5": -0.149,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "bm25_only": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0333,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "vector_weight_2": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "bm25_weight_2": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "symbol_boost_0": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "symbol_boost_2": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    },
+    "rerank_on": {
+      "metric_deltas": {
+        "recall_at_k": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "precision_at_k": 0.0,
+        "precision_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_k": 0.0,
+        "ndcg_at_5": 0.0,
+        "passed_cases": 0,
+        "empty_result_rate": 0.0,
+        "freshness_rate": 0.0
+      },
+      "regressions": [],
+      "improvements": [],
+      "missing_cases": [],
+      "new_cases": []
+    }
+  },
+  "failure_samples": {
+    "baseline": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "topk_4": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "topk_16": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "legs_small": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "legs_large": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "vector_only": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "bm25_only": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "vector_weight_2": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "bm25_weight_2": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "symbol_boost_0": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "symbol_boost_2": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ],
+    "rerank_on": [
+      {
+        "case_id": "q18",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "source_type"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q20",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "stale"
+        ],
+        "reason": "recall_zero"
+      },
+      {
+        "case_id": "q21",
+        "actual_status": 200,
+        "expected_status": 200,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "tags": [
+          "empty"
+        ],
+        "reason": "recall_zero"
+      }
+    ]
+  },
+  "chunking": {
+    "probe_corpus": "synthetic deterministic payment demo modules (non-sensitive, 4 files)",
+    "variants": [
+      {
+        "name": "max_chars_4000",
+        "env_requested": {},
+        "knobs": {
+          "max_chars": 4000,
+          "window_lines": 40,
+          "overlap_lines": 10
+        },
+        "chunk_count": 4,
+        "avg_chunk_chars": 3192.0,
+        "max_chunk_chars": 3271,
+        "per_file": {
+          "src/payment/refund.py": 1,
+          "src/payment/callback.py": 1,
+          "src/api/orders.py": 1,
+          "src/gateway/timeout.py": 1
+        },
+        "retrieval": {
+          "queries": 8,
+          "recall_at_8": 1.0,
+          "mrr": 1.0,
+          "per_query": [
+            {
+              "query": "REFUND_MARKER_ALPHA",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_refund",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "CALLBACK_MARKER_BETA",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_callback",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "ORDER_MARKER_GAMMA",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_orders",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "TIMEOUT_MARKER_DELTA",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_gateway",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            }
+          ]
+        },
+        "signature": "9d02c8650b72a8a9",
+        "same_as_baseline": true
+      },
+      {
+        "name": "max_chars_1200",
+        "env_requested": {
+          "RAG_CHUNK_MAX_CHARS": "1200"
+        },
+        "knobs": {
+          "max_chars": 1200,
+          "window_lines": 40,
+          "overlap_lines": 10
+        },
+        "chunk_count": 12,
+        "avg_chunk_chars": 1062.7,
+        "max_chunk_chars": 1198,
+        "per_file": {
+          "src/payment/refund.py": 3,
+          "src/payment/callback.py": 3,
+          "src/api/orders.py": 3,
+          "src/gateway/timeout.py": 3
+        },
+        "retrieval": {
+          "queries": 8,
+          "recall_at_8": 1.0,
+          "mrr": 1.0,
+          "per_query": [
+            {
+              "query": "REFUND_MARKER_ALPHA",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_refund",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "CALLBACK_MARKER_BETA",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_callback",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "ORDER_MARKER_GAMMA",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_orders",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "TIMEOUT_MARKER_DELTA",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_gateway",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            }
+          ]
+        },
+        "signature": "71a5c9bbbbf8a513",
+        "same_as_baseline": false
+      },
+      {
+        "name": "max_chars_8000",
+        "env_requested": {
+          "RAG_CHUNK_MAX_CHARS": "8000"
+        },
+        "knobs": {
+          "max_chars": 8000,
+          "window_lines": 40,
+          "overlap_lines": 10
+        },
+        "chunk_count": 4,
+        "avg_chunk_chars": 3192.0,
+        "max_chunk_chars": 3271,
+        "per_file": {
+          "src/payment/refund.py": 1,
+          "src/payment/callback.py": 1,
+          "src/api/orders.py": 1,
+          "src/gateway/timeout.py": 1
+        },
+        "retrieval": {
+          "queries": 8,
+          "recall_at_8": 1.0,
+          "mrr": 1.0,
+          "per_query": [
+            {
+              "query": "REFUND_MARKER_ALPHA",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_refund",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "CALLBACK_MARKER_BETA",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_callback",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "ORDER_MARKER_GAMMA",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_orders",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "TIMEOUT_MARKER_DELTA",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_gateway",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            }
+          ]
+        },
+        "signature": "9d02c8650b72a8a9",
+        "same_as_baseline": true
+      },
+      {
+        "name": "lines_20",
+        "env_requested": {
+          "RAG_CHUNK_LINES": "20"
+        },
+        "knobs": {
+          "max_chars": 4000,
+          "window_lines": 20,
+          "overlap_lines": 10
+        },
+        "chunk_count": 4,
+        "avg_chunk_chars": 3192.0,
+        "max_chunk_chars": 3271,
+        "per_file": {
+          "src/payment/refund.py": 1,
+          "src/payment/callback.py": 1,
+          "src/api/orders.py": 1,
+          "src/gateway/timeout.py": 1
+        },
+        "retrieval": {
+          "queries": 8,
+          "recall_at_8": 1.0,
+          "mrr": 1.0,
+          "per_query": [
+            {
+              "query": "REFUND_MARKER_ALPHA",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_refund",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "CALLBACK_MARKER_BETA",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_callback",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "ORDER_MARKER_GAMMA",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_orders",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "TIMEOUT_MARKER_DELTA",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_gateway",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            }
+          ]
+        },
+        "signature": "9d02c8650b72a8a9",
+        "same_as_baseline": true
+      },
+      {
+        "name": "lines_80",
+        "env_requested": {
+          "RAG_CHUNK_LINES": "80"
+        },
+        "knobs": {
+          "max_chars": 4000,
+          "window_lines": 80,
+          "overlap_lines": 10
+        },
+        "chunk_count": 4,
+        "avg_chunk_chars": 3192.0,
+        "max_chunk_chars": 3271,
+        "per_file": {
+          "src/payment/refund.py": 1,
+          "src/payment/callback.py": 1,
+          "src/api/orders.py": 1,
+          "src/gateway/timeout.py": 1
+        },
+        "retrieval": {
+          "queries": 8,
+          "recall_at_8": 1.0,
+          "mrr": 1.0,
+          "per_query": [
+            {
+              "query": "REFUND_MARKER_ALPHA",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_refund",
+              "expected_file": "src/payment/refund.py",
+              "rank": 1
+            },
+            {
+              "query": "CALLBACK_MARKER_BETA",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_callback",
+              "expected_file": "src/payment/callback.py",
+              "rank": 1
+            },
+            {
+              "query": "ORDER_MARKER_GAMMA",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_orders",
+              "expected_file": "src/api/orders.py",
+              "rank": 1
+            },
+            {
+              "query": "TIMEOUT_MARKER_DELTA",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            },
+            {
+              "query": "handle_gateway",
+              "expected_file": "src/gateway/timeout.py",
+              "rank": 1
+            }
+          ]
+        },
+        "signature": "9d02c8650b72a8a9",
+        "same_as_baseline": true
+      }
+    ],
+    "note": "切片参数是 import-time 常量，必须子进程隔离生效；max_chars 决定 CodeSplitter 实际产物粒度；行窗口参数在当前 llama-index 版本不参与切分，same_as_baseline=true 即实测无差异"
+  },
+  "determinism": {
+    "checked": true,
+    "identical": true,
+    "differences": []
+  },
+  "limitations": [
+    "本地内存态 + 脱敏合成语料（seed_baseline），不代表云端 Milvus/真实仓库质量",
+    "子进程强制 USE_MILVUS=false；云端/生产评测需显式确认后另行执行",
+    "切片探针只度量 BM25 可检索性（本地确定性词法），不含向量语义质量"
+  ]
+}

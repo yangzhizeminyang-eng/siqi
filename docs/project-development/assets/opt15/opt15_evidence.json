@@ -1,0 +1,256 @@
+{
+  "schema": "opt15-evidence-v1",
+  "harness": "opt15_verify",
+  "generated_at": "2026-10-16T09:19:17.676746+00:00",
+  "environment": {
+    "python": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.venv\\Scripts\\python.exe",
+    "backend_root": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend",
+    "real_remote_writes": "false（不触真实 Gitee/GitHub/GitLab 远端）"
+  },
+  "validation_status": {
+    "real_model_calls": false,
+    "real_gitee_write": "not_collected：真实 Gitee 远端写入需逐项确认后再执行（本轮用本地 stub + 本地 bare 仓库全链路替代）",
+    "real_github_gitlab": "not_implemented：GitHub/GitLab 未实现（注册表 + 启动期双重 fail-closed 已验证）",
+    "stub_http": "真实 127.0.0.1 socket HTTP（scripted 响应 + 请求捕获）",
+    "local_git": "真实 git 二进制（bare 仓库作为 origin，零外网）"
+  },
+  "checks": [
+    {
+      "id": "A1-contract-conformance",
+      "desc": "GiteeProvider 满足 GitHostProvider 契约（8 方法 + name）",
+      "status": "pass",
+      "evidence": {
+        "isinstance_protocol": true,
+        "name": "gitee",
+        "methods": {
+          "parse_repository": true,
+          "authenticated_remote": true,
+          "mask_remote": true,
+          "fetch_branch_head": true,
+          "create_issue": true,
+          "find_issue_by_marker": true,
+          "fetch_issue_snapshot": true,
+          "create_pull_request": true
+        }
+      }
+    },
+    {
+      "id": "A2-repository-semantics",
+      "desc": "仓库解析多形态 / 非 gitee 拒绝 / 鉴权远程与掩码",
+      "status": "pass",
+      "evidence": {
+        "forms": {
+          "https://gitee.com/owner/repo.git": "owner/repo",
+          "https://gitee.com/owner/repo": "owner/repo",
+          "git@gitee.com:owner/repo.git": "owner/repo",
+          "ssh://git@gitee.com/owner/repo.git": "owner/repo"
+        },
+        "invalid_kind": "invalid_repository",
+        "remote_shape": "https://oauth2:***@gitee.com/...",
+        "masked": "https://oauth2:***@gitee.com/example-org/health-middle.git"
+      }
+    },
+    {
+      "id": "A3-branch-head-via-stub",
+      "desc": "真实 HTTP：GET 分支 head 返回 sha，token 走查询参数",
+      "status": "pass",
+      "evidence": {
+        "sha": "ffffffffffffffffffffffffffffffffffffffff",
+        "path": "/api/v5/repos/example-org/health-middle/branches/main",
+        "token_in_query": true
+      }
+    },
+    {
+      "id": "A4-issue-create-contract",
+      "desc": "真实 HTTP：owner 作用域建 Issue + repo 参数 + token 仅在请求体",
+      "status": "pass",
+      "evidence": {
+        "path": "/api/v5/repos/example-org/issues",
+        "repo_param": "health-middle",
+        "labels": "bug,sync",
+        "token_in_body": true,
+        "token_not_in_url": true
+      }
+    },
+    {
+      "id": "A5-dedupe-pagination",
+      "desc": "查重分页四态：命中即停 / 空页停 / 满页续翻 / 上限 6 页",
+      "status": "pass",
+      "evidence": {
+        "hit": {
+          "number": "I00104",
+          "pages": [
+            "1",
+            "2"
+          ]
+        },
+        "empty": {
+          "result": null,
+          "pages": [
+            "1"
+          ]
+        },
+        "continue": {
+          "number": "I00203",
+          "pages": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "cap": {
+          "result": null,
+          "pages": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ]
+        }
+      }
+    },
+    {
+      "id": "A6-error-classification",
+      "desc": "错误分类：畸形=response_invalid / 500=field_error / 401=auth 上抛 / 断网=network_timeout / 非 auth 降级 None",
+      "status": "pass",
+      "evidence": {
+        "malformed": "response_invalid",
+        "http_500": "field_error",
+        "auth_find": "auth_expired",
+        "non_auth_find": null,
+        "network": "network_timeout"
+      }
+    },
+    {
+      "id": "A7-error-redaction",
+      "desc": "stub 回显 token 时异常消息仍被脱敏（不含 token，含 ***）",
+      "status": "pass",
+      "evidence": {
+        "kind": "auth_expired",
+        "message_shape": "bad ***; access_token=*** https://oauth2:***@gitee.com/x.git"
+      }
+    },
+    {
+      "id": "A8-snapshot-normalization",
+      "desc": "Issue 快照归一化：labels/评论用户名/# 前缀",
+      "status": "pass",
+      "evidence": {
+        "title": "回调幂等修复",
+        "labels": [
+          "bug"
+        ],
+        "comment_users": [
+          "张三",
+          "reviewer"
+        ],
+        "paths": [
+          "/api/v5/repos/example-org/health-middle/issues/I15HAR1",
+          "/api/v5/repos/example-org/health-middle/issues/I15HAR1/comments"
+        ]
+      }
+    },
+    {
+      "id": "A9-pull-request-stub",
+      "desc": "真实 HTTP：PR 创建委托 gitee_pr_service 打到 stub（head/base/token 契约）",
+      "status": "pass",
+      "evidence": {
+        "number": "PR15HAR",
+        "path": "/api/v5/repos/example-org/health-middle/pulls",
+        "head": "agent/opt15",
+        "base": "main",
+        "token_in_body": true
+      }
+    },
+    {
+      "id": "B1-local-git-e2e",
+      "desc": "本地 git 全链路：本地路径透传 → clone/worktree/commit/push → bare 分支 sha 一致",
+      "status": "pass",
+      "evidence": {
+        "local_path_passthrough": true,
+        "base_sha": "3c5c34c4cad6",
+        "new_sha": "3729dc8d8162",
+        "pushed_sha": "3729dc8d8162",
+        "bare": ".data\\opt15-exp\\git-e2e\\origin.git"
+      }
+    },
+    {
+      "id": "C1-provider-default-gitee",
+      "desc": "GIT_HOST_PROVIDER 默认 gitee",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "stdout": "gitee"
+      }
+    },
+    {
+      "id": "C2-provider-fail-closed-startup",
+      "desc": "GIT_HOST_PROVIDER=gitlab（未实现）→ 拒绝启动，报错含 GIT_HOST_PROVIDER/fail-closed",
+      "status": "pass",
+      "evidence": {
+        "returncode": 1,
+        "stderr_tail": "backend\\app\\core\\runtime_config.py\", line 96, in _git_host_provider\n    raise RuntimeError(\nRuntimeError: GIT_HOST_PROVIDER=gitlab 未实现（GitHub/GitLab 适配规划中）：fail-closed 拒绝启动，绝不静默回退 gitee 托管。见 docs/project-development/127。"
+      }
+    },
+    {
+      "id": "C3-registry-explicit-refusal",
+      "desc": "注册表显式请求 github → unsupported_provider（绝不静默回退 gitee）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "payload": {
+          "raised": true,
+          "kind": "unsupported_provider",
+          "message": "代码托管平台 github 未实现（GitHub/GitLab 适配规划中，GIT_HOST_PROVIDER 配置）：fail-closed 拒绝，绝不静默回退 gitee 托管。见 docs/project-development/127。"
+        }
+      }
+    },
+    {
+      "id": "D1-adoption-chain",
+      "desc": "E4 create_runtime_pr 采纳链：provider=gitee 结果 + recorder 命中 + token 不落结果/文件",
+      "status": "pass",
+      "evidence": {
+        "provider": "gitee",
+        "number": "PR-OPT15",
+        "recorded": {
+          "url": "https://gitee.com/example/opt15-probe.git",
+          "token": "***",
+          "head_branch": "agent/opt15/probe",
+          "base_branch": "main",
+          "title": "OPT-15 probe",
+          "body": "body",
+          "kwargs": []
+        },
+        "pr_state_file": ".data\\opt15-exp\\d1-state\\rt_opt15_probe.pr.json",
+        "token_leaked_in_result": false,
+        "token_leaked_in_file": false
+      }
+    },
+    {
+      "id": "E1-pytest-contract-gate",
+      "desc": "OPT-15 契约专项 pytest（26 条）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "summary": "26 passed in 24.60s",
+        "log": ".data\\opt15-exp\\opt15_pytest_contract.txt"
+      }
+    },
+    {
+      "id": "E2-pytest-compat-gate",
+      "desc": "采纳兼容回归（test_pr_creation + test_opt06 + test_enterprise_e4_agents）",
+      "status": "pass",
+      "evidence": {
+        "returncode": 0,
+        "summary": "64 passed, 2 skipped, 1 warning in 4.11s",
+        "log": ".data\\opt15-exp\\opt15_pytest_compat.txt"
+      }
+    }
+  ],
+  "summary": {
+    "total": 16,
+    "passed": 16,
+    "failed": 0
+  }
+}

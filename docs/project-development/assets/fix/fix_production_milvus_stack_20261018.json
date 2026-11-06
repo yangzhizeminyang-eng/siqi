@@ -1,0 +1,101 @@
+[
+  {
+    "Command": "\"etcd --advertise-cl…\"",
+    "CreatedAt": "2026-10-18 23:48:58 +0800 CST",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "dbd93ea3934b",
+    "Image": "quay.io/coreos/etcd:v3.5.5",
+    "Labels": "com.docker.compose.container-number=1,com.docker.compose.image=sha256:673f29d03de9f5d46158b4cfc3e4c1d69b72d31a800825b4c5e9e6b1ed553acb,com.docker.compose.oneoff=False,com.docker.compose.project=siqi-milvus,com.docker.compose.project.working_dir=/home/ubuntu/siqi-milvus,com.docker.compose.version=2.32.4,com.docker.compose.config-hash=719f90ed9b5eee2b92e0e81212fe6447f5c0d6189e38a9c1d462b88a77ecfae1,com.docker.compose.depends_on=,com.docker.compose.project.config_files=/home/ubuntu/siqi-milvus/docker-compose.yml,com.docker.compose.service=etcd",
+    "LocalVolumes": "0",
+    "Mounts": "/home/ubuntu/s…",
+    "Name": "siqi-milvus-etcd-1",
+    "Names": "siqi-milvus-etcd-1",
+    "Networks": "siqi-milvus_default",
+    "Ports": "2379-2380/tcp",
+    "Project": "siqi-milvus",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 2379,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 2380,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "9 minutes ago",
+    "Service": "etcd",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 9 minutes (healthy)"
+  },
+  {
+    "Command": "\"/tini -- milvus run…\"",
+    "CreatedAt": "2026-10-18 23:48:58 +0800 CST",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "88a025e29bc6",
+    "Image": "milvusdb/milvus:v2.4.15",
+    "Labels": "com.docker.compose.image=sha256:278de20b4f8d2cd70a78fdbb3ccc10723159f55291dadc177f85104213f87093,com.docker.compose.oneoff=False,com.docker.compose.project=siqi-milvus,com.docker.compose.version=2.32.4,com.docker.compose.config-hash=8b3d4eed0aa831a81c67a96ad850270d39bc4f20ba5499ea52fd2d5195ccffee,com.docker.compose.container-number=1,com.docker.compose.depends_on=etcd:service_healthy:false,minio:service_healthy:false,com.docker.compose.project.config_files=/home/ubuntu/siqi-milvus/docker-compose.yml,com.docker.compose.project.working_dir=/home/ubuntu/siqi-milvus,com.docker.compose.service=milvus,org.opencontainers.image.ref.name=ubuntu,org.opencontainers.image.version=22.04",
+    "LocalVolumes": "0",
+    "Mounts": "/home/ubuntu/s…",
+    "Name": "siqi-milvus-milvus-1",
+    "Names": "siqi-milvus-milvus-1",
+    "Networks": "siqi-milvus_default",
+    "Ports": "127.0.0.1:9091->9091/tcp, 127.0.0.1:19530->19530/tcp",
+    "Project": "siqi-milvus",
+    "Publishers": [
+      {
+        "URL": "127.0.0.1",
+        "TargetPort": 9091,
+        "PublishedPort": 9091,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "127.0.0.1",
+        "TargetPort": 19530,
+        "PublishedPort": 19530,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "9 minutes ago",
+    "Service": "milvus",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 9 minutes (healthy)"
+  },
+  {
+    "Command": "\"/usr/bin/docker-ent…\"",
+    "CreatedAt": "2026-10-18 23:48:58 +0800 CST",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "09fdcb9695aa",
+    "Image": "minio/minio:RELEASE.2024-12-18T13-15-44Z",
+    "Labels": "io.k8s.display-name=Red Hat Universal Base Image 9 Micro,name=MinIO,summary=MinIO is a High Performance Object Storage, API compatible with Amazon S3 cloud storage service.,url=https://www.redhat.com,vendor=MinIO Inc <dev@min.io>,io.buildah.version=1.38.0-dev,com.docker.compose.version=2.32.4,io.openshift.expose-services=,com.docker.compose.oneoff=False,com.docker.compose.project.working_dir=/home/ubuntu/siqi-milvus,com.docker.compose.container-number=1,com.docker.compose.image=sha256:6aed1b6949018d1659310e66dc076711c9a9efeffa578b337ac3d1b82e0e9153,com.redhat.component=ubi9-micro-container,description=MinIO object storage is fundamentally different. Designed for performance and the S3 API, it is 100% open-source. MinIO is ideal for large, private cloud environments with stringent security requirements and delivers mission-critical availability across a diverse range of workloads.,distribution-scope=public,release=RELEASE.2024-12-18T13-15-44Z,version=RELEASE.2024-12-18T13-15-44Z,com.docker.compose.config-hash=fb4b3404ef68a00a8fa40ad16bfa5a28950b1b2964f7c8dfe6febf9f495a7341,com.docker.compose.depends_on=,com.redhat.license_terms=https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI,maintainer=MinIO Inc <dev@min.io>,build-date=2024-12-18T09:14:16Z,com.docker.compose.project.config_files=/home/ubuntu/siqi-milvus/docker-compose.yml,vcs-ref=10988923ed65297b3e5a5c9cf1c59f779fd76274,com.docker.compose.project=siqi-milvus,com.docker.compose.service=minio,io.k8s.description=Very small image which doesn't install the package manager.,vcs-type=git,architecture=x86_64",
+    "LocalVolumes": "1",
+    "Mounts": "577bdcfd517ea4…,/home/ubuntu/s…",
+    "Name": "siqi-milvus-minio-1",
+    "Names": "siqi-milvus-minio-1",
+    "Networks": "siqi-milvus_default",
+    "Ports": "9000/tcp",
+    "Project": "siqi-milvus",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 9000,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "9 minutes ago",
+    "Service": "minio",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 9 minutes (healthy)"
+  }
+]

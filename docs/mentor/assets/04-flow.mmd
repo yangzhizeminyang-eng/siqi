@@ -1,0 +1,52 @@
+flowchart TD
+    START["修改计划生成 · PLAN_GENERATED"] --> GATE{"evaluate_plan_gate · approval_policy.py:82"}
+
+    GATE --> C1["条件1 风险等级高于仓库阈值"]
+    GATE --> C2["条件2 计划结构不完整"]
+    GATE --> C3["条件3 上下文不 fresh<br/>索引 commit 不等于仓库 head"]
+    GATE --> C4["条件4 存在未回答的阻塞问题"]
+    GATE --> C5["条件5 测试命令未命中仓库白名单"]
+    GATE --> C6["条件6 独立复核<br/>敏感文件或危险命令"]
+
+    C1 --> ANY{"任一命中"}
+    C2 --> ANY
+    C3 --> ANY
+    C4 --> ANY
+    C5 --> ANY
+    C6 --> ANY
+
+    ANY -->|否 全部通过| AUTO["自动审批 AUTO_APPROVED<br/>进入 Diff 阶段"]
+    ANY -->|是| MANUAL["进入人工审批中心<br/>并通知审批人"]
+
+    MANUAL --> D1{"审批人动作"}
+    D1 -->|通过| APPROVED["APPROVED → 生成 Diff"]
+    D1 -->|要求重写| REWRITE{"重写次数小于 2"}
+    D1 -->|拒绝| REJECTED["当前任务版本终止"]
+    REWRITE -->|未超上限| NEWPLAN["生成新计划版本<br/>旧版本 SUPERSEDED"] --> GATE
+    REWRITE -->|超过上限| FAILED1["任务 FAILED"]
+
+    APPROVED --> DIFF["生成 Diff"]
+    DIFF --> TESTSEC{"测试命令安全校验<br/>test_runner.check_dangerous_command"}
+    TESTSEC -->|危险命令| BLOCKED["测试 skipped + 审计留痕<br/>不消耗重试次数"]
+    TESTSEC -->|白名单通过| RUNTEST["Docker 隔离执行"]
+    RUNTEST --> TRESULT{"测试结果"}
+    TRESULT -->|通过| PRGEN["生成 PR 描述与真实 PR"]
+    TRESULT -->|失败且未超上限| RETRY["退回 Diff 重试<br/>默认上限 2 次"]
+    TRESULT -->|重试耗尽| FAILED2["任务 FAILED"]
+    RETRY --> DIFF
+
+    subgraph ENT["企业版独立治理模型"]
+        direction TB
+        R0["L0 只读 默认允许"] --> R1["L1 可逆低风险 允许或记录"]
+        R1 --> R2["L2 项目或代码资产<br/>single 单人审批"]
+        R2 --> R3["L3 生产或批量数据<br/>dual 多人审批 + 测试门禁"]
+        R3 --> R4["L4 租户安全或密钥<br/>security 安全管理员 + 二次确认"]
+    end
+
+    style AUTO fill:#e0f5e0
+    style APPROVED fill:#e0f5e0
+    style PRGEN fill:#e0f5e0
+    style REJECTED fill:#ffe0e0
+    style FAILED1 fill:#ffe0e0
+    style FAILED2 fill:#ffe0e0
+    style BLOCKED fill:#fff3d6

@@ -1,0 +1,19 @@
+# E4 本地主机直连 Milvus/RAG 用的端口 override（仅本地验证；生产 milvus 仍走内部网络）。
+# 用法：docker compose -f docker-compose.enterprise.yml -f docker-compose.enterprise.local-ports.yml up -d etcd-enterprise minio-enterprise milvus-enterprise
+services:
+  etcd-enterprise:
+    ports:
+      - "2379:2379"
+  minio-enterprise:
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+  milvus-enterprise:
+    ports:
+      - "19530:19530"
+    networks:
+      - milvus-host
+
+networks:
+  milvus-host:
+    name: agent_enterprise_milvus_host

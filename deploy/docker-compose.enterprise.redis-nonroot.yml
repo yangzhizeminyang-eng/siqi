@@ -1,0 +1,11 @@
+# E6-01 Redis 非 root 加固 override：redis 以 uid 999 (redis) 运行，替代镜像默认 root。
+# 用法：与 enterprise/apponly/host-tls 一起传入 compose。
+#   docker compose -f docker-compose.enterprise.yml \
+#     -f docker-compose.enterprise.apponly.yml \
+#     -f docker-compose.enterprise.host-tls.yml \
+#     -f docker-compose.enterprise.redis-nonroot.yml \
+#     up -d --no-deps redis
+# 数据卷 redis_data 已由 redis:redis(uid 999) 属主，无需 chown；配合 security_opt no-new-privileges。
+services:
+  redis:
+    user: "999"

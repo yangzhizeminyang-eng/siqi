@@ -1,0 +1,94 @@
+{
+  "demo": "opt07_full_chain_observability",
+  "generated_at": "2026-10-15T17:04:08.179445+00:00",
+  "tenant_id": "tenant_default",
+  "trace_id": "opt07_demo_trace",
+  "environment": {
+    "agent_provider": "deterministic",
+    "stores": "in_memory",
+    "database": "disabled",
+    "celery": "disabled",
+    "data_dir": "D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.data\\opt07-demo"
+  },
+  "tool_leg": {
+    "read_issue_echo_ok": true,
+    "read_comments_output_len": 32
+  },
+  "rag_leg": {
+    "mode": "bm25",
+    "hit_count": 1,
+    "expected_hit": true
+  },
+  "span_summary": {
+    "total": 29,
+    "by_category": {
+      "approval": 1,
+      "artifact": 11,
+      "model": 6,
+      "rag": 2,
+      "tool": 3,
+      "worker": 6
+    },
+    "status_counts": {
+      "ok": 28,
+      "error": 1,
+      "blocked": 0
+    }
+  },
+  "retention": {
+    "max_spans": 2000,
+    "count": 29,
+    "dropped_total": 0,
+    "by_category": {
+      "tool": 3,
+      "rag": 2,
+      "model": 6,
+      "artifact": 11,
+      "worker": 6,
+      "approval": 1
+    }
+  },
+  "model_span": {
+    "name": "model.invoke",
+    "duration_ms": 0.03,
+    "tokens": {
+      "status": "not_collected"
+    },
+    "attributes": {
+      "agent_type": "test_release_agent"
+    }
+  },
+  "error_span": {
+    "name": "rag.search",
+    "status": "error",
+    "error_kind": "http_404"
+  },
+  "approval_span": {
+    "name": "approval.approve",
+    "decision": "approved"
+  },
+  "workflow": {
+    "final_status": "succeeded",
+    "approval": {
+      "approval_id": "appr_c406e8eb31b3",
+      "status": "approved",
+      "decision": "approved"
+    },
+    "approval_gate_held": true
+  },
+  "checks": {
+    "all_six_categories_present": true,
+    "single_trace_chained": true,
+    "durations_recorded": true,
+    "tokens_not_collected_honest": true,
+    "error_kind_searchable": true,
+    "redaction_enforced": true,
+    "retention_visible": true,
+    "approval_decision_recorded": true,
+    "tool_execution_with_duration": true,
+    "workflow_succeeded": true,
+    "error_leg_raised_404": true,
+    "no_remote_write_module": true,
+    "all_passed": true
+  }
+}

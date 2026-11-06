@@ -1,0 +1,13 @@
+# OPT-09 related regression: 触达模块（DEV-008 索引管线 / 等待索引恢复 / 企业 RAG 检索 E3-01 / E3-08 控制台 / E3-04 评测 / OPT-04 报告契约 / OPT-08 在线评测 / 解析链 / 检索质量 / 持久化 / Celery worker）上下游
+# cmd: cd backend && .venv/Scripts/python.exe -m pytest tests/test_dev008_rag_index.py tests/test_wait_index_resume.py tests/test_enterprise_e3_rag.py tests/test_enterprise_e3_08_rag_console.py tests/test_rag_evaluation.py tests/test_opt04_rag_report_contract.py tests/test_opt08_rag_eval_online.py tests/test_rag_parse_chain.py tests/test_rag_retrieval_quality.py tests/test_rag_persistence.py tests/test_rag_milvus_realtime.py tests/test_celery_worker_runtime.py -q -rs
+# env: tests/conftest.py 顶部隔离块（OPT-05 口径：不读本地 .env/凭据、内存态、Celery 导入即 eager；无需外部服务）
+........................................................................ [ 60%]
+....................s...............ssss........                         [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_rag_parse_chain.py:178: Milvus 不可用，完整召回链路以节点化为准
+SKIPPED [1] tests\test_rag_milvus_realtime.py:66: Milvus 不可用，跳过真实 Milvus 用例
+SKIPPED [1] tests\test_rag_milvus_realtime.py:81: Milvus 不可用，跳过真实 Milvus 用例
+SKIPPED [1] tests\test_rag_milvus_realtime.py:165: Milvus 不可用，跳过真实 Milvus 用例
+SKIPPED [1] tests\test_rag_milvus_realtime.py:177: Milvus 不可用，跳过真实 Milvus 用例
+115 passed, 5 skipped in 483.61s (0:08:03)
+EXIT=0

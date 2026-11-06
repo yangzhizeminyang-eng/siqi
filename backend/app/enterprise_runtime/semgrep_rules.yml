@@ -1,0 +1,15 @@
+rules:
+  - id: dangerous-python-eval
+    languages: [python]
+    message: Avoid evaluating untrusted input with eval.
+    severity: ERROR
+    pattern: eval($VALUE)
+  - id: hardcoded-python-secret
+    languages: [python]
+    message: Possible hard-coded credential; move it to a secret store.
+    severity: WARNING
+    patterns:
+      - pattern: $KEY = $VALUE
+      - metavariable-regex:
+          metavariable: $KEY
+          regex: (?i)(password|secret|api_key|token)

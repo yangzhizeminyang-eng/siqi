@@ -1,0 +1,64 @@
+{
+  "schema": "fix-production-db-eval-v1",
+  "generated_at": "2026-10-18T16:00:00+00:00",
+  "date": "2026-10-18",
+  "host": "<production-host> (VM-0-10-ubuntu)",
+  "database": "agent_enterprise @ projectdream-mysql-1",
+  "code": "current backend code image agent-enterprise-backend:siqi-multi-host-20261018 (temporary API/worker; live app image not replaced)",
+  "broker": "production Redis agent-enterprise-redis-1",
+  "runs": [
+    {
+      "run_id": "rageval_3cb8426869ac",
+      "status": "blocked",
+      "validation_status": "blocked",
+      "attempts": 1,
+      "execution_scope": "production",
+      "tenant_id": "tenant_default",
+      "report_name": "online_rageval_3cb8426869ac.json",
+      "milvus_enabled": false,
+      "note": "USE_MILVUS=false control run; proves production DB write/report persistence, validation is honestly blocked"
+    },
+    {
+      "run_id": "rageval_3695980027a6",
+      "status": "succeeded",
+      "validation_status": "verified",
+      "attempts": 1,
+      "execution_scope": "production",
+      "tenant_id": "tenant_default",
+      "report_name": "online_rageval_3695980027a6.json",
+      "dataset": "e3_05_baseline.jsonl",
+      "dataset_size": 32,
+      "retrieval_mode": "bm25",
+      "vector_backend": "milvus",
+      "milvus_verified": true,
+      "fallback_used": false,
+      "milvus_uri": "http://milvus:19530",
+      "note": "verified production DB run with real production-host Milvus; production DB has no code_chunks/index, so metrics are zero and are not a retrieval-quality claim"
+    },
+    {
+      "run_id": "rageval_50687933796e",
+      "status": "succeeded",
+      "validation_status": "verified",
+      "attempts": 1,
+      "execution_scope": "production",
+      "tenant_id": "tenant_default",
+      "report_name": "online_rageval_50687933796e.json",
+      "retrieval_mode": "bm25",
+      "note": "extra verified run produced when the first production fault watcher was rejected by the image entrypoint ZHIPU check; preserved as in-between evidence, not used as the fault-drill result"
+    }
+  ],
+  "checks": {
+    "production_db_rows_visible": true,
+    "report_files_readable": true,
+    "production_redis_dispatch": true,
+    "verified_status_with_real_milvus": true
+  },
+  "boundaries": {
+    "live_app_code": "the live app still runs the pre-FIX image; these runs used a temporary current-code API/worker against the production DB",
+    "retrieval_quality": "not claimed; production DB has no code_chunks/index",
+    "long_term_business_load": "not executed; this is a controlled production DB write"
+  },
+  "evidence_files": [
+    "docs/project-development/assets/fix/fix_production_db_verified_eval_20261018.report.json"
+  ]
+}

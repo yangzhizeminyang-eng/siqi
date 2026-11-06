@@ -1,0 +1,8 @@
+# OPT-11 路由表形态实测（扁平扫描 vs OpenAPI 投影）
+# cmd: cd backend && APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true ENV_FILE="$PWD/tests/.env.hermetic-nonexistent" .venv/Scripts/python.exe -c "<统计 app.routes 类型分布与 openapi() /api 操作数>"
+# env: local / in-memory / mock-fallback / hermetic ENV_FILE
+
+app.routes 类型分布: {'Route': 4, '_IncludedRouter': 17, 'APIRoute': 34}
+扁平可见 /api APIRoute: 34
+openapi() /api 操作数: 117
+EXIT=0

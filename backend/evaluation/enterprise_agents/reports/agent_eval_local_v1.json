@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "dataset_id": "enterprise-agent-eval-v1",
+    "dataset_sha256": "8e24bb1bc79b99e16c859ced96be232135995e7ef33651c1681fd10a7117a0f4",
+    "case_count": 2,
+    "workflow_version": 2
+  },
+  "versions": {
+    "model": "deterministic-v1",
+    "prompt": "agent-prompts-v1"
+  },
+  "summary": {
+    "total_cases": 2,
+    "passed_cases": 2,
+    "failed_cases": 0,
+    "success_rate": 1.0,
+    "latency_ms": {
+      "p50": 66.58,
+      "p95": 121.16
+    },
+    "cost": {
+      "status": "not_collected",
+      "value": null
+    }
+  },
+  "cases": [
+    {
+      "case_id": "approved-happy-path",
+      "passed": true,
+      "workflow_status": "succeeded",
+      "agent_types": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent",
+        "code_change_agent",
+        "review_security_agent",
+        "test_release_agent"
+      ],
+      "artifact_types": [
+        "CodeContextArtifact",
+        "DiffArtifact",
+        "PRDescriptionArtifact",
+        "PatchArtifact",
+        "PlanArtifact",
+        "ReleaseEvidenceArtifact",
+        "RequirementArtifact",
+        "ResearchArtifact",
+        "ReviewArtifact",
+        "SecurityRiskArtifact",
+        "TestReportArtifact"
+      ],
+      "tool_policy": {
+        "requirement_agent": [
+          "read_comments",
+          "read_history",
+          "read_issue"
+        ],
+        "repository_research_agent": [
+          "rag_search",
+          "repo_read"
+        ],
+        "planner_agent": [],
+        "code_change_agent": [
+          "build_diff",
+          "workspace_read",
+          "workspace_write"
+        ],
+        "review_security_agent": [
+          "read_deps",
+          "read_diff",
+          "read_plan",
+          "read_security_policy",
+          "semgrep_scan",
+          "workspace_read"
+        ],
+        "test_release_agent": [
+          "collect_evidence",
+          "draft_pr",
+          "read_diff",
+          "run_test",
+          "workspace_read"
+        ]
+      },
+      "tool_trace": {
+        "requirement_agent": [],
+        "repository_research_agent": [],
+        "planner_agent": [],
+        "code_change_agent": [],
+        "review_security_agent": [],
+        "test_release_agent": []
+      },
+      "approval_events": [
+        "requested",
+        "approved",
+        "code_change_started"
+      ],
+      "approval_boundary": {
+        "expected": "approved_before_code_change",
+        "passed": true
+      },
+      "failure_class": "none",
+      "failure_reasons": [],
+      "duration_ms": 127.22,
+      "cost": {
+        "status": "not_collected",
+        "value": null
+      }
+    },
+    {
+      "case_id": "approval-rejected",
+      "passed": true,
+      "workflow_status": "failed",
+      "agent_types": [
+        "requirement_agent",
+        "repository_research_agent",
+        "planner_agent"
+      ],
+      "artifact_types": [
+        "CodeContextArtifact",
+        "PlanArtifact",
+        "RequirementArtifact",
+        "ResearchArtifact"
+      ],
+      "tool_policy": {
+        "requirement_agent": [
+          "read_comments",
+          "read_history",
+          "read_issue"
+        ],
+        "repository_research_agent": [
+          "rag_search",
+          "repo_read"
+        ],
+        "planner_agent": []
+      },
+      "tool_trace": {
+        "requirement_agent": [],
+        "repository_research_agent": [],
+        "planner_agent": []
+      },
+      "approval_events": [
+        "requested",
+        "rejected"
+      ],
+      "approval_boundary": {
+        "expected": "rejected_before_code_change",
+        "passed": true
+      },
+      "failure_class": "approval_rejected",
+      "failure_reasons": [],
+      "duration_ms": 5.95,
+      "cost": {
+        "status": "not_collected",
+        "value": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# OPT-10 专项测试（消融引擎/CLI 端到端）
+# cmd: cd backend && APP_ENV=local USE_SQLALCHEMY=false USE_CELERY=false MODEL_MOCK_FALLBACK=true ENV_FILE="$PWD/tests/.env.hermetic-nonexistent" .venv/Scripts/python.exe -m pytest tests/test_opt10_rag_ablation.py tests/test_opt10_rag_ablation_cli.py -q -rs
+# env: local / in-memory / mock-fallback / hermetic ENV_FILE
+
+.................                                                        [100%]
+17 passed in 290.91s (0:04:50)
+EXIT=0

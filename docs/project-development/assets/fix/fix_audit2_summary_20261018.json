@@ -1,0 +1,279 @@
+{
+  "schema": "fix-audit2-evidence-summary-v1",
+  "generated_at": "2026-10-18T12:08:01.083935+00:00",
+  "current_run": {
+    "date": "2026-10-18",
+    "backend_fix_focused": {
+      "command": "OPENBLAS_NUM_THREADS=1 .venv/Scripts/python.exe -m pytest tests/test_fix02_index_lifecycle_persistence.py tests/test_fix03_observability_persistence.py tests/test_fix_e2e_evidence_output.py -q -rs",
+      "exit_code": 0,
+      "passed": 19,
+      "skipped": 0,
+      "failed": 0,
+      "evidence": [
+        "docs/project-development/assets/fix/fix_focused_audit2_20261018.txt"
+      ]
+    },
+    "backend_related_regression": {
+      "command": "OPENBLAS_NUM_THREADS=1 .venv/Scripts/python.exe -m pytest tests/test_opt09_index_lifecycle.py tests/test_opt07_observability.py tests/test_opt07_trace_demo_cli.py tests/test_opt14_tenant_isolation_regression.py -q -rs",
+      "exit_code": 0,
+      "passed": 43,
+      "skipped": 0,
+      "failed": 0,
+      "evidence": "docs/project-development/assets/fix/fix_related_audit2_20261018.txt"
+    },
+    "backend_full": {
+      "command": "OPENBLAS_NUM_THREADS=1 .venv/Scripts/python.exe -m pytest -q -rs",
+      "exit_code": 0,
+      "passed": 1118,
+      "skipped": 13,
+      "failed": 0,
+      "duration_seconds": 774.88,
+      "log": "docs/project-development/assets/fix/fix_full_backend_after_fault_fix_20261018.txt",
+      "skipped_reasons": [
+        "tests\\test_dev019_notifications_mysql.py:70: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 DEV-019 MySQL 真实落库校验",
+        "tests\\test_dev021_history_mysql.py:57: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 DEV-021 MySQL 校验",
+        "tests\\test_enterprise_e4_agents.py:526: requires_redis: broker 不可达（127.0.0.1:6379，TCP 探测超时 0.6s）——环境缺失分类 → skip（非代码失败）；启动本地 Redis 或设置 TEST_REDIS_URL 后重跑",
+        "tests\\test_gitee_e2e_live.py:34: GITEE_E2E 未开启或 GITEE_TOKEN/OWNER/REPO 未配齐",
+        "tests\\test_milvus_standalone.py:20: MILVUS_STANDALONE_TEST 未开启或 MILVUS_URI 未配置",
+        "tests\\test_mysql_integration.py:34: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试",
+        "tests\\test_mysql_integration.py:41: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试",
+        "tests\\test_mysql_integration.py:60: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试",
+        "tests\\test_mysql_integration.py:127: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试",
+        "tests\\test_mysql_integration.py:153: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试",
+        "tests\\test_mysql_integration.py:165: MYSQL_TEST_URL 未配置为 MySQL(pymysql)，跳过 MySQL 集成测试",
+        "tests\\test_pr_creation.py:219: GITEE_PR_E2E 未开启或 GITEE_TOKEN/OWNER/REPO_SCRATCH 未配齐",
+        "tests\\test_rag_milvus_realtime.py:120: Milvus 跨进程子进程初始化不可用：Traceback (most recent call last):"
+      ],
+      "note": "含 busy 重试修复与 2 个新增回归。"
+    },
+    "fresh_sqlite_migration": {
+      "command": "alembic upgrade head on fresh temporary SQLite",
+      "exit_code": 0,
+      "revision": "c9d0e1f2a3b4",
+      "tables_verified": [
+        "enterprise_rag_evaluation_runs",
+        "enterprise_rag_index_lifecycles",
+        "enterprise_runtime_trace_spans"
+      ],
+      "database": "backend/.data/fix2-audit/migration_20261018_195036_921565/fresh.db"
+    },
+    "isolated_e2e": {
+      "command": "OPENBLAS_NUM_THREADS=1 .venv/Scripts/python.exe scripts/fix_e2e_acceptance.py --evidence-out ../docs/project-development/assets/fix/fix_e2e_evidence_audit2_20261018_195050.json",
+      "exit_code": 0,
+      "checks_passed": 20,
+      "checks_total": 20,
+      "evidence": "docs/project-development/assets/fix/fix_e2e_evidence_audit2_20261018_195050.json",
+      "run_id": "rageval_5dc5d7176e49",
+      "historical_evidence_untouched": "docs/project-development/assets/fix/fix_e2e_evidence.json"
+    },
+    "frontend_vitest": {
+      "command": "npm run test -- --pool=threads --maxWorkers=1 --no-file-parallelism",
+      "exit_code": 0,
+      "test_files_passed": 31,
+      "tests_passed": 272,
+      "failed": 0,
+      "log": "docs/project-development/assets/fix/fix_frontend_vitest_audit2_20261018.txt"
+    },
+    "frontend_build": {
+      "command": "npm run build",
+      "exit_code": 0,
+      "duration_seconds": 14.35,
+      "log": "docs/project-development/assets/fix/fix_frontend_build_audit2_20261018.txt"
+    },
+    "doc_gates": {
+      "opt12": {
+        "command": ".venv/Scripts/python.exe scripts/opt12_doc_consistency.py --json",
+        "exit_code": 0,
+        "docs_scanned": 77,
+        "violation_count": 0,
+        "evidence": "docs/project-development/assets/fix/fix_doc_consistency_audit2_20261018.json"
+      },
+      "opt16": {
+        "command": ".venv/Scripts/python.exe scripts/opt16_evidence_check.py --json-out <new-file>",
+        "exit_code": 0,
+        "violation_count": 0,
+        "ok": true,
+        "evidence": "docs/project-development/assets/fix/fix_opt16_check_audit2_20261018.json"
+      },
+      "git_diff_check": {
+        "command": "git diff --check",
+        "exit_code": 0,
+        "evidence": "backend/.data/fix2-audit/git_diff_check_audit2.txt"
+      }
+    },
+    "real_mysql_8_isolated": {
+      "command": "mysqld --no-defaults --datadir=<isolated temp> --port=50521 --bind-address=127.0.0.1",
+      "exit_code": 0,
+      "engine": "MySQL 8.0.44",
+      "revision": "c9d0e1f2a3b4",
+      "checks": [
+        "tenant-scoped supersede on persisted rows",
+        "supersede audit only tenant_a",
+        "tokens secret absent from raw JSON",
+        "total_tokens int preserved"
+      ],
+      "evidence": "docs/project-development/assets/fix/fix_mysql_real_20261018.json",
+      "boundary": "local isolated MySQL, not production MySQL"
+    },
+    "migration_regression": {
+      "command": "OPENBLAS_NUM_THREADS=1 .venv/Scripts/python.exe -m pytest tests/test_migrations_upgrade.py -q --tb=short",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "note": "新增 Text server_default 静态门禁；并修复新迁移 error TEXT DEFAULT 的 MySQL 1101",
+      "evidence": "docs/project-development/assets/fix/fix_migration_audit2_20261018.txt"
+    },
+    "backend_full_before_mysql_fix": {
+      "result": "1115 passed, 13 skipped, 0 failed",
+      "duration_seconds": 653.2,
+      "log": "docs/project-development/assets/fix/fix_full_backend_audit2_20261018.txt",
+      "note": "A/B/C 修复后、MySQL 迁移 TEXT DEFAULT 修复前的本轮结果。"
+    },
+    "real_mysql_integration_tests": {
+      "command": "MYSQL_TEST_URL=mysql+pymysql://root@127.0.0.1:50521/fixaudit?charset=utf8mb4 .venv/Scripts/python.exe -m pytest tests/test_mysql_integration.py tests/test_dev019_notifications_mysql.py tests/test_dev021_history_mysql.py -q -rs",
+      "exit_code": 0,
+      "passed": 8,
+      "skipped": 0,
+      "failed": 0,
+      "duration_seconds": 25.7,
+      "evidence": "docs/project-development/assets/fix/fix_mysql_integration_audit2_20261018.txt",
+      "note": "项目原有 8 条 MySQL 集成测试在隔离 MySQL 8.0.44 上真实执行；全量套件中它们因未设置 MYSQL_TEST_URL 仍计为 skip。"
+    },
+    "real_redis": {
+      "evidence": "docs/project-development/assets/fix/fix_real_redis_20261018.json",
+      "worker_log": "docs/project-development/assets/fix/fix_real_redis_worker_20261018.log",
+      "version": "Redis 7.0.15 (WSL Ubuntu 24.04, local isolated port 16379)",
+      "run_id": "rageval_5694365cca17",
+      "checks": "8/8 all_passed",
+      "boundary": "real local Redis, not production Redis"
+    },
+    "real_embedding_milvus_lite": {
+      "evidence": "docs/project-development/assets/fix/fix_real_embedding_milvus_20261018.json",
+      "embedding": "zhipu/embedding-3, dimension 2048, synthetic text only",
+      "milvus": "Milvus Lite on a copy of local DB, source=milvus, synthetic chunks",
+      "original_milvus_untouched": true,
+      "boundary": "not production Milvus"
+    },
+    "real_model_probe": {
+      "evidence": "docs/project-development/assets/fix/fix_real_model_probe_20261018.json",
+      "embedding": "ok, dimension 2048",
+      "llm": "deepseek-chat ok",
+      "prompt": "synthetic only",
+      "boundary": "minimal connectivity probe, not evaluation"
+    },
+    "real_gitee_write": {
+      "evidence": "docs/project-development/assets/fix/fix_real_gitee_write_20261018_v4.json",
+      "target": "https://gitee.com/yang-zhizemin/health-middle.git (scratch/test repo)",
+      "issue": "https://gitee.com/yang-zhizemin/health-middle/issues/IKNBM2",
+      "created": true,
+      "closed": true,
+      "boundary": "real remote write to scratch/test repo; production repos not touched"
+    },
+    "production_readonly_health": {
+      "evidence": "docs/project-development/assets/fix/fix_production_health_20261018.json",
+      "endpoint": "http://<production-host>:8080/api/health",
+      "db": "ok",
+      "redis": "ok",
+      "milvus": "skipped (local-milvus-lite)",
+      "enterprise_8081": "unreachable during this run",
+      "load_smoke": "20 requests / concurrency 4, 20 ok, p50 439.1ms, p95 1480.5ms",
+      "boundary": "read-only health probe; no production migration/write"
+    },
+    "real_redis_multiworker": {
+      "evidence": "docs/project-development/assets/fix/fix_real_redis_multiworker_20261018.json",
+      "workers": 2,
+      "runs": 8,
+      "all_succeeded": true,
+      "attempts_one": true,
+      "per_worker_completion_markers": {
+        "worker_mw1": 10,
+        "worker_mw2": 16
+      },
+      "boundary": "two workers on one host; multi-host not executed"
+    },
+    "github_runner_ci": {
+      "status": "not_executed",
+      "reason": "repository hosted on Gitee; no GitHub remote/gh/GITHUB_TOKEN/GH_TOKEN configured",
+      "local_equivalent": "backend pytest + frontend vitest + build executed locally"
+    },
+    "backend_full_after_mysql_fix": {
+      "result": "1116 passed, 13 skipped, 0 failed",
+      "duration_seconds": 673.56,
+      "log": "docs/project-development/assets/fix/fix_full_backend_after_mysql_20261018.txt",
+      "note": "MySQL 迁移修复后、worker crash busy 修复前。"
+    },
+    "real_redis_fault_recovery": {
+      "evidence": "docs/project-development/assets/fix/fix_real_redis_fault_recovery_20261018_v3.json",
+      "failed_intermediate": "docs/project-development/assets/fix/fix_real_redis_fault_recovery_20261018_v2.json",
+      "scenario": "kill executing worker mid-run; Redis visibility redelivery; busy retry; lease takeover",
+      "attempts": 2,
+      "terminal_succeeded": true,
+      "report_written": true,
+      "all_passed": true,
+      "fix": "eval_service busy returns retry_after_seconds; workers/tasks _retry_if_busy requeues instead of ack",
+      "boundary": "one host, real Redis; multi-host not executed"
+    },
+    "production_mysql_migration": {
+      "evidence": "docs/project-development/assets/fix/fix_production_mysql_migration_20261018.json",
+      "before_revision": "e5f6071a2b3c",
+      "after_revision": "c9d0e1f2a3b4",
+      "backup": "/home/ubuntu/siqi-backups/agent_enterprise_pre_c9d0e1f2_20261018_220717.sql.gz",
+      "backup_sha256": "77718ea8d5be697ba28e084d0026a325fa894aadd1d54f0cfb461ebf0253881b",
+      "dml_probe": "inserted 1 / rolled back 0",
+      "image_durability": "agent-enterprise-backend:latest = old app + 3 migrations; restart verified",
+      "health_after": "db ok / redis ok / milvus skipped(use_milvus=false)",
+      "incident": "first compose up omitted ENTERPRISE_ENV_FILE; containers exited 64; immediately recovered with real env; no data loss"
+    },
+    "multi_host": {
+      "evidence": "docs/project-development/assets/fix/fix_multi_host_20261018.json",
+      "hosts": [
+        "Windows local",
+        "Ubuntu cloud <production-host>"
+      ],
+      "cloud_run": "rageval_4060898c90c1 succeeded on cloud worker",
+      "windows_run": "rageval_98867d69681e succeeded on windows worker",
+      "shared_db": "temporary MySQL siqi_multi_host (dropped after)",
+      "shared_broker": "temporary Redis container 127.0.0.1:16380 (removed after)",
+      "attempts": 1,
+      "trace_count_each": 33,
+      "scope": "two-host smoke; long-term multi-host stability not executed"
+    },
+    "blocked": [
+      {
+        "id": "FIX-EXT-5",
+        "item": "production Milvus service / vector verification",
+        "reason": "production config use_milvus=false, no MILVUS_URI/container; enabling would require product/config change and exceeds available RAM; production-host Milvus Lite probe fell back"
+      },
+      {
+        "id": "FIX-EXT-6",
+        "item": "GitHub Runner CI",
+        "reason": "repository hosted on Gitee; no GitHub remote/gh/GITHUB_TOKEN/GH_TOKEN"
+      },
+      {
+        "id": "FIX-EXT-7",
+        "item": "multi-host long-term stability",
+        "reason": "only two-host smoke executed; no long-duration independent multi-host window"
+      }
+    ]
+  },
+  "historical_runs": {
+    "previous_backend_full_20261018_earlier": {
+      "result": "1108 passed, 14 skipped, 0 failed",
+      "log": "docs/project-development/assets/fix/fix_full_backend.txt",
+      "difference_note": "本轮新增 6 个测试（2 个跨租户 supersede、2 个 tokens 脱敏、2 个 E2E 输出路径），且此前 skip 的真实 Milvus 用例本轮通过，故 +7 passed / -1 skipped；不是同一轮结果。"
+    },
+    "reviewer_observed": {
+      "result": "1100 passed, 22 skipped, 0 failed",
+      "note": "外部审核观察值；本次命令未复现该分布，未合并进本轮数字，仅作为环境门控差异记录。"
+    }
+  },
+  "boundaries": [
+    "production MySQL not verified (local MySQL service start denied; isolated MySQL 8.0.44 verified)",
+    "production Milvus not verified (local Milvus Lite + real embedding verified)",
+    "production Redis not verified (real local Redis 7.0.15 verified)",
+    "GitHub Runner CI not executed (repository hosted on Gitee; no GitHub runner/gh)",
+    "load/fault drill and multi-host not executed",
+    "no real model evaluation (only minimal connectivity probes)",
+    "real Gitee write limited to closed probe issue in scratch/test repo"
+  ]
+}

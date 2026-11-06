@@ -1,0 +1,470 @@
+{
+  "schema": "opt12-doc-consistency-v1",
+  "corpus": "backend/.data/opt12-head-corpus (assets 除外)",
+  "docs_scanned": 60,
+  "violations": [
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 37,
+      "detail": "发现行号引用 `main.py:3796`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 41,
+      "detail": "发现行号引用 `main.py:3520`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 43,
+      "detail": "发现行号引用 `main.py:3777`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 48,
+      "detail": "发现行号引用 `main.py:3636`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 49,
+      "detail": "发现行号引用 `main.py:3716`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 50,
+      "detail": "发现行号引用 `main.py:3594`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 93,
+      "detail": "发现行号引用 `main.py:3509`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 94,
+      "detail": "发现行号引用 `main.py:3520`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 95,
+      "detail": "发现行号引用 `main.py:3594`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 96,
+      "detail": "发现行号引用 `main.py:3636`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 97,
+      "detail": "发现行号引用 `main.py:3716`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 98,
+      "detail": "发现行号引用 `main.py:3777`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 99,
+      "detail": "发现行号引用 `main.py:3788`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 100,
+      "detail": "发现行号引用 `main.py:3796`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/10-approval-module.md",
+      "line": 198,
+      "detail": "发现行号引用 `main.py:1049`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 43,
+      "detail": "发现行号引用 `main.py:4323`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 119,
+      "detail": "发现行号引用 `main.py:397`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 122,
+      "detail": "发现行号引用 `main.py:4323`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 125,
+      "detail": "发现行号引用 `main.py:5762`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 126,
+      "detail": "发现行号引用 `main.py:4393`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 145,
+      "detail": "发现行号引用 `main.py:389`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 146,
+      "detail": "发现行号引用 `main.py:397`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 148,
+      "detail": "发现行号引用 `main.py:58`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/12-test-execution.md",
+      "line": 157,
+      "detail": "发现行号引用 `main.py:4482`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/14-task-replay-audit.md",
+      "line": 33,
+      "detail": "发现行号引用 `main.py:907`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/14-task-replay-audit.md",
+      "line": 34,
+      "detail": "发现行号引用 `main.py:1279`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/14-task-replay-audit.md",
+      "line": 35,
+      "detail": "发现行号引用 `main.py:1304`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/14-task-replay-audit.md",
+      "line": 37,
+      "detail": "发现行号引用 `main.py:3179`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 63,
+      "detail": "发现行号引用 `main.py:135`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 64,
+      "detail": "发现行号引用 `main.py:181`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 65,
+      "detail": "发现行号引用 `main.py:716`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 66,
+      "detail": "发现行号引用 `main.py:3140`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 67,
+      "detail": "发现行号引用 `main.py:3174`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 68,
+      "detail": "发现行号引用 `main.py:3185`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 69,
+      "detail": "发现行号引用 `main.py:3230`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 70,
+      "detail": "发现行号引用 `main.py:3283`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 71,
+      "detail": "发现行号引用 `main.py:3331`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/16-team-request-draft.md",
+      "line": 72,
+      "detail": "发现行号引用 `main.py:3340`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 64,
+      "detail": "发现行号引用 `main.py:1106`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 67,
+      "detail": "发现行号引用 `main.py:3609`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 68,
+      "detail": "发现行号引用 `main.py:3614`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 69,
+      "detail": "发现行号引用 `main.py:3670`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 70,
+      "detail": "发现行号引用 `main.py:3718`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 71,
+      "detail": "发现行号引用 `main.py:3725`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/17-team-request-sync-gitee.md",
+      "line": 72,
+      "detail": "发现行号引用 `main.py:3752`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 66,
+      "detail": "发现行号引用 `main.py:3822`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 67,
+      "detail": "发现行号引用 `main.py:3860`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 68,
+      "detail": "发现行号引用 `main.py:3898`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 69,
+      "detail": "发现行号引用 `main.py:3929`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 70,
+      "detail": "发现行号引用 `main.py:3948`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 71,
+      "detail": "发现行号引用 `main.py:3958`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/18-team-request-create-task.md",
+      "line": 72,
+      "detail": "发现行号引用 `main.py:4002`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "missing_path",
+      "doc": "backend/.data/opt12-head-corpus/19-framework-alignment-rag-agent-db.md",
+      "line": 40,
+      "detail": "引用的文件不存在：backend/app/db/models/orm.py"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 42,
+      "detail": "发现行号引用 `main.py:4482`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 67,
+      "detail": "发现行号引用 `main.py:643`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 68,
+      "detail": "发现行号引用 `main.py:2695`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 69,
+      "detail": "发现行号引用 `main.py:2733`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 70,
+      "detail": "发现行号引用 `main.py:2763`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 71,
+      "detail": "发现行号引用 `main.py:4482`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 72,
+      "detail": "发现行号引用 `main.py:5015`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/19-team-context-fill.md",
+      "line": 74,
+      "detail": "发现行号引用 `main.py:5098`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/20-team-analysis-plan.md",
+      "line": 69,
+      "detail": "发现行号引用 `main.py:1780`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/20-team-analysis-plan.md",
+      "line": 70,
+      "detail": "发现行号引用 `main.py:1804`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/20-team-analysis-plan.md",
+      "line": 72,
+      "detail": "发现行号引用 `main.py:2221`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/20-team-analysis-plan.md",
+      "line": 72,
+      "detail": "发现行号引用 `main.py:2233`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/20-team-analysis-plan.md",
+      "line": 74,
+      "detail": "发现行号引用 `main.py:2496`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/20-team-analysis-plan.md",
+      "line": 170,
+      "detail": "发现行号引用 `main.py:1838`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "missing_path",
+      "doc": "backend/.data/opt12-head-corpus/32-replay-summary-audit.md",
+      "line": 88,
+      "detail": "引用的文件不存在：backend/dev_demo_dev007/009/010/017/018.py"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/90-fix-refresh-redirect-to-login.md",
+      "line": 203,
+      "detail": "发现行号引用 `main.py:207-222`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "missing_path",
+      "doc": "backend/.data/opt12-head-corpus/92-rag-llamaindex-interview-review.md",
+      "line": 147,
+      "detail": "引用的文件不存在：backend/tests/test_milvus_realtime.py"
+    },
+    {
+      "check": "missing_path",
+      "doc": "backend/.data/opt12-head-corpus/93-project-problem-interview-review.md",
+      "line": 321,
+      "detail": "引用的文件不存在：backend/tests/test_milvus_realtime.py"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/94-repository-lifecycle-isolation.md",
+      "line": 164,
+      "detail": "发现行号引用 `main.py:4888`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/94-repository-lifecycle-isolation.md",
+      "line": 165,
+      "detail": "发现行号引用 `main.py:4920`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/94-repository-lifecycle-isolation.md",
+      "line": 166,
+      "detail": "发现行号引用 `main.py:4929`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/94-repository-lifecycle-isolation.md",
+      "line": 167,
+      "detail": "发现行号引用 `main.py:4948`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/94-repository-lifecycle-isolation.md",
+      "line": 192,
+      "detail": "发现行号引用 `main.py:6163`；请改用「文件（符号名）」锚点"
+    },
+    {
+      "check": "stale_line_ref",
+      "doc": "backend/.data/opt12-head-corpus/94-repository-lifecycle-isolation.md",
+      "line": 193,
+      "detail": "发现行号引用 `main.py:6180`；请改用「文件（符号名）」锚点"
+    }
+  ],
+  "violation_count": 77
+}

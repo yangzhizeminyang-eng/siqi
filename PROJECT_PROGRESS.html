@@ -1,0 +1,2555 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>项目进度</title>
+  <style>
+    :root {
+      --ink: #17352D;
+      --muted: #5D7168;
+      --line: #D6E2DC;
+      --paper: #F3F8F6;
+      --surface: #FFFFFF;
+      --teal: #0B806A;
+      --teal-soft: #DDF2EB;
+      --amber: #A66300;
+      --amber-soft: #FFF0D1;
+      --red: #B42318;
+      --red-soft: #FFE8E4;
+      --blue: #1D4ED8;
+      --blue-soft: #E6EEFF;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Microsoft YaHei UI", "Segoe UI Variable", sans-serif;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      color: var(--ink);
+      background: #BBE7D9;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border: 3px solid var(--paper);
+      border-radius: 8px;
+      background: #A7BEB3;
+    }
+
+    .page {
+      width: min(1200px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 36px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 26px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .section-label,
+    .metric-label,
+    .phase-name,
+    th {
+      color: var(--muted);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 800px;
+      font-size: 32px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .goal {
+      max-width: 760px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .updated {
+      flex: 0 0 auto;
+      padding: 8px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.85fr);
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .progress-panel,
+    .phase-panel,
+    .task-panel,
+    .info-panel {
+      background: transparent;
+    }
+
+    .progress-panel {
+      display: grid;
+      align-content: space-between;
+      gap: 22px;
+      min-height: 250px;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .focus-copy {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .focus-copy h2 {
+      max-width: 32ch;
+      font-size: 24px;
+      line-height: 1.32;
+    }
+
+    .focus-copy p {
+      max-width: 42ch;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .focus-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .next-action {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .progress-summary {
+      display: grid;
+      gap: 9px;
+    }
+
+    .progress-summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .progress-track {
+      height: 10px;
+      overflow: hidden;
+      background: #DBE6E0;
+    }
+
+    .progress-fill {
+      width: 100%;
+      height: 100%;
+      background: var(--teal);
+      transform: scaleX(var(--progress-ratio));
+      transform-origin: left center;
+      transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .phase-panel {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      margin-bottom: 22px;
+    }
+
+    .phase-track {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      position: relative;
+    }
+
+    .phase {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .phase-marker {
+      display: grid;
+      width: 26px;
+      height: 26px;
+      place-items: center;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--paper);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .phase.is-complete .phase-marker {
+      border-color: var(--teal);
+      background: var(--teal);
+    }
+
+    .phase.is-current .phase-marker {
+      color: var(--surface);
+      border: 1px solid var(--teal);
+      background: var(--teal);
+    }
+
+    .phase-name {
+      overflow: hidden;
+      color: var(--muted);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .phase.is-current .phase-name {
+      color: var(--ink);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 32px;
+    }
+
+    .metric {
+      min-height: 70px;
+      padding: 4px 0;
+    }
+
+    .metric + .metric {
+      padding-left: 14px;
+    }
+
+    .metric-value {
+      display: block;
+      margin-top: 8px;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .task-panel {
+      margin-top: 40px;
+      overflow: hidden;
+      border-top: 2px solid var(--ink);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter {
+      min-width: 56px;
+      padding: 7px 9px;
+      color: var(--muted);
+      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .filter:hover,
+    .filter:focus-visible {
+      color: var(--ink);
+      border-color: var(--teal);
+      outline: none;
+    }
+
+    .filter.is-selected {
+      color: var(--surface);
+      border-color: var(--teal);
+      background: var(--teal);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 15px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    td {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .task-id {
+      width: 64px;
+      color: var(--muted);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .task-title {
+      min-width: 280px;
+      font-weight: 700;
+    }
+
+    .evidence {
+      min-width: 220px;
+      color: var(--muted);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      min-width: 104px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .status-todo {
+      color: var(--muted);
+      background: #EEF2EF;
+    }
+
+    .status-in-progress {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .status-blocked {
+      color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .status-done {
+      color: var(--teal);
+      background: var(--teal-soft);
+    }
+
+    .empty {
+      padding: 28px 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 42px;
+    }
+
+    .info-panel {
+      padding: 20px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .info-panel h2 {
+      margin-bottom: 16px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 12px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-list.is-blocked li {
+      color: var(--red);
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 24px, 1200px);
+        padding-top: 24px;
+      }
+
+      .topbar,
+      .panel-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .updated {
+        white-space: normal;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .overview,
+      .lower-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .metric,
+      .metric + .metric {
+        padding: 4px 0;
+      }
+
+      th,
+      td {
+        padding: 13px 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Delivery console redesign */
+    :root {
+      --ink: #172026;
+      --muted: #5f6c72;
+      --line: #dbe1e4;
+      --paper: #f3f5f4;
+      --surface: #ffffff;
+      --teal: #247f69;
+      --teal-soft: #e5f2ec;
+      --red: #b64940;
+      --red-soft: #fae9e6;
+      --blue: #315fbd;
+      --blue-soft: #eaf0ff;
+      --sidebar: #151a1d;
+      --sidebar-muted: #a3aeab;
+      --sidebar-line: rgba(255, 255, 255, 0.09);
+      --accent: #c7e57b;
+      --shadow: 0 18px 45px rgba(23, 32, 38, 0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      font-family: "Segoe UI Variable", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 232px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 28px 18px 20px;
+      color: #f4f7f4;
+      background: var(--sidebar);
+    }
+
+    .brand {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      padding: 0 8px 28px;
+      border-bottom: 1px solid var(--sidebar-line);
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: #1d2817;
+      border-radius: 10px;
+      background: var(--accent);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .brand strong,
+    .brand small {
+      display: block;
+    }
+
+    .brand strong {
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .brand small {
+      margin-top: 3px;
+      color: var(--sidebar-muted);
+      font-size: 11px;
+    }
+
+    .sidebar-nav {
+      display: grid;
+      gap: 5px;
+      margin-top: 30px;
+    }
+
+    .nav-caption {
+      padding: 0 10px 9px;
+      color: #a3aeab;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-height: 39px;
+      padding: 0 10px;
+      color: var(--sidebar-muted);
+      border: 1px solid transparent;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .nav-item:hover,
+    .nav-item:focus-visible {
+      color: #f4f7f4;
+      border-color: var(--sidebar-line);
+      background: rgba(255, 255, 255, 0.06);
+      outline: none;
+      transform: translateX(2px);
+    }
+
+    .nav-item.is-active {
+      color: #f8fbf7;
+      border-color: rgba(199, 229, 123, 0.18);
+      background: rgba(199, 229, 123, 0.12);
+    }
+
+    .nav-index {
+      display: grid;
+      width: 23px;
+      height: 23px;
+      place-items: center;
+      color: #74807d;
+      border: 1px solid var(--sidebar-line);
+      border-radius: 7px;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+    }
+
+    .nav-item.is-active .nav-index {
+      color: #253117;
+      border-color: transparent;
+      background: var(--accent);
+    }
+
+    .sidebar-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5px 8px;
+      align-items: center;
+      margin-top: auto;
+      padding: 13px 10px;
+      border: 1px solid var(--sidebar-line);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .sidebar-note .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(199, 229, 123, 0.1);
+    }
+
+    .sidebar-note span:not(.live-dot) {
+      color: #e1e9e3;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .sidebar-note small {
+      grid-column: 2;
+      color: var(--sidebar-muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .page {
+      width: min(1440px, calc(100% - 64px));
+      padding: 28px 0 70px;
+    }
+
+    .topbar {
+      align-items: center;
+      padding: 0 0 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar::before {
+      content: "Delivery board / Current project";
+      display: block;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 900px;
+      color: var(--ink);
+      font-size: 40px;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .goal {
+      max-width: 720px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .updated {
+      align-self: flex-start;
+      margin-top: 2px;
+      padding: 8px 10px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .overview {
+      grid-template-columns: minmax(0, 1.2fr) minmax(440px, 0.95fr);
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .progress-panel,
+    .phase-panel {
+      position: relative;
+      min-height: 302px;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 251, 0.92)),
+        var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .progress-panel::after,
+    .phase-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(36, 127, 105, 0.055), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 42%);
+    }
+
+    .progress-panel > *,
+    .phase-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .progress-panel {
+      gap: 20px;
+    }
+
+    .focus-copy h2 {
+      max-width: 28ch;
+      font-size: 26px;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    .focus-copy p {
+      position: relative;
+      max-width: 68ch;
+      margin-top: 4px;
+      padding: 30px 14px 13px;
+      color: var(--muted);
+      border: 1px solid #e6ece9;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.58);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .focus-copy p::before {
+      content: "验收依据";
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      color: #617078;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+    }
+
+    .focus-meta {
+      gap: 9px;
+      align-items: center;
+      margin-top: 4px;
+      padding: 11px 12px;
+      border: 1px solid #e6ece9;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .next-action {
+      max-width: 56ch;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1.45;
+    }
+
+    .progress-summary {
+      gap: 10px;
+      margin-top: auto;
+      padding: 15px 16px 14px;
+      border: 1px solid #e4ebe8;
+      border-radius: 12px;
+      background: #f8faf9;
+    }
+
+    .progress-summary-row {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+
+    .progress-summary-row span:last-child {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .progress-track {
+      height: 13px;
+      padding: 2px;
+      border-radius: 99px;
+      background: #e5ebe8;
+    }
+
+    .progress-fill {
+      border-radius: inherit;
+      background: linear-gradient(90deg, #659c65, var(--teal));
+      box-shadow: none;
+    }
+
+    #progress-description {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .phase-panel {
+      display: grid;
+      align-content: start;
+      gap: 22px;
+    }
+
+    .section-label,
+    .metric-label,
+    .phase-name,
+    th {
+      color: #627074;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-label {
+      margin-bottom: 2px;
+    }
+
+    .phase-track {
+      gap: 0;
+      padding: 16px 14px 18px;
+      border: 1px solid #e6ece9;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .phase-track::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      right: 12%;
+      left: 7%;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .phase {
+      position: relative;
+      z-index: 1;
+      gap: 9px;
+    }
+
+    .phase-marker {
+      width: 28px;
+      height: 28px;
+      color: var(--muted);
+      border: 2px solid var(--line);
+      background: var(--surface);
+      font-size: 11px;
+    }
+
+    .phase.is-complete .phase-marker,
+    .phase.is-current .phase-marker {
+      color: #20321b;
+      border-color: var(--accent);
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(199, 229, 123, 0.16);
+    }
+
+    .phase-name {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .phase.is-current .phase-name {
+      color: var(--ink);
+    }
+
+    .metrics {
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    .metric {
+      min-height: 82px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 248, 0.92)),
+        #fafbfa;
+    }
+
+    .metric + .metric {
+      padding-left: 14px;
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      color: var(--ink);
+      font-size: 32px;
+      letter-spacing: -0.04em;
+    }
+
+    .metric.is-done .metric-value {
+      color: var(--teal);
+    }
+
+    .metric.is-active .metric-value {
+      color: var(--blue);
+    }
+
+    .metric.is-blocked .metric-value {
+      color: var(--red);
+    }
+
+    .task-panel {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .filters {
+      gap: 5px;
+    }
+
+    .filter {
+      min-width: auto;
+      padding: 7px 10px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      font-size: 11px;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .filter:hover,
+    .filter:focus-visible {
+      color: var(--ink);
+      border-color: var(--line);
+      background: #f7f9f8;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .filter.is-selected {
+      color: #263419;
+      border-color: transparent;
+      background: var(--accent);
+    }
+
+    table {
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      padding: 15px 18px;
+      border-bottom: 1px solid #edf0ef;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) { width: 8%; }
+    th:nth-child(2),
+    td:nth-child(2) { width: 26%; }
+    th:nth-child(3),
+    td:nth-child(3) { width: 14%; }
+    th:nth-child(4),
+    td:nth-child(4) { width: 52%; }
+
+    td {
+      color: #354147;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    tbody tr {
+      transition: background 160ms ease;
+    }
+
+    tbody tr:hover {
+      background: #fbfcfb;
+    }
+
+    .task-id {
+      color: #8b9699;
+      font-size: 11px;
+    }
+
+    .task-title {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .evidence {
+      max-width: 0;
+      color: var(--muted);
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+
+    .status {
+      min-width: 0;
+      padding: 6px 9px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .status::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .status-todo {
+      color: #69777b;
+      border-color: #e0e5e4;
+      background: #f6f8f7;
+    }
+
+    .status-in-progress {
+      color: var(--blue);
+      border-color: #d8e1fb;
+      background: var(--blue-soft);
+    }
+
+    .status-blocked {
+      color: var(--red);
+      border-color: #f0d2ce;
+      background: var(--red-soft);
+    }
+
+    .status-done {
+      color: var(--teal);
+      border-color: #cee7dc;
+      background: var(--teal-soft);
+    }
+
+    .lower-grid {
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .info-panel {
+      min-width: 0;
+      padding: 20px 22px 22px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .info-panel h2 {
+      margin-bottom: 14px;
+    }
+
+    .info-list {
+      max-height: 360px;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .info-list li {
+      padding: 11px 0;
+      border-bottom: 1px solid #edf0ef;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .info-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .info-list.is-blocked li {
+      color: #86534e;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 99px;
+      background: #c4ceca;
+      background-clip: padding-box;
+    }
+
+    @media (max-width: 980px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        min-height: auto;
+        padding: 15px 18px;
+      }
+
+      .brand {
+        padding-bottom: 14px;
+      }
+
+      .sidebar-nav {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+        margin-top: 14px;
+      }
+
+      .nav-caption,
+      .sidebar-note {
+        display: none;
+      }
+
+      .nav-item {
+        justify-content: center;
+        padding: 0 8px;
+        font-size: 11px;
+      }
+
+      .page {
+        width: min(100% - 32px, 1440px);
+        padding-top: 22px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 24px, 1440px);
+        padding-top: 18px;
+      }
+
+      .topbar::before {
+        margin-bottom: 11px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .overview,
+      .lower-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .overview {
+        gap: 12px;
+      }
+
+      .progress-panel,
+      .phase-panel {
+        min-height: auto;
+        padding: 20px;
+      }
+
+      .metrics {
+        gap: 8px;
+        margin-top: 28px;
+      }
+
+      .metric,
+      .metric + .metric {
+        padding: 11px 12px;
+      }
+
+      .panel-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px;
+      }
+
+      .filters {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 2px;
+      }
+
+      .filter {
+        flex: 0 0 auto;
+      }
+
+      th,
+      td {
+        padding: 13px 12px;
+      }
+
+      th:nth-child(1),
+      td:nth-child(1) { width: 14%; }
+      th:nth-child(2),
+      td:nth-child(2) { width: 34%; }
+      th:nth-child(3),
+      td:nth-child(3) { width: 22%; }
+      th:nth-child(4),
+      td:nth-child(4) { width: 30%; }
+
+      .evidence {
+        -webkit-line-clamp: 3;
+      }
+
+      .info-panel {
+        padding: 18px;
+      }
+    }
+
+    /* Final polish: project context and sidebar rhythm */
+    .app-shell {
+      grid-template-columns: 256px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 24px 16px 16px;
+    }
+
+    .brand {
+      padding: 0 8px 21px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+    }
+
+    .brand strong {
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .brand small {
+      font-size: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .sidebar-context {
+      display: grid;
+      gap: 9px;
+      margin-top: 18px;
+      padding: 13px 12px 12px;
+      border: 1px solid rgba(199, 229, 123, 0.16);
+      border-radius: 11px;
+      background: #1b2421;
+    }
+
+    .context-topline,
+    .context-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .context-topline {
+      color: #9eafa7;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .context-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(199, 229, 123, 0.1);
+    }
+
+    .sidebar-context strong {
+      overflow: hidden;
+      color: #f2f6f2;
+      font-size: 13px;
+      font-weight: 750;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .context-meta {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      color: #b5c0ba;
+      font-size: 11px;
+    }
+
+    .context-divider {
+      color: #5a6d65;
+    }
+
+    .context-progress {
+      height: 4px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    #sidebar-progress-fill {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transform: scaleX(var(--sidebar-ratio, 0));
+      transform-origin: left center;
+      transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .context-bottom {
+      color: #b0bcb6;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+    }
+
+    #sidebar-progress-percent {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .sidebar-nav {
+      gap: 4px;
+      margin-top: 24px;
+    }
+
+    .nav-caption {
+      padding: 0 11px 8px;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+    }
+
+    .nav-item {
+      min-height: 43px;
+      padding: 0 11px;
+      border-radius: 10px;
+    }
+
+    .nav-item.is-active {
+      border-color: rgba(199, 229, 123, 0.14);
+      background: rgba(199, 229, 123, 0.1);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .nav-index {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+    }
+
+    .sidebar-note {
+      gap: 7px;
+      margin-top: auto;
+      padding: 12px;
+      border-color: rgba(255, 255, 255, 0.12);
+      background: #1b2022;
+    }
+
+    .sidebar-note-top {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .sidebar-note span:not(.live-dot) {
+      font-size: 11px;
+    }
+
+    .sidebar-note small {
+      grid-column: auto;
+      margin-left: 16px;
+      color: #a1aea8;
+      font-size: 11px;
+    }
+
+    .sidebar-sync {
+      display: block;
+      margin-left: 16px;
+      color: #8f9f98;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+    }
+
+    #focus-evidence {
+      display: -webkit-box;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      color: var(--muted);
+      border: 0;
+      background: transparent;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      line-height: 1.65;
+    }
+
+    /* Focus panel polish */
+    .focus-heading {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .focus-heading h2 {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .focus-heading .status {
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .focus-evidence {
+      display: grid;
+      gap: 8px;
+      width: 100%;
+      min-width: 0;
+      margin-top: 8px;
+      padding: 13px 0 14px;
+      overflow: hidden;
+      border-top: 1px solid #e1e9e5;
+      border-bottom: 1px solid #e1e9e5;
+      background: transparent;
+    }
+
+    .focus-evidence-head {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .focus-evidence-label {
+      color: #2b383d;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+    }
+
+    .focus-evidence-note {
+      max-width: 50%;
+      overflow: hidden;
+      color: #82908f;
+      font-size: 11px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .focus-copy p#focus-evidence {
+      max-width: none;
+      max-height: calc(1.65em * 4);
+      margin-top: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .focus-copy p#focus-evidence::before {
+      content: none;
+    }
+
+    .focus-meta {
+      min-width: 0;
+      margin-top: 0;
+      padding-top: 11px;
+      border-top: 1px solid #e6ece9;
+    }
+
+    @media (max-width: 760px) {
+      .focus-heading {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .focus-heading .status {
+        margin-top: 0;
+      }
+
+      .focus-evidence-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .focus-evidence-note {
+        max-width: none;
+        overflow: visible;
+        white-space: normal;
+      }
+    }
+
+    #focus-evidence {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+
+    @media (max-width: 980px) {
+      .sidebar {
+        position: static;
+        height: auto;
+      }
+
+      .sidebar-context {
+        display: none;
+      }
+    }
+
+    /* Keep the navigation readable in narrow desktop windows. */
+    @media (max-width: 1120px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        min-height: auto;
+        padding: 15px 18px 14px;
+      }
+
+      .brand {
+        padding-bottom: 14px;
+      }
+
+      .sidebar-context,
+      .sidebar-note,
+      .nav-caption {
+        display: none;
+      }
+
+      .sidebar-nav {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+        overflow-x: auto;
+        padding: 1px 0 2px;
+        scrollbar-width: none;
+      }
+
+      .sidebar-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-item {
+        flex: 0 0 auto;
+        min-height: 40px;
+        padding: 0 11px;
+        white-space: nowrap;
+      }
+
+      .nav-item.is-active {
+        box-shadow: inset 3px 0 0 var(--accent);
+      }
+
+      .page {
+        width: min(100% - 32px, 1440px);
+        padding-top: 22px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .sidebar {
+        padding: 13px 12px 12px;
+      }
+
+      .brand {
+        padding: 0 4px 12px;
+      }
+
+      .sidebar-nav {
+        gap: 6px;
+        margin-top: 11px;
+      }
+
+      .nav-item {
+        min-height: 38px;
+        padding: 0 9px;
+        font-size: 12px;
+      }
+
+      .nav-index {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+      }
+    }
+
+    /* Task queue polish */
+    .task-panel {
+      overflow: hidden;
+    }
+
+    .panel-heading {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .panel-heading p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .filter {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      min-height: 34px;
+      white-space: nowrap;
+    }
+
+    .filter-count {
+      display: grid;
+      min-width: 20px;
+      height: 20px;
+      place-items: center;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: rgba(23, 32, 38, 0.06);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .filter.is-selected .filter-count {
+      background: rgba(21, 26, 29, 0.13);
+    }
+
+    .task-list-wrap {
+      padding: 0 18px 18px;
+    }
+
+    .task-list-header,
+    .task-card {
+      display: grid;
+      grid-template-columns: minmax(118px, 0.45fr) minmax(280px, 1fr) minmax(184px, 0.62fr) minmax(360px, 1.42fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .task-list-header {
+      padding: 14px 14px 10px;
+      color: #627074;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .task-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .task-card {
+      position: relative;
+      min-height: 116px;
+      padding: 18px 16px;
+      overflow: hidden;
+      border: 1px solid #e6ece9;
+      border-radius: 12px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.96)),
+        #fbfcfb;
+      box-shadow: 0 8px 24px rgba(23, 32, 38, 0.035);
+      transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .task-card:hover {
+      border-color: #cad6d2;
+      background: #ffffff;
+      box-shadow: 0 14px 34px rgba(23, 32, 38, 0.065);
+      transform: translateY(-1px);
+    }
+
+    .task-card::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      left: 0;
+      width: 2px;
+      border-radius: 0 999px 999px 0;
+      background: #b9c3c1;
+    }
+
+    .task-card.status-done::before {
+      background: var(--teal);
+    }
+
+    .task-card.status-in-progress::before {
+      background: var(--blue);
+    }
+
+    .task-card.status-blocked::before {
+      background: var(--red);
+    }
+
+    .task-id-cell {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .task-id-badge {
+      display: block;
+      width: 100%;
+      min-width: 96px;
+      min-height: 42px;
+      padding: 8px 10px;
+      color: #607076;
+      border: 1px solid #dce4e2;
+      border-radius: 9px;
+      background: #f6f8f7;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.01em;
+      line-height: 24px;
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .task-card.status-done .task-id-badge {
+      color: var(--teal);
+      border-color: #cee7dc;
+      background: var(--teal-soft);
+    }
+
+    .task-card.status-in-progress .task-id-badge {
+      color: var(--blue);
+      border-color: #d8e1fb;
+      background: var(--blue-soft);
+    }
+
+    .task-main {
+      display: grid;
+      align-content: start;
+      gap: 9px;
+      min-width: 0;
+      padding-top: 2px;
+    }
+
+    .task-stage {
+      width: fit-content;
+      padding: 4px 7px;
+      color: #5d6b70;
+      border: 1px solid #e1e7e5;
+      border-radius: 6px;
+      background: #f4f7f5;
+      font-size: 11px;
+      font-weight: 720;
+      line-height: 1;
+    }
+
+    .task-title {
+      min-width: 0;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 780;
+      line-height: 1.38;
+      text-wrap: pretty;
+    }
+
+    .task-meta {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .task-status-cell {
+      display: grid;
+      align-content: start;
+      gap: 9px;
+      min-height: 100%;
+      padding: 10px 11px;
+      border: 1px solid #e6ece9;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .task-status-cell .status {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .task-status-copy {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .task-evidence {
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-width: 0;
+      min-height: 100%;
+      padding: 11px 12px;
+      color: #58686e;
+      border: 1px solid #edf1ef;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .task-evidence strong {
+      display: block;
+      color: #2b383d;
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .evidence-head {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .task-evidence p {
+      display: -webkit-box;
+      margin: 0;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .task-card.status-in-progress .task-evidence p {
+      -webkit-line-clamp: 3;
+    }
+
+    .evidence-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .evidence-tag {
+      padding: 4px 7px;
+      color: #56676d;
+      border: 1px solid #e1e8e5;
+      border-radius: 6px;
+      background: #f7f9f8;
+      font-size: 11px;
+      font-weight: 720;
+      line-height: 1;
+    }
+
+    .task-card.status-done {
+      background:
+        linear-gradient(90deg, rgba(229, 242, 236, 0.52), rgba(255, 255, 255, 0.95)),
+        #fbfcfb;
+    }
+
+    .task-card.status-in-progress {
+      border-color: #d8e1fb;
+      background:
+        linear-gradient(90deg, rgba(234, 240, 255, 0.62), rgba(255, 255, 255, 0.95)),
+        #fbfcfb;
+    }
+
+    .task-card.status-todo {
+      background:
+        linear-gradient(90deg, rgba(246, 248, 247, 0.65), rgba(255, 255, 255, 0.95)),
+        #fbfcfb;
+    }
+
+    .task-card.status-todo .task-title,
+    .task-card.status-todo .task-evidence p {
+      color: #5b676b;
+    }
+
+    .empty-task-list {
+      padding: 34px 20px;
+      color: var(--muted);
+      border: 1px dashed #d8dfdd;
+      border-radius: 12px;
+      background: #fafbfa;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .task-list-header {
+        display: none;
+      }
+
+      .task-list-wrap {
+        padding: 10px 12px 14px;
+      }
+
+      .task-card {
+        grid-template-columns: 112px minmax(0, 1fr);
+        gap: 12px 14px;
+        min-height: auto;
+      }
+
+      .task-status-cell,
+      .task-evidence {
+        grid-column: 2;
+      }
+
+      .task-status-cell {
+        order: 3;
+      }
+
+      .task-evidence {
+        order: 4;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app-shell,
+      .sidebar,
+      .page {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .sidebar {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .sidebar-nav,
+      .filters {
+        max-width: 100%;
+      }
+
+      .page {
+        width: calc(100% - 24px);
+      }
+
+      h1,
+      .goal {
+        overflow-wrap: anywhere;
+      }
+
+      .task-card {
+        grid-template-columns: 1fr;
+      }
+
+      .task-id-badge {
+        width: auto;
+        max-width: 100%;
+      }
+
+      .task-id-cell,
+      .task-status-cell,
+      .task-evidence {
+        grid-column: 1;
+      }
+
+      .task-id-cell {
+        justify-content: space-between;
+      }
+
+      .task-status-copy {
+        max-width: none;
+      }
+
+      .evidence-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="项目导航">
+      <div class="brand">
+        <span class="brand-mark" id="sidebar-brand-mark">PB</span>
+        <div>
+          <strong id="sidebar-brand-name">Progress Board</strong>
+          <small>delivery workspace</small>
+        </div>
+      </div>
+      <div class="sidebar-context" aria-label="当前项目状态">
+        <div class="context-topline">
+          <span>ACTIVE PROJECT</span>
+          <span class="context-dot" aria-hidden="true"></span>
+        </div>
+        <strong id="sidebar-project-name">ProjectDream AI 漫剧内容工厂</strong>
+        <div class="context-meta">
+          <span id="sidebar-phase">验证阶段</span>
+          <span class="context-divider">·</span>
+          <span id="sidebar-task-total">0 项任务</span>
+        </div>
+        <div class="context-progress" aria-hidden="true">
+          <span id="sidebar-progress-fill"></span>
+        </div>
+        <div class="context-bottom">
+          <span id="sidebar-progress-label">7 / 12 已验收</span>
+          <span id="sidebar-progress-percent">58%</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-caption">Workspace</div>
+        <a class="nav-item is-active" href="#overview"><span class="nav-index">01</span><span>项目总览</span></a>
+        <a class="nav-item" href="#tasks-heading"><span class="nav-index">02</span><span>任务队列</span></a>
+        <a class="nav-item" href="#blocker-list"><span class="nav-index">03</span><span>阻塞与风险</span></a>
+        <a class="nav-item" href="#scope-list"><span class="nav-index">04</span><span>范围变化</span></a>
+      </nav>
+      <div class="sidebar-note">
+        <div class="sidebar-note-top">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>本地看板已连接</span>
+        </div>
+        <small>数据来自当前项目进度文件</small>
+        <span class="sidebar-sync" id="sidebar-sync">同步于 2026-09-19</span>
+      </div>
+    </aside>
+    <main class="page">
+    <header class="topbar">
+      <div>
+        <h1 id="project-name"></h1>
+        <p class="goal" id="project-goal"></p>
+      </div>
+      <p class="updated" id="updated-at"></p>
+    </header>
+
+    <section class="overview" id="overview" aria-label="项目概览">
+      <article class="progress-panel">
+        <div class="focus-copy">
+          <div class="focus-heading">
+            <h2 id="focus-title"></h2>
+            <span class="status" id="focus-status"></span>
+          </div>
+          <div class="focus-evidence">
+            <div class="focus-evidence-head">
+              <span class="focus-evidence-label">验收依据</span>
+              <span class="focus-evidence-note">摘要 · 悬停查看全文</span>
+            </div>
+            <p id="focus-evidence"></p>
+          </div>
+          <div class="focus-meta">
+            <span class="next-action" id="next-action"></span>
+          </div>
+        </div>
+        <div class="progress-summary">
+          <div class="progress-summary-row">
+            <span>验收进度</span>
+            <span id="progress-count"></span>
+          </div>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="项目完成率" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span id="progress-description"></span>
+        </div>
+      </article>
+
+      <article class="phase-panel">
+        <p class="section-label">Delivery Phase</p>
+        <div class="phase-track" id="phase-track"></div>
+        <div class="metrics">
+          <div class="metric is-done">
+            <span class="metric-label">Done</span>
+            <span class="metric-value" id="done-count"></span>
+          </div>
+          <div class="metric is-active">
+            <span class="metric-label">In Progress</span>
+            <span class="metric-value" id="active-count"></span>
+          </div>
+          <div class="metric is-blocked">
+            <span class="metric-label">Blocked</span>
+            <span class="metric-value" id="blocked-count"></span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="task-panel" aria-labelledby="tasks-heading">
+      <div class="panel-header">
+        <div class="panel-heading">
+          <h2 id="tasks-heading">任务清单</h2>
+          <p id="task-summary">按验收状态整理当前项目交付队列。</p>
+        </div>
+        <div class="filters" id="filters" aria-label="筛选任务状态"></div>
+      </div>
+      <div class="task-list-wrap">
+        <div class="task-list-header" aria-hidden="true">
+          <span>ID</span>
+          <span>交付项</span>
+          <span>状态</span>
+          <span>验收证据</span>
+        </div>
+        <div class="task-list" id="task-list"></div>
+      </div>
+    </section>
+
+    <section class="lower-grid">
+      <article class="info-panel">
+        <h2>阻塞项</h2>
+        <ul class="info-list is-blocked" id="blocker-list"></ul>
+      </article>
+      <article class="info-panel">
+        <h2>范围变化</h2>
+        <ul class="info-list" id="scope-list"></ul>
+      </article>
+    </section>
+    </main>
+  </div>
+
+  <script>
+    const projectProgress = {
+      projectName: "企业版 Agent 工程能力优化",
+      goal: "保留 E1-E7 历史验收证据，完成 16 项 Agent 工程与企业级优化，并以可复现验收支撑演示和简历。",
+      updatedAt: "2026-10-20",
+      phase: "verification",
+      tasks: [
+        { id: "E-DOC-01", title: "建立企业版独立文档目录和索引", status: "DONE", evidence: "docs/enterprise/README.md 已建立，并在 docs/README.md 注册入口" },
+        { id: "E-DOC-02", title: "补齐企业版 PRD、流程、Multi-Agent 和 RAG 文档", status: "DONE", evidence: "docs/enterprise/01-04*.md 已完成，包含 Mermaid、边界、接口和验收标准" },
+        { id: "E-DOC-03", title: "补齐权限安全、审计、API、部署、测试和商业化文档", status: "DONE", evidence: "docs/enterprise/05-10*.md 已完成，包含隔离、迁移、运维、交付和 SLA 要求" },
+        { id: "E-DOC-04", title: "完成文档一致性与敏感信息检查", status: "DONE", evidence: "git diff --check 通过；文档未写入真实密码、Token、JWT 密钥或恢复码" },
+        { id: "E-DASH-01", title: "工作台交付吞吐态势优化并完成云端验收", status: "DONE", evidence: "DEV-097；Dashboard 定向测试 4 passed、生产构建通过、云端前端 healthy、公网工作台验收通过" },
+        { id: "E-AUDIT-01", title: "企业审计中心实现、回归与云端验收", status: "DONE", evidence: "DEV-098；本地定向测试 4 passed、前端全量 223 passed、生产构建通过；云端 /audit、详情弹窗、任务跳转、/health 和 /api/health 均验收通过" },
+        { id: "E-DASH-02", title: "工作台交付趋势与质量升级并完成云端验收", status: "DONE", evidence: "DEV-097；后端 2 passed、前端全量 272 passed、生产构建通过；本轮补最近任务表空态行与 4 个具名分组语义；本地 axe 明确违规 0（修复租户提示字色后）、390px 无横向溢出；渐变文字对比仍有 axe incomplete 人工复核项" },
+        { id: "E1-01-FE-01", title: "企业角色前端权限兼容与审计入口收口", status: "DONE", evidence: "AuditCenterView/AppShell 相关测试 17 passed；前端全量 232 passed；vue-tsc -b 与 vite build 通过" },
+        { id: "E1-01-BE-01", title: "越权审计事件保留激活租户归属", status: "DONE", evidence: "test_enterprise_e1_tenancy.py 9 passed；后端全量 539 passed, 16 skipped" },
+        { id: "E1-01-DOC-01", title: "补齐 E1-01 项目开发与验收文档", status: "DONE", evidence: "新增 docs/project-development/99-enterprise-e1-tenant-rbac-closure.md；同步 E1-01、审计中心和开发索引" },
+        { id: "E1-01-CLOUD-01", title: "将 E1-01 增量同步云端并完成 auditor 浏览器走查", status: "DONE", evidence: "云端 <production-host> 应用-only 企业栈公网 8081 上线；/health 与 /api/health 200；真实 MySQL 迁移缺陷已修复；auditor audit:view 200、越权成员创建 403 并审计留痕；真实浏览器截图见 99 文档 §10" },
+        { id: "E2-01-IMPL-01", title: "企业审批与治理门禁实现、修复与本地联调", status: "DONE", evidence: "E2 专项 31 passed；后端全量 570 passed, 16 skipped；前端 236 passed；vue-tsc -b 与生产构建通过；本地审批中心完成通过→执行→刷新走查" },
+        { id: "E2-01-IMPL-02", title: "多副本执行一致性与成员特权治理加固", status: "DONE", evidence: "原子抢占、executing 瞬时态、执行追踪、失败重试、超时回收、DB 故障降级与成员 PATCH/POST 特权治理已落地；加固专项 17 passed；后端全量 587 passed, 16 skipped" },
+        { id: "E2-01-DOC-01", title: "补齐 E2-01 项目开发与验收文档", status: "DONE", evidence: "新增 docs/project-development/100-enterprise-e2-01-approval-governance.md；已同步真实测试数字、截图、风险和云端未验收边界" },
+        { id: "E2-01-IMPL-03", title: "企业版独立 Docker Compose 部署方案与启动校验", status: "DONE", evidence: "agent-enterprise 独立 Compose 默认公网 8081；worker healthcheck 与 frontend 非 root 配置已纳入；test_enterprise_deploy.py 22 passed；enterprise/team Compose config 渲染通过；后端全量 609 passed, 16 skipped；前端类型检查和生产构建通过" },
+        { id: "E2-01-UX-01", title: "企业审批操作台排版与交互升级", status: "DONE", evidence: "新增页面 UI 回归 4 passed；前端全量 240 passed；vue-tsc -b、npm run build、真实浏览器队列/筛选/详情走查和设计检测均通过" },
+        { id: "E3-01-IMPL-01", title: "企业级 RAG 强过滤 + Hybrid 检索基线", status: "DONE", evidence: "TenantContext 边界、MetadataFilters 候选受限、BM25+向量+RRF、统一契约和 stale 标记已完成；E3 基线全量 618 passed, 16 skipped" },
+        { id: "E3-01-HARDEN-01", title: "企业 RAG 授权与向量候选过滤收口", status: "DONE", evidence: "新增 rag:search，auditor 默认拒绝；向量查询下推 repository/index/commit/source_type，严格过滤失败仅可回退受限关键词子集；E3 专项 11 passed；E3/RAG/E1/E2 回归 80 passed" },
+        { id: "E3-02-IMPL-01", title: "Query Rewrite + 多路 Query Expansion", status: "DONE", evidence: "原 query 恒首位、LLM 可选确定回退、技术术语扩展、点分↔下划线桥接、多路加权 RRF、query_variants/variant_count/retrieval_trace 已落地；E3-02 专项 10 passed；后端全量 622 passed, 24 skipped" },
+        { id: "E3-03-IMPL-01", title: "企业 RAG Rerank 精排基线", status: "DONE", evidence: "heuristic 符号/路径/错误码命中优先、fresh 优先、保留基础分；provider=llm 摘要精排稳定回退且 timeout 真实透传；E3-03 专项 9 passed；后端全量 631 passed, 24 skipped" },
+        { id: "E3-04-IMPL-01", title: "企业 RAG 离线评测基线", status: "DONE", evidence: "评估集 JSON/JSONL、Recall/Precision/MRR/NDCG/Freshness/Empty/Unauthorized 指标、复用 enterprise_rag_search、报告脱敏已落地；E3-04 专项 11 passed；后端全量 650 passed, 16 skipped" },
+        { id: "E3-04-HARDEN-01", title: "E3-04 评测加固（L1-L4 收口）", status: "DONE", evidence: "evaluate_case 增 rag:search 纵深校验；真值去空串/去重；retrieval_passed 厘清 200 空结果语义；metrics_by_tag 增 precision_at_k；专项 15 passed；后端全量 654 passed, 16 skipped" },
+        { id: "E3-05-IMPL-01", title: "真实评测集与质量基线报告", status: "DONE", evidence: "32 条脱敏合成语料基线可复现；needs_improvement 与推荐阈值接线；E3-05 专项 8 passed；后端全量 662 passed, 16 skipped；不写成生产达标" },
+        { id: "E3-06-IMPL-01", title: "真实目标仓库评测与 Milvus 门禁框架", status: "DONE", evidence: "bm25/vector/hybrid/rerank 四模式共享过滤链；require-milvus 不可用即 blocked；报告 schema 含 validation_status/vector_backend/fallback_used/dataset·config hash/Precision 阈值；框架专项 10 passed" },
+        { id: "E3-06-CLOUD-HEALTH-MIDDLE", title: "真实 health-middle 仓库评测", status: "DONE", evidence: "固定真实仓库/真实 commit 73e7e54；真实 67 条评测集（source_provenance）+ 303 真实切片 COMPLETED 索引；当前已由 E3-06-CLOUD-VERIFY-01 的真实 Milvus verified 报告取代" },
+        { id: "E3-06-CLOUD-VERIFY-01", title: "真实 health-middle + 企业独立 Milvus verified 闭环", status: "DONE", evidence: "Docker daemon 恢复；企业独立 Milvus healthy；zhipu/embedding-3 真实维度 2048；collection/index/load/query 成功；--require-milvus --all-modes exit 0；verified 报告与 cloud evidence 已生成；两次非时间字段对拍 differences=0；质量门仍 needs_improvement=true" },
+        { id: "E3-07-QUALITY-01", title: "企业 RAG 质量调优与 precision 提升", status: "DONE", evidence: "真实 Milvus verified 调优已闭环. RAG_SYMBOL_BOOST(精确符号定义优先,BM25/Hybrid RRF 对定义块加权,团队默认0不变,未降阈值/删召回/越权), 专项10 passed; 本机起企业独立Milvus+真实zhipu/embedding-3 对 health-middle(73e7e54) --require-milvus --all-modes 复跑: 四模式全部verified, 产出 e3_07_health_middle_quality_tuned.json(vb=milvus/mv=true/fb=false), 同环境boost=0对比 bm25 recall .8731→.8881/mrr .8072→.8632/ndcg .8227→.8620/prec@5 .3045→.3134, hybrid recall .8806→.8955/mrr .7649→.8172/prec@K .3377→.3396; 生产默认hybrid门 prec@K .3396≥.3 且 hybrid_gate.json needs_improvement=false; 两跑对拍差异0; --all-modes bm25主报告 prec@K .2034 受单符号gold 1/K结构上限需 true(如实); 全量733 passed/16 skipped 无回归. 见 107 §7" },
+        { id: "E3-08-EVAL-UI-01", title: "企业 RAG 检索与评测前端控制台", status: "DONE", evidence: "后端新增 GET /api/enterprise/rag/reports(列表) 与 /reports/{name}(详情), 均强 rag:search + 路径穿越正则/包含防护 + 脱敏投影; 前端新增 /enterprise/rag(RagConsoleView+stores/rag+services/rag+types/rag), 双面板: 检索(query/project/repo/commit/ref/source_type/模式 + results/variants/traces) + 评测报告(summary/metrics_by_tag/mode_comparison/failed_cases + verified/local_only/blocked徽章 + needs_improvement提示 + loading/empty/error/403 + 响应式 + 键盘); AppShell 侧栏入口与路由守卫 ['rag:search'](auditor无入口/直达重定向/后端403兜底, 前端仅展示层). 测试: 后端专项 test_enterprise_e3_08_rag_console.py 8 passed, 前端专项 10 passed, 前端全量 250 passed, 后端全量 741 passed/16 skipped, vue-tsc 0错, vite build 通过; 真实Edge走查截图 assets/e308/e308_01..03*.png(侧栏入口+报告列表verified/local_only徽章+hybrid verified详情precision@K .3396). 残余: 在线评测触发入口未做. 见108文档" },
+         { id: "E3-09-CROSS-ENCODER-01", title: "Cross-Encoder 模型级精排对比", status: "DONE", evidence: "真实模型执行+报告可复现. cross_encoder.py(本地模型优先/batch/超时/候选上限/_MODEL_CACHE/仅file·symbol摘要不发正文/不可用·超时·异常回退heuristic并记fallback_reason不冒充CE); RAG_CROSS_ENCODER_* 安全默认全关+空模型+cpu, 同步runtime_config/env.example; requirements-e3-09.txt 固定 sentence-transformers==3.3.1; CLI --rerank-compare 同环境对比baseline/heuristic/llm/CE. 真实Milvus+ms-marco-MiniLM-L-6-v2(cpu) 67条top-k8实测: CE executed MRR .8507/NDCG .8090(四档最优), baseline .8172/.7981, heuristic .8116/.7934, llm .7668-.7873(随机); recall/precK各档一致(重排不改召回非刷指标); CE缓存后p50 331ms(首跑未缓存7251ms); 两次对拍baseline/heuristic/CE差异0仅LLM波动. 报告 e3_09_health_middle_rerank_comparison.json(+_repro). 专项17 passed, E3-01..09组合78 passed, 后端全量758 passed/16 skipped, 前端250 passed, vue-tsc 0错, vite build通过, git diff --check干净. 报告 config_snapshot 仍为空对象，CE超参尚未完整入快照，已登记为后续契约加固项；未改E3-08页面; 不宣称企业RAG已彻底完成. 见109" },
+        { id: "E4-01-RUNTIME-01", title: "Multi-Agent Runtime 编排、checkpoint、重试和人工接管", status: "DONE", evidence: "真实闭环已达成. 确定性编排核心+真实MySQL持久化(Alembic e5f6071a2b3c: enterprise_runtime_tasks/_checkpoints 含tenant/version/checkpoint_version/lease_expires_at/steps JSON脱敏)+repositories写透+bootstrap启动恢复+跨进程重启恢复(真实MySQL上RC2 checkpoint落库→新python进程bootstrap恢复并RESTART_FINAL succeeded,不重放已完成步骤)+DB原子租约单赢家(条件UPDATE+lease_expires_at; workerA claimed/workerB lost)+真实E2审批接线(governance注册runtime.execute+approvals runtime_task校验器+approve/reject _forward_runtime_decision回写→审批通过进入execution)+失败→重试→waiting_human→人工resume→succeeded+跨租户403+审计+checkpoint脱敏. test_enterprise_e4_runtime.py 19 passed(含真实DB round-trip); E4+migrations+E2 gov/hardening 71 passed; 真实闭环证据 scripts/e4_runtime_real_loop.py(正常E2E/重启恢复/单赢家/审批接线/接管/跨租户). 残余(如实): Redis已起但租约原子性在DB(跨进程安全), 未用Celery字面双worker; 未做生产级多副本压测/长稳; 无前端页面. 见110" },
+        { id: "E4-02-MULTI-AGENT-01", title: "企业版 6-Agent Runtime 协作闭环", status: "DONE", evidence: "新任务 rt_e4a_113934 使用真实 deepseek-chat 完成 6 次独立 AgentRun，6/6 succeeded；E2 审批单 appr_538a1c8689d3 为 approved，审批时间早于 CodeChange；Runtime 最终 SUCCEEDED，11 个 Artifact、dangling_refs=[]、repair_round=0；MySQL head=a7b8c9d0e1f2，预检 READY；Docker runner exit_code=0；真实 Gitee PR #3 https://gitee.com/yang-zhizemin/health-middle/pulls/3，commit=27fb9a38e9c0710bdbde3629de4e8ea4f35061d4；ReleaseEvidence status=VERIFIED、content_hash=050b6f79766ac6e2e9ad882fe6836e557f8126247f370d184133dcf75d2f7261；专项 39 passed, 1 skipped，全量后端 814 passed, 24 skipped。PR 未自动合并，保留人工治理边界" },
+        { id: "E5-01-FRONTEND-01", title: "企业前端完整化", status: "DONE", evidence: "7个企业页面统一企业后台视觉、真实数据、权限和响应式行为：工作台、成员、审批、审计、RAG、Runtime、企业设置/运维；运维接口补org:manage后端门禁；管理员/developer/reviewer/auditor/tenant_admin真实角色走查完成，auditor直输Runtime重定向且后端保留403。npm run test 264 passed；vue-tsc -b/vite build通过；E5运维专项4 passed；后端全量772 passed,25 skipped；Impeccable detector []；桌面与390px七页面无整体横向溢出；真实截图见docs/project-development/assets/e501/，详见111文档。云端生产、多副本压测、长期稳定性仍属E6范围" },
+        { id: "E6-01-PROD-OPS-01", title: "私有化生产交付强化", status: "DONE", evidence: "E6 生产运维已交付并真实取证：公网入口复验(备案)、备份恢复隔离演练、失败注入回滚演练、监控告警与证书续期(剩余86d/OK+每日cron)、多副本真实压测、云端安全扫描、Redis非root加固、迁移兼容修复与fail-closed状态机、明确标记compat回滚镜像。已知限制：原始legacy镜像不支持跨schema回滚(fail-closed)；生产支持回滚点=e6-rollback-compat-61a6752；ALLOW_UNKNOWN_MIGRATION_REVISION禁止生产开启(见112文档§34)。"},
+        { id: "E7-01-PILOT-01", title: "商业试点交付包", status: "DONE", evidence: "交付包已产出并登记 docs/enterprise/10-pilot/（演示数据/走查、客户手册、SLA、交付清单、试点验收脚本、边界免责，6文件+索引）。基于 E6 真实证据且脱敏。试点现场执行与客户走查截图为交付后优化池(不混入本包)；本包形成演示数据/手册/SLA/清单/验收脚本+脱敏+边界说明均已齐。" },
+        { id: "OPT-01", title: "本地 stdio MCP Client 与受控 Semgrep 工具", status: "DONE", evidence: "客户端(17)+服务端(5)专项 21 passed；OPT-01+E4 Agent/Runtime 回归 74 passed, 1 deselected（仅排除需Redis的Celery投递测试，归OPT-05）；真实本地 MCP→Semgrep 冒烟：发现仅 semgrep_scan、clean 0 findings、eval 命中 dangerous-python-eval、路径逃逸拒绝、审计无参数/凭据（docs/project-development/assets/opt01/mcp_semgrep_smoke.json）；补齐工具发现、取消、非法响应、文件类型/大小/并发限制、审计 call_id/run_id；开发文档 docs/project-development/113-opt01-local-mcp-client.md" },
+        { id: "OPT-02", title: "Agent 级 Eval 与版本回归", status: "DONE", evidence: "评测报告边界净化工具轨迹，只保留工具名、移除参数；子进程 CLI 验证默认 deterministic/local 且不连接 DB/Celery（_guard_provider 拒绝非 deterministic provider，--allow-real-model 为显式 opt-in，本轮未执行真实模型）；固定沙箱 backend/.data/agent-eval-sandbox，任意 cwd 复跑非时间字段一致（cross-cwd 对拍通过，dataset sha256 校验）；报告新增 environment 块（agent_provider/workspace_root/stores/database/celery/real_model_opt_in）；失败 AgentRun 保留实际工具名/耗时，报告逐 Agent 汇总成功率、p50/p95、工具调用数、失败类别，并比较案例/Agent 回归与改善；专项（evaluation+CLI）17 passed；OPT-02+E4 Agent/Runtime 回归 70 passed, 1 deselected（仅排除需Redis的Celery投递测试，归OPT-05）；固定集 2/2 passed，报告 backend/evaluation/enterprise_agents/reports/agent_eval_local_v1_verified.json，对拍 agent_eval_local_v1_comparison.json 案例与 Agent 回归/改善均为 0，成本 not_collected。确定性路径实际未调用工具，空轨迹如实报告；真实模型评测未执行（仅显式 opt-in 能力）。开发文档 docs/project-development/114-opt02-agent-eval.md" },
+        { id: "OPT-03", title: "可复现多 Agent 端到端演示", status: "DONE", evidence: "2026-10-15 收口：CLI backend/scripts/opt03_agent_e2e_demo.py 一条命令任意 cwd 全隔离复跑（deterministic/内存/无 DB/Redis/Celery，敌对环境注入被压制，remote_write_module_loaded=false 证明无 Gitee 写模块加载）；主链 6 Agent+真实 BM25 RAG 命中 retry_refund+E2 审批门（现场 approval_gate_held）+受控变更/测试，dangling_refs=[]；修复分支场景 repair_round=1 且 Planner 不重跑；审计回放 23 条（agent.succeeded×6，修复 orchestrator._audit 同秒 ID 覆盖缺陷，TDD 红→绿）；14/14 checks 通过，证据 docs/project-development/assets/opt03/opt03_e2e_evidence.json；专项 3 passed（含跨 cwd 稳定投影对拍），OPT-02/03+E4 回归 73 passed, 1 deselected（Redis Celery 项归 OPT-05）；开发文档 docs/project-development/115-opt03-e2e-demo.md" },
+        { id: "OPT-04", title: "RAG 报告复现契约", status: "DONE", evidence: "2026-10-15 收口：报告新增 report_schema_version=rag-eval-report-v2 + repro_contract 块（repository 版本/数据集 sha256/索引标识与来源、Embedding provider/model/dimension、Reranker 含 Cross-Encoder 配置、检索参数与租户过滤、依赖版本、config_sha256（仅行为开关、凭据排除有专项测试）/deps_sha256）；validation 三级区分 verified/local_only/blocked 并给出原因；新增 compare_rag_eval_reports 离线对拍（同 dataset_sha256 硬门槛；regressions/improvements/missing/new/metric_deltas/environment_drift；v1 旧报告如实记 not_collected）；CLI 新增 --compare-with/--comparison-out 并支持任意 cwd 直跑；修复 config_snapshot.retrieval_mode 写死 hybrid 缺陷；专项 15 passed，RAG 全回归（E3-02~E3-09）118 passed；真实双轮对拍证据 assets/opt04/（跨 cwd，非时间指标 delta 全 0.0，仅 latency 噪声，drift=false，local_only 不冒称 verified）；开发文档 docs/project-development/116-opt04-rag-report-contract.md" },
+        { id: "OPT-05", title: "测试环境与 CI 稳定性", status: "DONE", evidence: "2026-10-15 收口：定位并修复全量套件隐性依赖本机 Redis 缺陷（backend/.env 的 CELERY_BROKER_URL 在导入期注入 → celery_app 绑定真实 broker → .delay() 真连 127.0.0.1:6379 报 kombu 10061 FAILED）；tests/conftest.py 顶部隔离块（ENV_FILE=哨兵路径，本地 .env 凭据/生产地址/broker 不进入测试进程；celery 导入即 eager）+ requires_redis 标记与收集期 TCP 探测统一 skip（理由标注「环境缺失分类→skip（非代码失败）」）；分类正/反两分支由子进程真跑 pytest 自证（关闭端口→1 skipped+环境缺失理由；临时监听端口→1 passed 真执行）；固定命令 scripts/check-all.sh（pytest -q -rs / vitest / vue-tsc+vite build，本地/CI 同口径）；CI 定义 .github/workflows/ci.yml（零机密/内存态/redis service/uv frozen；未在云端 runner 执行，如实标注）；全量后端 890 passed, 17 skipped（skip 全为显式环境门控：MySQL×8/Milvus×6/Gitee×2/requires_redis×1）、前端 272 passed + 生产构建通过；证据 docs/project-development/assets/opt05/；开发文档 docs/project-development/117-opt05-test-ci-stability.md" },
+        { id: "OPT-06", title: "Agent 工具安全回归", status: "DONE", evidence: "2026-10-15 收口：tests/test_opt06_agent_tool_security.py 六维度 25 用例（TDD 红 15 failed → 绿 25 passed in 0.64s）：①注入（run_test 危险命令+白名单双闸门；finalize_test_release_output 用真实 exit_code 覆盖模型自述，自述 VERIFIED 降级 NOT_COLLECTED）②跨租户参数篡改（_rag_search/_repo_read/_read_diff/_read_comments 按 ctx tenant/task 校验，不可判定 fail closed BLOCKED）③路径越权（_resolve_workspace_path 拒绝绝对路径/../符号链接逃逸）④超时重试（exit 124 与 runner 异常不伪造成功；默认强制 docker 模式）⑤重复副作用（draft_pr/collect_evidence 幂等不重复外呼；content_hash 排除 created_at 稳定指纹）⑥凭据脱敏（redact_secrets 覆盖环境真实值/URL 凭据/查询串 token）。顺带修复 OPT-03 跨进程 flake 根因（executor._PROJECTION set→有序元组，lambda id+hash 随机化导致顺序漂移；新增结构性回归，5 连跑绿）。相关回归 143 passed, 1 skipped（requires_redis 环境分类）；全量后端 916 passed, 17 skipped（853.16s）；证据 docs/project-development/assets/opt06/；开发文档 docs/project-development/118-opt06-agent-tool-security.md" },
+        { id: "OPT-07", title: "Agent 全链路可观测性", status: "DONE", evidence: "2026-10-16 收口：新增叶子模块 app/enterprise_runtime/observability.py（TraceSpan 内存 store + contextvars trace 绑定 + scrub_attributes 出口脱敏 + retention 上限 OBSERVABILITY_MAX_SPANS=2000 丢最旧 + dropped_total）。六维度埋点：①model（executor.py:270 耗时/tool_calls/真实 token，采集不到诚实记 not_collected）②tool（tools.py:636 wrapper 真实执行 span source=wrapper；executor.py:395 消息摘要兜底 agent_tool_trace，经 _obs_tool_names 去重）③rag（enterprise_rag/service.py:25 包装层，retrieval_mode/hit_count/stale，异常 error_kind=http_404）④approval（approvals/service.py:406/470 decision/risk_level）⑤worker（orchestrator.py:370/616 failure_kind→blocked/error）⑥artifact（executor.py:359 逐产物写入）。检索接口 GET /api/enterprise/runtime/traces（AUDIT_VIEW 门 + tenant 过滤 + filters/limit≤500/newest-first）。TDD 红 16 failed → 专项 19 passed in 19.26s；相关回归（E4 Agents/OPT-03/OPT-06/E3-02/04/E2/OPT-07×2）139 passed, 1 skipped（requires_redis 环境分类）；全量后端 935 passed, 17 skipped（831.13s，对照 OPT-06 基线 916+19 新增）；演示 CLI 单 trace 29 spans 六类全覆盖 checks=13/13（确定性 provider、in-memory、无 DB/Celery）；证据 docs/project-development/assets/opt07/；开发文档 docs/project-development/119-opt07-full-chain-observability.md" },
+        { id: "OPT-08", title: "RAG 在线评测入口", status: "DONE", evidence: "2026-10-16 收口：POST /api/enterprise/rag/evaluations 授权触发（新增 rag:evaluate，仅 tenant_owner/tenant_admin/security_admin/project_owner；developer/auditor 403），GET /evaluations(/{run_id}) 状态查询（rag:search + 租户过滤），报告回读复用 E3-08 GET /reports/{name}。作用域门：默认 isolated（要求内存态并强制种子基线，不碰运行态/外部服务）；production 需 confirm_production=true（未确认 422 + tenant.rag_evaluation.denied 审计且不建 run），确认后按 require_milvus 语义执行（Milvus 不可用 → run/report 双 blocked，绝不回退冒称 verified）。生命周期 queued → running → succeeded/blocked/failed；dispatch 诚实标注（redis=真实队列只入队 / eager(test)=内联，异步分支由 monkeypatch 单测覆盖）。修复 deny_and_audit 固定 id 键冲突丢审计缺陷（tenancy/context.py:111）。TDD 红 12 failed → 专项 13 passed in 361.85s（12 API + 1 CLI 子进程）；相关回归 102 passed in 77.38s；全量后端 948 passed, 17 skipped（1162.47s，= OPT-07 基线 935 + 13 新增）；演示 CLI 16/16 checks（run=rageval_e83a40c8e922、succeeded/local_only、32 案 29 通过、生产确认 blocked 诚实口径、敌对环境自压制、无远端写模块）；证据 docs/project-development/assets/opt08/；开发文档 docs/project-development/120-opt08-rag-online-evaluation-api.md" },
+        { id: "OPT-09", title: "Embedding 与索引生命周期", status: "DONE", evidence: "2026-10-16 收口：新增 app/enterprise_rag/index_lifecycle.py（Embedding 指纹记录 + 兼容判定 + 生命周期 store/审计），锚真实索引管线 4 钩子：new_repository_index（building + 固化 provider/model/dimension/commit/collection）、fail_repository_index（failed + 阶段/脱敏原因）、COMPLETED 块（ready；同仓库+同分支旧 ready → superseded + tenant.rag.index.superseded 审计）、重试端点（building + retry_count 对齐）。检索守卫：记录指纹 vs 当前配置（settings/缓存，零网络探测）；vector/hybrid/rerank 不兼容 → 409 fail-closed + tenant.rag.index.incompatible_rejected 审计（绝不返回跨向量空间结果）；bm25 不消费向量 → 放行但如实标注；无记录/维度未知 → unknown 放行不冒称兼容；响应新增 index_embedding_compatible(true/false/null)/index_lifecycle_status/index_embedding_fingerprint 如实标注。新增只读接口 GET /api/enterprise/rag/indexes(/{index_id})（rag:search + 租户过滤 + 跨租户与不存在同样 404）。TDD 红 12 failed（ImportError）→ 专项 12 passed（17.66s）；相关回归 115 passed, 5 skipped（483.61s，skip 全为 Milvus 环境门控）；全量后端 960 passed, 17 skipped（1253.22s，= OPT-08 基线 948 + 12 新增）；证据 docs/project-development/assets/opt09/；开发文档 docs/project-development/121-opt09-embedding-index-lifecycle.md" },
+        { id: "OPT-10", title: "RAG 检索参数消融", status: "DONE", evidence: "2026-10-16 收口：新增可复现消融编排 backend/scripts/opt10_rag_ablation.py（12 检索配置 + 基线复跑 + 5 切片探针；每配置独立子进程 + hermetic 环境；per-config config_sha256=sha256(生效 knobs+数据集 sha256)[:16]；保留逐用例结果/失败样本/指标 delta/确定性对拍）。新契约 RAG_HYBRID_VECTOR_WEIGHT/RAG_HYBRID_BM25_WEIGHT（默认 1.0/1.0 与历史公式逐位一致；0=禁用该路不查询、不产生候选；负值钳制 0；repro_contract._RAG_SETTINGS_FIELDS 纳入 config hash）；切片参数 RAG_CHUNK_LINES/OVERLAP_LINES/MAX_CHARS import-time 可覆盖（默认 40/10/4000）。实测（local_only/mock embedding）：baseline recall 0.8438/mrr 0.8281/ndcg 0.8322；legs_small 唯一改排名（mrr −0.0302/ndcg −0.021）；vector_only mrr −0.1374/recall@5 −0.125（本地 mock 信号弱）；bm25_only empty +0.0333；切片 max_chars_1200 → 12 切片（唯一变化，签名 71a5c9bbbbf8a513），lines_20/80 与基线逐位一致（当前 llama-index chunk_lines 只校验不参与切分，如实记录）；determinism identical=true；失败样本 q18/q20/q21 全配置一致（结构性缺失）。TDD 红 15 failed/2 passed → 专项 17 passed in 290.91s；相关回归 188 passed, 1 skipped（586.44s，skip 为 Milvus 门控）；全量后端 977 passed, 17 skipped（2104.48s，= OPT-09 基线 960 + 17 新增）；证据 docs/project-development/assets/opt10/；开发文档 docs/project-development/122-opt10-rag-ablation.md" },
+        { id: "OPT-11", title: "main.py 渐进拆分", status: "DONE", evidence: "2026-10-16 收口：六步渐进迁移，49/83（59%）个核心路由处理器按领域迁至 app/api/ 12 个 APIRouter 模块（system1/auth7/users2/projects4/comments4/notifications6/repositories4/repository_indexes5/dashboard1/audit3/history5/team_requests7），main.py 9177→7651 行（每步锚点回归红区单调收窄：Step3 剩 4 模块 1 failed → Step4 剩 2 → Step5 剩 1 → Step6 104 passed 全绿）。路由契约冻结锚点 tests/test_opt11_main_split.py（新建）：app.openapi() 117 条 /api 操作（83 核心 + 34 企业）逐条对拍 + 83 路由名冻结 + 12 模块处理器归属 + 健康冒烟，4 passed。依赖边界：模块级导入仅限注册块前定义且未被整体替换的符号，其余（含被 monkeypatch.setattr(main/m) 补丁的 create_gitee_issue/maybe_auto_create_task_after_sync 等）函数体内 from app import main 惰性读取（补丁扫描按接收者聚合核实）；Worker 入口与 resolve_request_*/_persist_team_request/derive_task_from_team_request 等辅助函数保留 main.py。唯一测试适配：test_celery_async_chains.py 两处直调改自新位置导入。回归：六步全链 151 passed（125.82s）；全量后端 981 passed, 17 skipped（1572.75s，= OPT-10 基线 977 + 本轮新增锚点 4，EXIT=0）；首轮 1 failed 如实留档并定性为负载敏感假红（test_enterprise_mcp_client.py 取消计时 3.0166s vs 3.0s 上界），修复为 5.0s 后复跑全绿。证据 docs/project-development/assets/opt11/；开发文档 docs/project-development/123-opt11-main-split.md" },
+        { id: "OPT-12", title: "文档状态与时间线一致性", status: "DONE", evidence: "2026-10-16 收口：登记输入的 11 份文档 83 处 main.py 行号引用全量锚点化为「文件路径（符号名）」（被 OPT-11 迁出的处理函数改指 backend/app/api/ 新址，逐份核实现役位置）。新增引用防腐检查器 backend/scripts/opt12_doc_consistency.py：A stale_line_ref（禁 main.py 数字行号引用含区间）、B missing_path（四前缀解析 + ../ 归一化 + 合成演示白名单 + 后缀唯一匹配）、C missing_symbol（锚点标识符须在目标文件可解析，紧邻匹配防错配）；退出码门禁 + --json/--corpus 支撑基线与回归。前后对比（真实可复现）：HEAD 语料 60 份 → 77 违规（73 stale_line_ref + 4 missing_path，含 3 处新发现真实坏引用一并修复）→ 当前 72 份 → 0 违规（98 个符号锚点逐一校验）；门禁测试 test_opt12_doc_consistency.py 5 passed in 2.56s（当前语料零违规 + 行号侦测 + 白名单 + 缺路径/悬空锚点 + 正向锚点）。时间线陈旧项一并处理：00-log DEV-003/DEV-008 截图状态修正、docs/22 复核记录、docs/23 检查点口径注记（表落 agent_checkpoints 但介质随环境/仅存 {status, next_action} 摘要/恢复靠任务状态 APPROVED 真源驱动同图继续/best-effort 无 resume_agent）、docs/mentor 行号漂移免责声明、03 文档 4 张真实截图重拍回填（隔离 8021/5181 环境）。证据 docs/project-development/assets/opt12/（before-head-corpus.json 77 违规 / after-current.json 0 违规）+ docs/assets/password-recovery-real.png、account-recovery-real.png、terms-real.png、privacy-real.png；开发文档 docs/project-development/124-opt12-doc-consistency.md" },
+        { id: "OPT-13", title: "Celery 多 Worker 恢复与长稳验证", status: "DONE", evidence: "2026-10-16 收口：新增四场景 harness backend/scripts/opt13_multiworker_verify.py + 支持模块（opt13_fake_redis/opt13_probe/opt13_worker_boot/opt13_trace_restore），默认隔离环境全真：真实双 Worker 子进程（solo pool + prefetch-multiplier=1）、fakeredis TcpFakeServer 真实 RESP/Lua、真实 SQLite、taskkill /F /T 真杀进程、deterministic provider；主进程零 app.* 导入（子进程隔离）。最终运行 36/36 checks 全绿（S1 恰好一次 4/4；S2 双投递 10/10；S3 崩溃恢复 15/15，kill→收敛 111.28s；S4 有界长稳 7/7，kill→全量收敛 104.7s），退出码 0。关键实证：S2 出现真实可见性重投（150s 探针持锁 > 30s 可见性超时，种子+重投+主动 dup 三条投递均锁忙重试后幂等跳过）且断言不绑定重投者；S4 恢复由 A 首扫触发（restore-tag→3 次锁忙重试→接管成功）；trace_restore 弃 Lua mutex 加固（SET NX PX + WATCH/GET/MULTI/DEL CAS）后 final 运行 0 NoScriptError / 0 mutex busy / 0 release-error；冷启动方差按上界设超时（子进程 240-300s，超时收敛 rc=-998 场景级失败不升级 fatal；S4 补投 run_children_parallel 共享 deadline）。三轮运行对照如实留档（run1 残锁抑制恢复+S4 竞态、run2 S2 冷启动竞态+seed 超时、run3 全绿）。测试：专项 21 passed（test_opt13_multiworker_verify.py 16 机制 + test_opt13_harness_gate.py 5 装配门禁，45.02s）；全量后端 1007 passed, 17 skipped（1601.60s = OPT-11 基线 981 + OPT-12 门禁 5 + 本轮 21 新增，EXIT=0）；证据 docs/project-development/assets/opt13/（final 报告 JSON + 四个 Worker/Redis 全量日志 + run1/run2 失败报告）；开发文档 docs/project-development/125-opt13-celery-multiworker-recovery.md" },
+        { id: "OPT-14", title: "企业身份、审计与租户隔离增强", status: "DONE", evidence: "2026-10-16 收口：审计导出新增 GET /api/audit-events/export（JSONL/CSV 双格式 + event_type/resource_type/resource_id/since/until 过滤 + limit 1..5000 + 截断诚实标注（响应头 X-Audit-Export-Truncated）+ 导出自身留痕 tenant.audit.exported + audit:view 门 + 租户作用域）；审计保留新增 app/tenancy/audit_retention.py（build_plan/prune_audit_events：删除条件=仅窗口外 created_at < now - days；三道防误删闸：days<=0 refused、低于 min_days 默认 30 refused 除非 --allow-below-min、封顶 min(显式 max_delete, 策略 10000) 只能收紧）+ 默认 dry-run CLI scripts/audit_retention.py（--apply 才真删 / --json / 缺 --days rc=2）；AUTH_MODE fail-closed（默认 local；未实现模式如 oidc 拒绝启动，RuntimeError 含 fail-closed，不静默降级）；隔离冻结回归 tests/test_opt14_tenant_isolation_regression.py（ORM 30 表分类=15 直挂 tenant_id + 7 角色权限矩阵含 audit:view 四角色 + 跨租户读隔离 + 伪造租户头）。TDD 红→绿专项 26 passed（test_opt14_audit_export_retention.py 22 + test_opt11_main_split.py 冻结 4，41.41s）；harness scripts/opt14_verify.py 17/17 checks（A1-A7 真实 uvicorn HTTP：跨租户 403 留痕/过滤/截断/自审计/422；B0-B4 真实 SQLite + CLI 子进程：seed/dry-run/apply/保守截断/缺参 rc=2；C1-C2 AUTH_MODE 子进程；D1-D2 ORM 分类快照 + audit:view 权限矩阵；E1 专项 pytest 门禁）；路由冻结受控 117→118（唯一新增 /api/audit-events/export）；全量后端 1029 passed, 17 skipped（1472.18s，= OPT-13 基线 1007 + 本轮新增 22，EXIT=0）；证据 docs/project-development/assets/opt14/（evidence JSON + 专项/全量 pytest 日志 + 文档检查器 JSON）；开发文档 docs/project-development/126-opt14-identity-audit-tenant-isolation.md" },
+        { id: "OPT-15", title: "GitHub/GitLab 代码托管适配", status: "DONE", evidence: "2026-10-16 收口：新增托管平台无关 Provider 契约 app/services/git_host/——contract.py（runtime_checkable Protocol GitHostProvider 8 方法 + 错误分类 kind（auth_expired/field_error/network_timeout/response_invalid/invalid_repository/unsupported_provider）+ redact 脱敏）、gitee.py（GiteeProvider 实现仓库解析/远程构造/掩码/分支 head/建 Issue/查重/快照/PR；PR 委托既有 gitee_pr_service 保持 monkeypatch 补丁链）、registry.py（get_git_host_provider 注册表）；fail-closed 双重门：启动期 GIT_HOST_PROVIDER 非 gitee → RuntimeError 拒绝启动，调用点显式非 gitee → GitHostError(kind=unsupported_provider)，绝不静默回退 gitee；E4 PR 采纳接缝最小化（enterprise_release_service.create_runtime_pr 经注册表 + provider 字段，团队版 main.py 链路冻结不动）；查重分页语义（6 页上限/per_page=100/state=all 命中即停）；传输对齐（GET token 走 query/POST 走 body/12s 超时，修正「已带查询串再拼 token 双 ?」缺陷）。TDD 红→绿专项 26 passed（test_opt15_git_provider_contract.py，本地契约 127.0.0.1 真实 socket stub + 真实 git 二进制，24.60s）；采纳兼容回归 64 passed, 2 skipped（4.11s，三处补丁链保持生效）；harness scripts/opt15_verify.py 16/16 checks（A1-A9 契约/语义/分页/错误/脱敏/快照/PR 契约；B1 本地 bare 仓库全链路；C1-C3 provider 默认/fail-closed/注册表拒绝；D1 采纳链；E1-E2 pytest 门禁）；全量后端 1055 passed, 17 skipped（1338.55s，= OPT-14 基线 1029 + 本轮 26 新增，EXIT=0；首轮 3 failed 为 OPT-10 用例 OpenBLAS 内存分配环境性假红，隔离复跑 3 passed 后复跑全绿，如实留档）；真实 Gitee 远端写入 not_collected（本轮零真实远端写入）；证据 docs/project-development/assets/opt15/；开发文档 docs/project-development/127-opt15-git-host-provider.md" },
+        { id: "OPT-16", title: "简历成果证据包", status: "DONE", evidence: "2026-10-16 收口：交付「声明 → 归档证据」机械可核对索引——docs/project-development/assets/opt16/opt16_evidence_index.json（22 条声明 C01–C22 + 7 条边界 B01–B07；每条含 statement/kind/metrics/evidence_files/markers/repro；kind 四档 production_cloud/local_real_ext/local_offline/synthetic 防口径拔高；61 条字面 marker 全部指向真实归档证据：assets/opt01..15 证据 JSON、backend/evaluation 评测报告、云端走查截图、E6/E7 文档口径）+ 校验器 backend/scripts/opt16_evidence_check.py（检查 A schema/ID 唯一/kind 枚举、B 证据存在性且拒绝仓库外路径、C marker 字面命中（UTF-8/BOM 容忍）、D 主文档必须收录全部 ID；退出码门禁 + JSON 报告 opt16-evidence-check-v1）+ 门禁测试 backend/tests/test_opt16_evidence_pack.py（TDD 红 7 failed → 绿 7 passed in 1.08s；侦测覆盖 marker 篡改/证据缺失/kind 非法/主文档缺 ID/仓库外路径）。校验器对真实索引 violation_count=0 / ok=true（EXIT=0，报告归档 assets/opt16/opt16_evidence_check.json）；相关回归（opt16+opt12 检查器）12 passed in 2.37s；文档一致性（OPT-12）语料 76 份 0 违规；全量后端 1062 passed, 17 skipped（1439.00s，首轮即绿 EXIT=0，= OPT-15 基线 1055 + 本轮 7 新增，日志归档 assets/opt16/opt16_full_pytest.txt）。边界如实入档：零真实远端写入（B01）、OIDC 未接入（B02）、MySQL RLS 未启用（B03）、token 用量 not_collected（B04）、真实 Redis/多机演练 not_collected（B05）、E6 回滚限制（B06）、真实模型评测 not_collected（B07）。证据 docs/project-development/assets/opt16/；开发文档 docs/project-development/128-opt16-resume-evidence-pack.md" },
+        { id: "FIX-01", title: "RAG 在线评测 run 跨进程持久化", status: "DONE", evidence: "2026-10-18 收口：enterprise_rag_evaluation_runs + shared_stores + eval_store.claim_for_execution；API 创建/查询与独立 Worker 共用 DB 真源，终态幂等/租约接管/失败落终态；test_fix01_eval_persistence.py 11 passed、test_fix01_cross_process.py 1 passed（fake broker + 独立 Celery Worker）；证据 docs/project-development/assets/fix/fix01_cross_process.txt、fix_focused_suite.txt" },
+        { id: "FIX-02", title: "索引 Embedding 生命周期持久化与 fail-closed", status: "DONE", evidence: "2026-10-18 收口：enterprise_rag_index_lifecycles + 跨进程读写；vector/hybrid/rerank 只在 compatible 放行，missing/unknown/untrusted → 409 + 审计，bm25 放行并标注；第二轮补同租户边界（DB + 内存），supersede 不再跨租户；test_fix02_index_lifecycle_persistence.py 8 + test_opt09_index_lifecycle.py 18 passed；DB 测试直接查持久化行与审计，独立子进程更新→API 读取、重启缓存清空、旧记录缺字段、迁移建表均覆盖" },
+        { id: "FIX-03", title: "Trace span 跨进程持久化", status: "DONE", evidence: "2026-10-18 收口：enterprise_runtime_trace_spans + observability._append/query_spans/retention_info 共享真源；Worker span 可被 API 查询，租户过滤/脱敏/OBSERVABILITY_MAX_SPANS 保留上限保持；第二轮补 scrub_tokens（写入前递归脱敏，合法用量数字保留），DB/内存/API 均覆盖；test_fix03_observability_persistence.py 9 passed" },
+        { id: "FIX-04", title: "审计事件时间源整改", status: "DONE", evidence: "2026-10-18 收口：新增 app/core/clock.py；审计导出/RAG 查询/评测触发完成失败/租户拒绝 5 处改为 utcnow() 事件时间；审计失败 logger.warning 可观测；test_fix04_audit_timestamps.py 7 passed（冻结时钟、UTC 往返、since/until、retention cutoff）" },
+        { id: "FIX-05", title: "审计保留 max_delete=0 防误删", status: "DONE", evidence: "2026-10-18 收口：max_delete<=0 在任何内存/DB 变更前拒绝（error_code=invalid_max_delete）；CLI rc=2；正数 min(请求值, 策略封顶) + effective_max_delete/capped_by_policy；test_fix05_audit_retention_max_delete.py 6 passed（内存/SQLite/CLI 0 和负数不删、正数封顶）" },
+        { id: "FIX-E2E", title: "FIX-01..05 隔离端到端验收", status: "DONE", evidence: "2026-10-18 收口：scripts/fix_e2e_acceptance.py 20/20 checks：隔离 broker + 独立 Worker run 成功、API 回读 run/报告、同 trace Worker/RAG span、跨租户为空、脱敏、since/until 审计、Embedding 变更 409/BM25 标注、独立 SQLite retention dry-run/非法 0 拒绝/apply 封顶；历史全量 1108 passed, 14 skipped（fix_full_backend.txt）保留；第二轮新增 --evidence-out，历史 E2E 文件未覆盖" },
+        { id: "FIX-AUDIT-2", title: "第二轮审核：跨租户 supersede + tokens 脱敏 + 证据时点", status: "DONE", evidence: "2026-10-18：TDD 红 4 failed → 修复后绿：生命周期 DB/内存均按 tenant 边界 supersede；scrub_tokens 持久化前递归脱敏且保留合法用量数值；--evidence-out 默认新文件并拒绝覆盖历史。本轮 FIX 专项 19 passed、相关回归 43 passed、迁移回归 5 passed、全新 SQLite 迁移 c9d0e1f2a3b4 通过、本机隔离 MySQL 8.0.44 迁移+共享状态验证通过、项目 MySQL 集成测试 8 passed（fix_mysql_real_20261018.json）、E2E 20/20（fix_e2e_evidence_audit2_20261018_195050.json）、全量后端 1118 passed, 13 skipped, 0 failed（774.88s；busy 修复前中间值 1116/13、MySQL 修复前 1115/13）、前端 272 passed + 构建通过；2026-10-20 `uv run --locked python -m pytest -q` 最新复核 1163 passed/21 skipped/0 failed（751.78s）；修正 TestClient per-request cookies 警告，读源专项 `-W error::DeprecationWarning` 11 passed，MySQL 用例因无环境 1 skipped；历史口径分列，未连接生产服务。生产 Milvus 后续已在 FIX-EXT-5 完成服务/向量/verified 评测；生产 MySQL 迁移与 Redis 健康已在 FIX-PROD-1/FIX-EXT-2 完成" },
+        { id: "FIX-EXT-1", title: "外部服务真实探针", status: "DONE", evidence: "2026-10-18：真实 Redis 7.0.15（WSL 临时端口/DB 5-6）→ 真实 broker + 独立 Worker 8/8 checks（run rageval_5694365cca17）；Zhipu embedding-3 真实 2048 维 + Milvus Lite 数据副本写/查 source=milvus；DeepSeek 最小 chat 成功；Gitee scratch/test 仓库探针 Issue IKNBM2 已创建并关闭。证据 docs/project-development/assets/fix/fix_real_redis_20261018.json、fix_real_embedding_milvus_20261018.json、fix_real_model_probe_20261018.json、fix_real_gitee_write_20261018_v4.json。生产 Milvus/Redis/MySQL 已后续验证（FIX-EXT-5/FIX-EXT-2/FIX-PROD-1）；GitHub Runner 仍 BLOCKED（FIX-EXT-6）" },
+        { id: "FIX-EXT-3", title: "Worker 崩溃故障恢复", status: "DONE", evidence: "2026-10-18：故障演练暴露并修复 busy 直接 ack 导致 run 永久 running：busy 返回 retry_after_seconds，Celery 任务按剩余 lease 重试；真实 Redis + 杀执行中 Worker 复跑成功，attempts=2、报告可回读。FIX 专项最终 44 passed；全量后端 1118 passed/13 skipped/0 failed。证据 docs/project-development/assets/fix/fix_real_redis_fault_recovery_20261018_v3.json（v2 失败证据保留）。生产故障演练也已闭环：生产 DB/Redis + 真实 Milvus + 当前代码临时 API/Worker，rageval_1c86dcee1db5 在 running/attempts=1 时 worker-1 被 SIGKILL（Docker 204），worker-2 busy 18s 后接管，attempts=2、succeeded、verified、报告可回读；证据 docs/project-development/assets/fix/fix_production_fault_drill_20261018.json" },
+        { id: "FIX-EXT-2", title: "生产只读健康与双 Worker 并发", status: "DONE", evidence: "2026-10-18：生产 8080 /api/health：DB ok、Redis ok、Milvus skipped(local-milvus-lite)；20 请求/并发 4 全成功（p95 1480.5ms）；8081 不可达。真实 Redis 7.0.15 + 两个独立 Worker：8 个并发评测全部 succeeded、attempts=1、报告/trace 完整、两 Worker 均消费。证据 docs/project-development/assets/fix/fix_production_health_20261018.json、fix_real_redis_multiworker_20261018.json。生产 Redis 持久化/副本演练也已闭环：现网 master appendonly=yes、BGSAVE/AOF rewrite ok；隔离副本 master_link_status=up、connected_slaves=1、手动提升后写入并重启仍可读；未重启现网 master，未做 Sentinel 自动切换。证据 docs/project-development/assets/fix/fix_production_redis_ha_20261018.json、fix_production_redis_ha_20261018.txt。GitHub Runner 仍 BLOCKED；生产 Milvus/MySQL 已在 FIX-EXT-5/FIX-PROD-1 验证" },
+        { id: "FIX-PROD-1", title: "生产 MySQL 迁移与镜像持久化", status: "DONE", evidence: "2026-10-18：生产 agent_enterprise 备份 29 表（gzip OK/sha256）、e5f6071a2b3c → c9d0e1f2a3b4、事务 INSERT→ROLLBACK（1/0）、构建旧应用+3迁移文件的增量镜像并滚动重启 2 副本、重启后 healthy 且 revision=head。首次 compose 未传 ENV_FILE 导致短暂 exit 64，已用真实 env 恢复，无数据丢失。生产 DB 业务写入也已验证：当前代码临时 API/Worker 接生产 DB/Redis，rageval_3cb8426869ac（USE_MILVUS=false）blocked/attempts=1 落库，rageval_3695980027a6（真实生产 Milvus）succeeded/verified/attempts=1、报告可回读；生产 DB 无 code_chunks/index，指标为 0，不作质量声明。证据 docs/project-development/assets/fix/fix_production_mysql_migration_20261018.json、fix_production_db_verified_eval_20261018.json、.report.json" },
+        { id: "FIX-PROD-2", title: "生产索引单驱动修复与 health-middle 闭环", status: "DONE", evidence: "2026-10-19 round2：授权材料不可核验，已作废；操作已执行但仅为技术证据，非有效授权。使用 gitee.com/yang-zhizemin/health-middle；Gitee Issue IKORLC 创建并关闭；生产 DB/Redis/Milvus 小索引 idx_06c94b555213（6 chunks）COMPLETED；生产评测 rageval_6fce765e2c31（hybrid 67 案）succeeded/verified、vector_backend=milvus、milvus_verified=true、fallback_used=false；10 条负载全部 verified/attempts=1；故障 rageval_6ec0400a3b09 在 running/attempts=1 被 SIGKILL，worker-2 busy 20s 后 attempts=2/verified。发现并修复 API/Worker 双驱动索引：Celery 模式下 progress_repository_index_jobs 不再推进、只读 DB；test_index_single_driver.py 2 passed；修复后 API/DB/lifecycle 三方一致。小索引指标 0，不作质量声明；临时资源已清理。证据 docs/project-development/assets/fix/fix_gitee_health_middle_20261019.json、fix_health_middle_production_eval_20261019.json、fix_health_middle_production_load_fault_20261019.json、health_middle_round2_reports_20261019.tar.gz；该 round2 授权不追认历史 AUTH-OP-01..07；生产状态/清理待独立运维核实（pending_external_ops）；另归档本地只读 health-middle 练习：303 chunks/67 案；bm25 recall 0.8881/MRR 0.8632、vector recall 0.4925/MRR 0.2294、hybrid recall 0.8806/MRR 0.8109，均 local_only；本地 Milvus Lite 303 行、source=milvus、fallback_used=false（mock embedding，不作质量声明）；证据 fix_health_middle_local_practice_20261019.json 与 fix_health_middle_local_vector_practice_20261019.json" },
+        { id: "FIX-EXT-4", title: "Windows+云主机双主机 60 分钟长稳", status: "DONE", evidence: "2026-10-18：云临时 Redis + 临时 MySQL 库 + 云/Windows 两 Worker；soak_summary 120/120 succeeded、0 failed/0 timeout、all_terminal、attempts>=1、max_attempts=2、recovered=rageval_1a36c93aa2d6；120 份报告跨云（68，含 smoke）与 Windows（60）全部存在、缺失 0；共享 DB 128/128 succeeded、2000 trace spans、唯一 attempts=2；临时资源已清理。证据 docs/project-development/assets/fix/fix_multi_host_soak_20261018.json、soak_cloud_reports.tar.gz、soak_windows_reports.tar.gz、fix_soak_*_worker_20261018.log；原 smoke 证据 fix_multi_host_20261018.json 保留" },
+        { id: "FIX-EXT-5", title: "生产 Milvus 服务/向量验收", status: "DONE", evidence: "2026-10-18：生产主机独立 siqi-milvus 项目：Milvus v2.4.15 + etcd + MinIO 三容器 healthy，19530/9091 已发布；真实探针建表/写入 3 实体/AUTOINDEX-L2/检索命中 alpha distance 0.0、beta 2.0/删除通过；当前代码临时 API 健康 milvus=ok，临时 DB rageval_0d59e4fb1142（hybrid，67 案）与生产 DB rageval_3695980027a6（bm25，32 案）均 succeeded/verified、vector_backend=milvus、milvus_verified=true、fallback_used=false；小索引指标为 0，不作质量声明。边界：现网应用仍 USE_MILVUS=false，未切流到新 Milvus；镜像经 skopeo 导出加载，主机 1.7Gi 受限内存。证据 docs/project-development/assets/fix/fix_production_milvus_20261018.json、fix_production_milvus_probe_20261018.log、fix_production_milvus_stack_20261018.json、fix_temp_milvus_verified_eval_20261018.json、fix_production_db_verified_eval_20261018.json" },
+        { id: "FIX-EXT-6", title: "GitHub Runner CI", status: "BLOCKED", evidence: "仓库托管 Gitee；无 GitHub remote、gh、GITHUB_TOKEN/GH_TOKEN，未执行 GitHub Actions；本地等价命令通过；actionlint 1.7.12 对 .github/workflows/ci.yml 校验通过（exit 0），仍不宣称 GitHub Runner 已执行" },
+        { id: "FIX-EXT-7", title: "多机长稳", status: "DONE", evidence: "2026-10-18：60 分钟云+Windows 双主机长稳，120/120 succeeded、0 failed/0 timeout、报告缺失 0、共享 DB 128/128 succeeded、2000 spans；长稳中精确强杀云 Worker，Windows Worker lease 接管，唯一 attempts=2 run 成功。边界：60 分钟有界长稳，不是多天长稳。证据 docs/project-development/assets/fix/fix_multi_host_soak_20261018.json、soak_cloud_reports.tar.gz、soak_windows_reports.tar.gz" }
+      ],
+      blockers: [
+        "FIX-EXT-6 GitHub Runner CI：仓库托管 Gitee，无 GitHub remote、gh、GITHUB_TOKEN/GH_TOKEN，无法注册/执行 GitHub-hosted runner；actionlint 校验通过、本地等价命令通过，但不宣称 GitHub Actions 已执行。",
+        "P1 外部/生产授权与生产状态核实（OPEN）：历史 AUTH-OP-01..07 与 round2 授权均无效/不可核验，相关日志 gate 均 rc=2；round2 操作仅保留为技术证据，不再重放/扩展；生产资源状态与清理需有权限的运维独立核对（pending_external_ops），执行侧不能自证。需用户在对话中逐项确认操作/目标/范围后才能继续。"
+      ],
+      scopeChanges: [
+        "发布前安全收尾（2026-10-20）：对本次拟同步的文档、进度板和验收证据中生产公网主机/DNS 地址做占位脱敏，避免将运行环境定位信息随项目材料公开；不改变验收任务数和指标。同步前复核脱敏文件的 JSON 可解析性、秘密/IP 扫描与暂存差异格式。",
+        "2026-10-19 复核：P2 E2E 证据并发覆盖竞态已修复（Path.open(\"x\") O_EXCL 原子独占创建；新增 exists 绕过、双线程与跨进程 spawn 回归，5 passed；真实 E2E 20/20）。P1 历史授权记录 OPEN：此前「全部追认」及 round2 的确认材料在复核可见对话中均不可核验，已撤销 ratified/invalid；历史 AUTH-OP-01..07 与 round2 操作均不视为有效授权，历史/round2 日志 gate 均 rc=2/structurally_complete=false。门禁已硬化（严格布尔/带时区时间/确认工件 source+sha256/证据目录与 JSON 校验、preflight/postcheck、human approval 标记）并接入 7 个 deploy 脚本与 15 个 Python 高风险入口（含 init_mysql/milestone_real_pr/milestone_resume/mysql_e2e/dev019/e4_runtime_real_loop/e4_agent_real_loop/celery_real_smoke/milvus_standalone_verify/check_redis_worker/team_history_acceptance_seed）；只读 mysql_smoke/e4_preflight 不写入外部状态、未强制门禁；高风险入口强制 Ed25519 用户签名（公钥仅从 AUTHORIZATION_CONFIRMATION_PUBLIC_KEY[_FILE] 读取，私钥由用户持有；authorization_sign.py 提供 keygen/sign/fingerprint），无公钥或无有效签名一律 rc=2；gate/entrypoint/evidence/单驱动 43 passed。round2 技术结果仅作证据：Gitee IKORLC 创建并关闭；生产索引 idx_06c94b555213 COMPLETED/6 chunks；rageval_6fce765e2c31 verified；10/10 负载；故障 rageval_6ec0400a3b09 attempts=2；修复 API/Worker 双驱动；生产状态/清理待独立运维核实。另有本地只读 health-middle 闭环：303 chunks/67 案；本地 Milvus Lite 303 行、lifecycle ready、直接探针 source=milvus，vector recall 0.4925/MRR 0.2294、hybrid recall 0.8806/MRR 0.8109、bm25 recall 0.8881/MRR 0.8632，均 local_only/milvus_verified=false（mock embedding，不作质量声明）；修正 local_milvus_lite 被误报为 fallback 的口径，fallback_used=false。本轮全量后端 1164 passed/13 skipped/0 failed（1008.00s，EXIT=0，最终日志 fix_full_backend_signature_20261019.txt；此前 1159/1297.08s 与 1158/762.02s 轮次日志保留），相关 RAG 评测回归 72 passed。P2 已升级为 Ed25519 用户签名强制校验；当前未配置用户公钥，所有高风险入口仍阻断；需用户核对公钥指纹并逐项确认操作/目标/范围，生产状态仍需独立运维核实。",
+        "新增 6 项全量审查整改（FIX-01..FIX-05 + FIX-E2E）、第二轮审核项 FIX-AUDIT-2、外部服务探针 FIX-EXT-1..7 与生产迁移 FIX-PROD-1。已完成本机真实 Redis 7.0.15 跨进程/双 Worker、隔离 MySQL 8 迁移/共享状态/8 条集成测试、真实 Zhipu embedding 2048 + Milvus Lite 副本、DeepSeek 最小 chat、Gitee scratch 探针 Issue 创建并关闭、生产 8080 只读健康与 20 请求负载烟测、生产 MySQL 迁移与增量镜像重启、生产 Redis AOF/副本/手动提升、生产主机真实 Milvus v2.4.15 服务与向量写/查、生产 DB blocked+verified 评测写入、60 分钟云+Windows 双主机长稳 120/120、以及生产环境精确强杀 Worker 的 attempts=2 接管。GitHub Runner CI 仍 BLOCKED（无 GitHub remote/token）。本轮最终 1118 passed/13 skipped（busy 修复前 1116/13、MySQL 修复前 1115/13）与历史 1108 passed/14 skipped、外部审核 1100 passed/22 skipped 分开记录，不混写。",
+        "新增 16 项优化队列（OPT-01..OPT-16）；OPT-01 至 OPT-16 全部已完成，队列收口。默认本地 stdio/自托管/隔离目录；不启用远程代码扫描；真实模型评测默认不执行（--allow-real-model 显式 opt-in）。测试进程不读本地 .env（OPT-05），真实服务用例一律 requires_* 标记 + 显式 opt-in。真实 Gitee 写入、生产评测、负载与故障演练须逐项确认。历史 E1-E7 的 34/34 验收记录保留。",
+         "E6 正式收口（路径 B,2026-09-24）：E6-01 判定 DONE。已知限制：生产支持回滚点=e6-rollback-compat-61a6752；原始 legacy 跨 schema 回滚为不受支持路径；ALLOW_UNKNOWN_MIGRATION_REVISION 禁止生产开启。进度 33/34 (97%)。",
+         "当前看板内原有任务已有 31 项验收完成；E4-02 真实闭环验收完成后为 32/34。",
+        "E1-01 云端 auditor 走查、E2 治理门禁、E3-06 health-middle + 企业独立 Milvus verified 均已闭环。",
+        "E3-07 precision 调优已在真实 Milvus verified 口径下闭环；E3-08/E3-09、E4-02 和 E5 企业前端已完成，随后完成 E6 生产运维与 E7 商业试点交付。",
+        "E4-02-MULTI-AGENT-01 已最终收口：真实 task rt_e4a_113934 经 E2 service 审批、6-Agent、Docker runner、Gitee PR #3 和 ReleaseEvidence 全链路通过；证据文件为 docs/project-development/assets/e402/rt_e4a_113934.release-evidence.json。",
+         "当前 E1-E7 交付项均已完成；剩余为交付后优化池：试点现场执行、客户走查截图和已登记的报告契约增强。",
+         "E7 商业试点交付包已完成：6 份交付文档与索引已登记，内容脱敏、边界声明和验收脚本齐全；试点现场执行与客户走查截图属于交付后优化池。",
+        "E5-01-FRONTEND-01 已收口：7个企业页面、共享组件、角色权限走查、390px七页面响应式扫描、真实截图、前后端回归和构建均已完成；云端生产、多副本和长期稳定性不混入E5。",
+         "E3-09 报告 config_snapshot 仍为空对象，CE 超参尚未完整入快照，已登记为后续报告契约加固项；该后续优化与试点现场走查不混入 E1-E7 交付证据。",
+         "E4-02 最终证据为 rt_e4a_113934：6 个 AgentRun 全成功、11 个 Artifact、无 dangling refs；E2 审批记录真实为 approved 且早于 CodeChange；真实 Docker 测试、Gitee PR #3 与 ReleaseEvidenceArtifact(status=VERIFIED) 均对拍通过；未改变团队版 v1 主链。",
+         "E4-02 本轮补强：真实闭环脚本改为经 approvals.service.approve 审批；新增 E2 回归测试；专项 39 passed, 1 skipped；全量后端在测试隔离 Milvus 配置下 814 passed, 24 skipped。"
+      ]
+    };
+
+    const phaseOrder = [
+      ["planning", "规划"],
+      ["implementation", "开发"],
+      ["verification", "验证"],
+      ["complete", "完成"]
+    ];
+
+    const statusLabels = {
+      "TODO": "TODO",
+      "IN PROGRESS": "IN PROGRESS",
+      "BLOCKED": "BLOCKED",
+      "DONE": "DONE"
+    };
+
+    let activeFilter = "ALL";
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function statusClass(status) {
+      return `status-${status.toLowerCase().replaceAll(" ", "-")}`;
+    }
+
+    function projectInitials(name) {
+      const text = String(name || "").trim();
+      if (!text) return "PB";
+      const asciiWords = text.match(/[A-Za-z0-9]+/g);
+      if (asciiWords && asciiWords.length >= 2) {
+        return asciiWords.slice(0, 2).map((word) => word[0]).join("").toUpperCase();
+      }
+      if (asciiWords && asciiWords.length === 1) {
+        return asciiWords[0].slice(0, 2).toUpperCase();
+      }
+      return Array.from(text.replace(/\s+/g, "")).slice(0, 2).join("");
+    }
+
+    function taskStageLabel(taskId) {
+      const taskNumber = Number(String(taskId).replace(/\D/g, ""));
+      if (taskNumber <= 3) return "机会验证";
+      if (taskNumber <= 6) return "生产底座";
+      if (taskNumber <= 8) return "发布回归";
+      return "体验收口";
+    }
+
+    function taskStatusCopy(status) {
+      const copy = {
+        "DONE": "已完成验收，可作为后续依据。",
+        "IN PROGRESS": "正在推进，优先看证据和阻塞。",
+        "BLOCKED": "需要先解除阻塞再继续。",
+        "TODO": "待排期，暂未进入验收。"
+      };
+      return copy[status] || "等待确认状态。";
+    }
+
+    function taskMetaCopy(status) {
+      const copy = {
+        "DONE": "已进入验收证据池",
+        "IN PROGRESS": "当前推进中的交付项",
+        "BLOCKED": "等待阻塞解除",
+        "TODO": "待排期处理"
+      };
+      return copy[status] || "状态待确认";
+    }
+
+    function evidenceTags(task) {
+      const evidence = task.evidence;
+      const tags = [];
+      if (task.status === "TODO") tags.push("待补证据");
+      if (evidence.includes("测试")) tags.push("测试");
+      if (evidence.includes("类型检查")) tags.push("类型");
+      if (evidence.includes("构建")) tags.push("构建");
+      if (evidence.includes("浏览器")) tags.push("浏览器");
+      if (evidence.includes("阻塞")) tags.push("阻塞");
+      if (evidence.includes("通过")) tags.push("已验证");
+      return [...new Set(tags)].slice(0, 4);
+    }
+
+    function renderPhases() {
+      const currentIndex = Math.max(
+        0,
+        phaseOrder.findIndex(([key]) => key === projectProgress.phase)
+      );
+
+      document.querySelector("#phase-track").innerHTML = phaseOrder.map(([key, label], index) => {
+        const phaseClass = index < currentIndex
+          ? "is-complete"
+          : index === currentIndex
+            ? "is-current"
+            : "";
+        const marker = index < currentIndex ? "OK" : String(index + 1).padStart(2, "0");
+
+        return `
+          <div class="phase ${phaseClass}">
+            <span class="phase-marker">${marker}</span>
+            <span class="phase-name">${label}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderTasks() {
+      const tasks = activeFilter === "ALL"
+        ? projectProgress.tasks
+        : projectProgress.tasks.filter((task) => task.status === activeFilter);
+      const list = document.querySelector("#task-list");
+
+      if (tasks.length === 0) {
+        list.innerHTML = `<div class="empty-task-list">当前筛选条件下没有任务。</div>`;
+        return;
+      }
+
+      list.innerHTML = tasks.map((task) => {
+        const stateClass = statusClass(task.status);
+        const evidence = escapeHtml(task.evidence);
+        const tags = evidenceTags(task);
+        return `
+        <article class="task-card ${stateClass}" aria-label="${escapeHtml(task.id)} ${escapeHtml(task.title)}">
+          <div class="task-id-cell">
+            <span class="task-id-badge" title="${escapeHtml(task.id)}">${escapeHtml(task.id)}</span>
+          </div>
+          <div class="task-main">
+            <span class="task-stage">${escapeHtml(taskStageLabel(task.id))}</span>
+            <h3 class="task-title">${escapeHtml(task.title)}</h3>
+            <p class="task-meta">${escapeHtml(taskMetaCopy(task.status))}</p>
+          </div>
+          <div class="task-status-cell">
+            <span class="status ${stateClass}">${escapeHtml(statusLabels[task.status] || task.status)}</span>
+            <span class="task-status-copy">${escapeHtml(taskStatusCopy(task.status))}</span>
+          </div>
+          <div class="task-evidence">
+            <div class="evidence-head">
+              <strong>证据摘要</strong>
+              <div class="evidence-tags">${tags.map((tag) => `<span class="evidence-tag">${escapeHtml(tag)}</span>`).join("")}</div>
+            </div>
+            <p title="${evidence}">${evidence}</p>
+          </div>
+        </article>
+        `;
+      }).join("");
+    }
+
+    function renderFilters() {
+      const filters = [
+        ["ALL", "全部"],
+        ["TODO", "待开始"],
+        ["IN PROGRESS", "进行中"],
+        ["BLOCKED", "已阻塞"],
+        ["DONE", "已完成"]
+      ];
+
+      const counts = {
+        "ALL": projectProgress.tasks.length,
+        "TODO": projectProgress.tasks.filter((task) => task.status === "TODO").length,
+        "IN PROGRESS": projectProgress.tasks.filter((task) => task.status === "IN PROGRESS").length,
+        "BLOCKED": projectProgress.tasks.filter((task) => task.status === "BLOCKED").length,
+        "DONE": projectProgress.tasks.filter((task) => task.status === "DONE").length
+      };
+
+      document.querySelector("#filters").innerHTML = filters.map(([value, label]) => `
+        <button class="filter ${value === activeFilter ? "is-selected" : ""}" type="button" data-filter="${value}" aria-pressed="${value === activeFilter ? "true" : "false"}">
+          <span>${label}</span>
+          <span class="filter-count">${counts[value]}</span>
+        </button>
+      `).join("");
+
+      document.querySelectorAll("[data-filter]").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeFilter = button.dataset.filter;
+          renderFilters();
+          renderTasks();
+        });
+      });
+    }
+
+    function renderInfoList(selector, items, emptyText) {
+      const element = document.querySelector(selector);
+      element.innerHTML = items.length
+        ? items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")
+        : `<li>${escapeHtml(emptyText)}</li>`;
+    }
+
+    function renderDashboard() {
+      const total = projectProgress.tasks.length;
+      const done = projectProgress.tasks.filter((task) => task.status === "DONE").length;
+      const inProgress = projectProgress.tasks.filter((task) => task.status === "IN PROGRESS").length;
+      const blocked = projectProgress.tasks.filter((task) => task.status === "BLOCKED").length;
+      const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+
+      document.title = `${projectProgress.projectName} - 项目进度`;
+      document.querySelector("#project-name").textContent = projectProgress.projectName;
+      document.querySelector("#project-goal").textContent = projectProgress.goal;
+      document.querySelector("#updated-at").textContent = `更新于 ${projectProgress.updatedAt}`;
+      const focusTask = projectProgress.tasks.find((task) => task.status === "IN PROGRESS")
+        || projectProgress.tasks.find((task) => task.status === "TODO")
+        || projectProgress.tasks.at(-1);
+      const nextTask = projectProgress.tasks.find((task) => task.status === "TODO");
+
+      document.querySelector("#focus-title").textContent = focusTask
+        ? focusTask.title
+        : "所有任务均已验收";
+      const focusEvidence = focusTask
+        ? focusTask.evidence
+        : "项目已满足全部确认的验收标准。";
+      document.querySelector("#focus-evidence").textContent = focusEvidence;
+      document.querySelector("#focus-evidence").setAttribute("title", focusEvidence);
+      document.querySelector("#focus-status").className = `status ${statusClass(focusTask?.status || "DONE")}`;
+      document.querySelector("#focus-status").textContent = statusLabels[focusTask?.status || "DONE"];
+      document.querySelector("#next-action").textContent = nextTask
+        ? `下一步：${nextTask.title}`
+        : "下一步：完成交付复盘";
+      document.querySelector("#progress-fill").style.setProperty("--progress-ratio", String(percent / 100));
+      document.querySelector("#progress-track").setAttribute("aria-valuenow", String(percent));
+      document.querySelector("#progress-count").textContent = `${done} / ${total} (${percent}%)`;
+      document.querySelector("#progress-description").textContent = total === 0
+        ? "等待确认任务范围"
+        : "仅计入已通过验收的任务";
+      document.querySelector("#done-count").textContent = done;
+      document.querySelector("#active-count").textContent = inProgress;
+      document.querySelector("#blocked-count").textContent = blocked;
+      document.querySelector("#task-summary").textContent =
+        `共 ${total} 项，已验收 ${done} 项，进行中 ${inProgress} 项，阻塞 ${blocked} 项。`;
+
+      const phaseLabels = {
+        planning: "规划阶段",
+        implementation: "开发阶段",
+        verification: "验证阶段",
+        complete: "已完成"
+      };
+      document.querySelector("#sidebar-brand-name").textContent = projectProgress.brandName || "Progress Board";
+      document.querySelector("#sidebar-brand-mark").textContent = projectInitials(projectProgress.brandName || projectProgress.projectName);
+      document.querySelector("#sidebar-project-name").textContent = projectProgress.projectName;
+      document.querySelector("#sidebar-phase").textContent = phaseLabels[projectProgress.phase] || projectProgress.phase;
+      document.querySelector("#sidebar-task-total").textContent = `${total} 项任务`;
+      document.querySelector("#sidebar-progress-fill").style.setProperty("--sidebar-ratio", String(percent / 100));
+      document.querySelector("#sidebar-progress-label").textContent = `${done} / ${total} 已验收`;
+      document.querySelector("#sidebar-progress-percent").textContent = `${percent}%`;
+      document.querySelector("#sidebar-sync").textContent = `同步于 ${projectProgress.updatedAt}`;
+
+      renderPhases();
+      renderFilters();
+      renderTasks();
+      renderInfoList("#blocker-list", projectProgress.blockers, "当前没有阻塞项。");
+      renderInfoList("#scope-list", projectProgress.scopeChanges, "范围没有变化。");
+    }
+
+    renderDashboard();
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# E3-09 Cross-Encoder 可选依赖（仅企业版真实 CE 精排需要；基础安装不强制拉 torch）
+# 固定版本；模型来源/许可/下载见 docs/project-development/109-enterprise-e3-09-cross-encoder.md。
+# 默认关闭（RAG_CROSS_ENCODER_ENABLED=false）；未安装或模型不可用时自动回退 heuristic。
+sentence-transformers==3.3.1
+# torch / transformers / tokenizers / huggingface-hub 由上面自动解析（本机安装为 torch 2.14.0+cpu 等）。

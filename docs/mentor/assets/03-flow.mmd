@@ -1,0 +1,70 @@
+flowchart TD
+    E0["平台需求草稿"] --> E1["Gitee Issue 研发任务入口"]
+    E1 --> T1["创建 Agent 任务 · main.py:7171"]
+
+    T1 --> T2{"索引分流决策 · main.py:3518"}
+    T2 -->|reuse 同 Commit 已完成| T4["复用索引 · main.py:3876"]
+    T2 -->|wait_index 同 Commit 运行中| T5["任务挂起 ISSUE_FETCHED"]
+    T2 -->|create_index 无可用索引| I1["SYNCING 拉取仓库快照 · main.py:1989"]
+    T2 -->|index_failed| TF["任务 FAILED · main.py:2571"]
+
+    I1 --> I2["PARSING 解析与切片 · parsing.py:165"]
+    I2 --> I3["EMBEDDING 向量化写 Milvus · llamaindex_backend.py:568"]
+    I3 --> I4["STORING 版本收尾"]
+    I4 --> I5["COMPLETED 发布索引 · main.py:3154"]
+
+    T5 -.索引完成自动恢复.-> T6
+    I5 -.-> T6
+    T4 --> T6["检索代码上下文 · main.py:3585"]
+
+    T6 --> T7{"命中达阈值 MIN_CONTEXT_SCORE 0.3"}
+    T7 -->|命中| T8["注入 code_contexts · CONTEXT_INDEXED · main.py:3791"]
+    T7 -->|为空| T9["转人工补充上下文 · 不判失败"]
+    T8 --> T10["检索历史相似任务 · main.py:3761"]
+
+    T10 --> G1["prepare_context · workflow.py:76"]
+    G1 --> G2["ANALYSIS_QUEUED 延迟 8s 入队"]
+    G2 --> G3["ai_analyze · workflow.py:183"]
+    G3 -.DeepAgents 叙述增强<br/>解析失败回退规则分析.-> G3
+    G3 --> G4["generate_plan · workflow.py:227"]
+
+    G4 --> P1{"计划二次风险门禁 · approval_policy.py:82"}
+    P1 -->|低风险安全| P2["自动审批 AUTO_APPROVED · approval_policy.py:122"]
+    P1 -->|任一条件不满足| P3["人工审批中心 /approvals"]
+    P3 --> P4["通过 APPROVED"]
+    P3 --> P5["要求重写 新计划版本 · 上限 2 次"]
+    P3 --> P6["拒绝 终止当前任务版本"]
+    P5 --> G4
+
+    P2 --> G6["generate_diff · workflow.py:262"]
+    P4 --> G6
+    G6 --> G7["run_test · workflow.py:289"]
+    G7 --> G8["generate_pr_description · workflow.py:307"]
+    G8 --> G9["finish · 任务 COMPLETED · workflow.py:319"]
+    G7 -->|失败且未超上限| G6
+    G7 -->|重试耗尽| GF["任务 FAILED · workflow.py:325"]
+
+    G9 --> R1["任务回放时间线 · replay_service.py"]
+    R1 --> R2["审计双表 · audit_events + task_events"]
+    R2 --> R3["历史复用摘要 · history_service.py"]
+    R3 -.为后续任务提供参考<br/>不自动套用旧 Diff.-> T6
+    G9 --> R4["工作台交付吞吐 /dashboard"]
+    R4 --> R5["企业审计中心 /audit"]
+
+    T1 -.企业版 workflow_version=2.-> N1["企业 6-Agent Runtime"]
+    N1 --> N2["Orchestrator + DB 原子租约抢占 · orchestrator.py:120"]
+    N2 --> N3{"decide_next_agent · graph.py:41"}
+    N3 -->|approve_wait| N4["审批门 approval_gate"]
+    N3 -->|proceed| N2
+    N3 -->|succeeded| N6["Runtime SUCCEEDED"]
+    N3 -->|human_wait| N7["WAITING_HUMAN 人工接管"]
+    N4 --> N5["回退 CodeChange · repair_round 上限 2"]
+    N5 --> N2
+
+    style TF fill:#ffe0e0
+    style GF fill:#ffe0e0
+    style P6 fill:#ffe0e0
+    style T9 fill:#fff3d6
+    style N7 fill:#fff3d6
+    style P2 fill:#e0f5e0
+    style N6 fill:#e0f5e0

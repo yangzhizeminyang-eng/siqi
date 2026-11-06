@@ -1,0 +1,67 @@
+{
+  "schema": "fix-real-redis-fault-recovery-v1",
+  "generated_at": "2026-10-18T13:22:31.984157+00:00",
+  "date": "2026-10-18",
+  "redis": {
+    "version": "7.0.15",
+    "port": 16379,
+    "broker_db": 9,
+    "result_db": 10,
+    "visibility_timeout": 8
+  },
+  "run_lease_seconds": 5,
+  "slow_eval_seconds": 5,
+  "run": {
+    "run_id": "rageval_d3a40f0aa769",
+    "tenant_id": "tenant_default",
+    "dataset": "e3_05_baseline.jsonl",
+    "retrieval_mode": "hybrid",
+    "top_k": 8,
+    "execution_scope": "isolated",
+    "status": "running",
+    "validation_status": "",
+    "report_name": null,
+    "summary": {},
+    "error": "",
+    "requested_by": "user_admin",
+    "requested_role": "tenant_owner",
+    "attempts": 1,
+    "created_at": "2026-10-18T13:20:17.514564Z",
+    "started_at": "2026-10-18T13:20:20.150721Z",
+    "finished_at": null,
+    "updated_at": "2026-10-18T13:20:20.150721Z"
+  },
+  "mid_status_after_kill": {
+    "run_id": "rageval_d3a40f0aa769",
+    "tenant_id": "tenant_default",
+    "dataset": "e3_05_baseline.jsonl",
+    "retrieval_mode": "hybrid",
+    "top_k": 8,
+    "execution_scope": "isolated",
+    "status": "running",
+    "validation_status": "",
+    "report_name": null,
+    "summary": {},
+    "error": "",
+    "requested_by": "user_admin",
+    "requested_role": "tenant_owner",
+    "attempts": 1,
+    "created_at": "2026-10-18T13:20:17.514564Z",
+    "started_at": "2026-10-18T13:20:20.150721Z",
+    "finished_at": null,
+    "updated_at": "2026-10-18T13:20:20.150721Z"
+  },
+  "checks": {
+    "restarted_worker_consumed": true,
+    "terminal_succeeded": false,
+    "attempts_ge_2": false,
+    "report_written": false,
+    "lease_expired_before_reclaim": true
+  },
+  "all_passed": false,
+  "worker_logs": {
+    "a": "C:\\temp\\siqi-redis-20261018\\fault_worker_a.log",
+    "b": "C:\\temp\\siqi-redis-20261018\\fault_worker_b.log"
+  },
+  "boundary": "worker crash on one host with real Redis; multi-host not executed"
+}

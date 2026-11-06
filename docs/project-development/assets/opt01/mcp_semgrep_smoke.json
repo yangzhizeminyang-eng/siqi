@@ -1,0 +1,85 @@
+{
+  "kind": "opt01_local_mcp_semgrep_smoke",
+  "run_at": "2026-10-15T14:58:40.520887+00:00",
+  "environment": {
+    "python": "3.12.10",
+    "semgrep": "1.181.0",
+    "transport": "stdio",
+    "server": "app.enterprise_runtime.mcp_server"
+  },
+  "discovered_tools": [
+    "semgrep_scan"
+  ],
+  "calls": {
+    "clean": {
+      "status": "ok",
+      "findings": [],
+      "finding_count": 0
+    },
+    "risky": {
+      "status": "ok",
+      "findings": [
+        {
+          "rule_id": "D.EnterpriseGradeAIAgentRDCollaborationPlatform.backend.app.enterprise_runtime.dangerous-python-eval",
+          "severity": "ERROR",
+          "path": "eval_sample.py",
+          "start_line": 2,
+          "message": "Avoid evaluating untrusted input with eval."
+        }
+      ],
+      "finding_count": 1
+    },
+    "path_escape": {
+      "status": "denied",
+      "error_type": "permission_denied",
+      "message": "scan target does not exist or cannot be resolved"
+    }
+  },
+  "audit_events": [
+    {
+      "event_type": "runtime.mcp.tool_call",
+      "tenant_id": "tenant-smoke",
+      "actor_id": "smoke-user",
+      "agent_type": "review_security_agent",
+      "task_id": "task-smoke",
+      "run_id": "run-smoke",
+      "call_id": "02d513cbe289485ead420ae3a8ee6ddf",
+      "tool_name": "semgrep_scan",
+      "outcome": "success",
+      "duration_ms": 3002.54
+    },
+    {
+      "event_type": "runtime.mcp.tool_call",
+      "tenant_id": "tenant-smoke",
+      "actor_id": "smoke-user",
+      "agent_type": "review_security_agent",
+      "task_id": "task-smoke",
+      "run_id": "run-smoke",
+      "call_id": "b266ca9acb9d458b8db4a510639192e4",
+      "tool_name": "semgrep_scan",
+      "outcome": "success",
+      "duration_ms": 3036.48
+    },
+    {
+      "event_type": "runtime.mcp.tool_call",
+      "tenant_id": "tenant-smoke",
+      "actor_id": "smoke-user",
+      "agent_type": "review_security_agent",
+      "task_id": "task-smoke",
+      "run_id": "run-smoke",
+      "call_id": "5d6dfe1a43b54f6f9cb0f5369fe58929",
+      "tool_name": "semgrep_scan",
+      "outcome": "denied",
+      "duration_ms": 0.76
+    }
+  ],
+  "checks": {
+    "discovery_restricted": true,
+    "clean_scan_ok": true,
+    "eval_scan_detected": true,
+    "path_escape_denied": true,
+    "audit_has_no_arguments": true,
+    "audit_has_no_capability": true
+  },
+  "passed": true
+}

@@ -1,0 +1,8 @@
+....s.............................................s...............       [100%]
+============================== warnings summary ===============================
+tests/test_pr_creation.py::test_create_pr_rejections
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\app\main.py:7603: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    task = create_task_pull_request(task, user)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+64 passed, 2 skipped, 1 warning in 4.11s

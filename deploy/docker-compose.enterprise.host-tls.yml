@@ -1,0 +1,8 @@
+# E6-01 host TLS override.
+# Use with docker-compose.enterprise.apponly.yml or docker-compose.enterprise.yml.
+# The host Nginx owns :80/:443; the enterprise frontend is reachable only locally.
+services:
+  frontend:
+    # Compose 的 !override 明确替换基础文件 ports，避免同时保留 0.0.0.0:8081。
+    ports: !override
+      - "127.0.0.1:${ENTERPRISE_PUBLIC_PORT:-8081}:8080"

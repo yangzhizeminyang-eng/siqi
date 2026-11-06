@@ -1,0 +1,253 @@
+# 企业版（E2-01 及后续）独立 Docker Compose 生产部署栈。
+# 与团队版（deploy/docker-compose.team.yml）完全隔离：独立 project 名 / 网络 / 数据卷 / 端口（默认公网 8081）。
+# 复用同一 backend/frontend 镜像，但 APP_ENV=enterprise，并强制 MySQL + Celery/Redis 严格运行期。
+# 约定：
+#   - 不修改、不影响团队版 docker-compose.team.yml / agent_team_* 资源。
+#   - MySQL 走外部 Docker 网络（默认 projectdream_backend_net），独立库 agent_enterprise，不对公网暴露。
+#   - Redis / backend 端口仅内部网络，不对宿主机公网绑定。
+# 应用-only 预算约 2 vCPU / 2 GB；启用本文件内置 Milvus 后，建议至少 4 vCPU / 8 GB，
+# 或将 Milvus/etcd/MinIO 拆到独立内网主机，避免与应用争抢资源。
+name: agent-enterprise
+
+x-backend-build: &backend-build
+  context: ..
+  dockerfile: backend/Dockerfile
+  args:
+    PIP_INDEX_URL: ${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}
+
+x-backend-env: &backend-env
+  APP_ENV: enterprise
+  APP_PORT: "8000"
+  DATA_DIR: /var/lib/agent/data
+  ENV_FILE: ""
+
+services:
+  backend:
+    build: *backend-build
+    env_file:
+      - ${ENTERPRISE_ENV_FILE:-./env/enterprise.env.example}
+    environment: *backend-env
+    # 迁移由后端 API 单实例执行；worker 只校验版本，不应并发跑迁移
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    volumes:
+      - enterprise_data:/var/lib/agent/data
+    networks:
+      - public
+      - data
+      - mysql
+      - milvus
+    depends_on:
+      redis:
+        condition: service_healthy
+      milvus-enterprise:
+        condition: service_healthy
+    expose:
+      - "8000"
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    mem_limit: 512m
+    cpus: 0.90
+    read_only: false
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 45s
+
+  worker:
+    build: *backend-build
+    env_file:
+      - ${ENTERPRISE_ENV_FILE:-./env/enterprise.env.example}
+    environment:
+      <<: *backend-env
+      RUN_ALEMBIC_UPGRADE: "false"        # worker 只检查迁移版本，不并发执行迁移（由 backend 执行）
+      TEST_RUNNER_MODE: docker
+      TEST_RUNNER_HOST_DATA_DIR: ${TEST_RUNNER_HOST_DATA_DIR:-/var/lib/docker/volumes/agent_enterprise_data/_data}
+      TEST_RUNNER_NETWORK: ${TEST_RUNNER_NETWORK:-none}
+      TEST_RUNNER_INSTALL_MODE: ${TEST_RUNNER_INSTALL_MODE:-image}
+      TEST_RUNNER_CPUS: ${TEST_RUNNER_CPUS:-0.40}
+      TEST_RUNNER_MEMORY: ${TEST_RUNNER_MEMORY:-256m}
+      TEST_RUNNER_PIDS_LIMIT: ${TEST_RUNNER_PIDS_LIMIT:-96}
+    command: ["celery", "-A", "app.workers.celery_app", "worker", "--loglevel=INFO", "--pool=solo"]
+    volumes:
+      - enterprise_data:/var/lib/agent/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - "${DOCKER_GID:-999}"
+    networks:
+      - data
+      - mysql
+      - milvus
+    depends_on:
+      backend:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    mem_limit: 450m
+    cpus: 0.70
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      # 控制面 ping：反映 worker 应答 + broker 可用；预热期由脚本 uptime 与 start_period 双保险
+      test: ["CMD", "/usr/local/bin/worker-healthcheck.sh"]
+      interval: 60s
+      timeout: 40s
+      retries: 3
+      start_period: 60s
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "96mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+    networks:
+      - data
+    restart: unless-stopped
+    init: true
+    mem_limit: 128m
+    cpus: 0.15
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
+
+  # 企业版专用 Milvus，使用独立服务名、网络和数据卷，不复用团队版资源。
+  # 不映射宿主机端口；backend/worker 通过内部 DNS milvus-enterprise:19530 访问。
+  etcd-enterprise:
+    image: quay.io/coreos/etcd:v3.5.5
+    command:
+      - etcd
+      - --advertise-client-urls=http://etcd-enterprise:2379
+      - --listen-client-urls=http://0.0.0.0:2379
+      - --initial-advertise-peer-urls=http://etcd-enterprise:2380
+      - --listen-peer-urls=http://0.0.0.0:2380
+      - --initial-cluster=default=http://etcd-enterprise:2380
+      - --initial-cluster-state=new
+      - --initial-cluster-token=agent-enterprise-milvus
+    volumes:
+      - enterprise_milvus_etcd_data:/etcd
+    networks:
+      - milvus-internal
+    restart: unless-stopped
+    init: true
+    mem_limit: 256m
+    cpus: 0.20
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  minio-enterprise:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    command: ["minio", "server", "/minio_data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: ${ENTERPRISE_MINIO_ROOT_USER:-enterprise-minio}
+      MINIO_ROOT_PASSWORD: ${ENTERPRISE_MINIO_ROOT_PASSWORD:?ENTERPRISE_MINIO_ROOT_PASSWORD must be set}
+    volumes:
+      - enterprise_milvus_minio_data:/minio_data
+    networks:
+      - milvus-internal
+    restart: unless-stopped
+    init: true
+    mem_limit: 512m
+    cpus: 0.30
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  milvus-enterprise:
+    image: milvusdb/milvus:v2.4.15
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_ENDPOINTS: etcd-enterprise:2379
+      MINIO_ADDRESS: minio-enterprise:9000
+      MINIO_ACCESS_KEY_ID: ${ENTERPRISE_MINIO_ROOT_USER:-enterprise-minio}
+      MINIO_SECRET_ACCESS_KEY: ${ENTERPRISE_MINIO_ROOT_PASSWORD:?ENTERPRISE_MINIO_ROOT_PASSWORD must be set}
+    volumes:
+      - enterprise_milvus_data:/var/lib/milvus
+    networks:
+      - milvus
+      - milvus-internal
+    depends_on:
+      etcd-enterprise:
+        condition: service_healthy
+      minio-enterprise:
+        condition: service_healthy
+    restart: unless-stopped
+    init: true
+    mem_limit: 768m
+    cpus: 0.55
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:9091/healthz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+
+  # 外部 MySQL：通过外部网络（默认 projectdream_backend_net）连接，独立库 agent_enterprise。
+  # 真正数据库实例由运维提供（enterprise.env.example 的 DATABASE_URL 指向其 host）。
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_DATA_SOURCE: real
+        NGINX_CONF: nginx.enterprise.conf
+    networks:
+      - public
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${ENTERPRISE_PUBLIC_PORT:-8081}:8080"
+    restart: unless-stopped
+    init: true
+    mem_limit: 96m
+    cpus: 0.20
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "http://127.0.0.1:8080/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+volumes:
+  enterprise_data:
+    name: agent_enterprise_data
+  redis_data:
+    name: agent_enterprise_redis_data
+  enterprise_milvus_data:
+    name: agent_enterprise_milvus_data
+  enterprise_milvus_etcd_data:
+    name: agent_enterprise_milvus_etcd_data
+  enterprise_milvus_minio_data:
+    name: agent_enterprise_milvus_minio_data
+
+networks:
+  public:
+    name: agent_enterprise_public
+  data:
+    name: agent_enterprise_data
+    internal: true
+  mysql:
+    name: ${ENTERPRISE_MYSQL_NETWORK:-projectdream_backend_net}
+    external: true
+  milvus:
+    name: agent_enterprise_milvus
+    internal: true
+  milvus-internal:
+    name: agent_enterprise_milvus_internal
+    internal: true

@@ -1,0 +1,38 @@
+{
+  "name": "health-middle-commercial-d3177e3a4db8",
+  "repository_id": "repo_b5b8dd165d3a",
+  "index_id": "idx_558411000439",
+  "commit_sha": "d3177e3a4db81b7344a0ffed8fc0800cd3218e88",
+  "cases": [
+    {
+      "id": "fastapi-app-bootstrap",
+      "query": "Where is the FastAPI application created and the API routers registered?",
+      "expected_file_paths": ["backend/app/main.py"]
+    },
+    {
+      "id": "backend-settings",
+      "query": "Which file defines the Settings model and loads HGA database, LLM, OCR, and SMS environment configuration?",
+      "expected_file_paths": ["backend/app/config.py"]
+    },
+    {
+      "id": "database-session",
+      "query": "Where are the SQLAlchemy database engine, session factory, and get_db dependency configured?",
+      "expected_file_paths": ["backend/app/db.py"]
+    },
+    {
+      "id": "backend-container-build",
+      "query": "How is the FastAPI backend container image built, including Python dependencies and the startup command?",
+      "expected_file_paths": ["backend/Dockerfile"]
+    },
+    {
+      "id": "backend-runtime-dependencies",
+      "query": "Which Python packages are required by the backend service?",
+      "expected_file_paths": ["backend/requirements.txt"]
+    },
+    {
+      "id": "docker-compose-runtime",
+      "query": "Where is the backend Docker Compose service configured with environment variables and container runtime settings?",
+      "expected_file_paths": ["docker-compose.yml"]
+    }
+  ]
+}

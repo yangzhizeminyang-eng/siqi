@@ -1,0 +1,6 @@
+# OPT-08 演示 CLI 控制台：隔离自强制（in-memory / 无 DB / 无 Celery / 无 Milvus / 无远端写模块），敌对环境变量被压制
+# cmd: cd backend && .venv/Scripts/python.exe scripts/opt08_rag_eval_online_demo.py --out ../docs/project-development/assets/opt08/opt08_eval_evidence.json --reports-dir .data/opt08-demo/reports-assets
+# 说明：RAG 向量回退提示行（"向量检索失败…已显式降级为内存关键词检索 source=fallback"，共 168 行）属确定性内存态预期噪声，已过滤；完整证据见 opt08_eval_evidence.json
+OPT-08 demo: run=rageval_e83a40c8e922 status=succeeded validation=local_only checks=16/16
+evidence=D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\docs\project-development\assets\opt08\opt08_eval_evidence.json
+EXIT=0

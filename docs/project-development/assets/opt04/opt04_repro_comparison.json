@@ -1,0 +1,22 @@
+{
+  "same_dataset": true,
+  "dataset_sha256": "e306b418762c6c1132fe8eb34d27959939d6a2741f969cf3d6fbe21b1668319d",
+  "baseline_schema": "rag-eval-report-v2",
+  "current_schema": "rag-eval-report-v2",
+  "regression_count": 0,
+  "regressions": [],
+  "improvement_count": 0,
+  "improvements": [],
+  "missing_cases": [],
+  "new_cases": [],
+  "metric_deltas": {
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "mrr": 0.0,
+    "ndcg_at_k": 0.0,
+    "latency_p50_ms": 0.2,
+    "latency_p95_ms": 0.5
+  },
+  "environment_drift": {},
+  "drift_detected": false
+}

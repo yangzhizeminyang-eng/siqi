@@ -1,0 +1,4 @@
+.......s                                                                 [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_enterprise_e4_agents.py:526: requires_redis: broker 不可达（127.0.0.1:6379，TCP 探测超时 0.6s）——环境缺失分类 → skip（非代码失败）；启动本地 Redis 或设置 TEST_REDIS_URL 后重跑
+7 passed, 1 skipped in 17.31s

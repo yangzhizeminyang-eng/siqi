@@ -1,0 +1,8 @@
+{
+  "run_id": "rageval_6ec0400a3b09",
+  "status": "running",
+  "attempts": 1,
+  "container": "siqi-health-worker",
+  "docker_response": "HTTP/1.1 204 No Content",
+  "killed_at": "2026-10-19T04:09:30.608105+00:00"
+}

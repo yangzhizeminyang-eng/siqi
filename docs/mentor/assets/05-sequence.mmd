@@ -1,0 +1,81 @@
+sequenceDiagram
+    autonumber
+    actor U as 研发用户
+    participant FE as Vue3 前端
+    participant API as FastAPI main.py
+    participant G as Gitee OpenAPI
+    participant Q as Redis + Celery
+    participant IX as 索引流水线
+    participant W as Agent Worker
+    participant RG as RAG 检索链
+    participant MV as Milvus
+    participant LLM as DeepSeek LLM
+    participant DK as Docker Runner
+    participant DB as MySQL
+
+    U->>FE: 选择仓库 + 填 Issue ID
+    FE->>API: POST /api/tasks
+    API->>G: 拉取 Issue 快照与评论
+    G-->>API: IssueSnapshot
+    API->>DB: 保存任务 + IssueSnapshot
+    API->>API: index_action_for_head 分流
+
+    alt 无可用索引 create_index
+        API->>IX: _enqueue_index_build 入队
+        IX->>G: 克隆/API 拉取仓库快照
+        IX->>IX: PARSING 业务过滤 + LlamaIndex 切片
+        IX->>IX: 行号锚定 + 符号名提取
+        IX->>MV: EMBEDDING 写入向量集合 code_indexId
+        IX->>DB: 保存索引版本与切片元数据
+        IX-->>API: INDEX_COMPLETED 事件
+        API->>W: resume_tasks_waiting_for_index 投递 run_agent
+    else 可复用 reuse
+        API->>W: 直接投递 run_agent
+    end
+
+    W->>W: LangGraph prepare_context
+    W->>RG: run_task_retrieval 构造 query
+    RG->>DB: code_chunks_of_index 读取切片真源
+    RG->>MV: 向量召回
+    RG->>RG: BM25 召回 + RRF 融合
+    RG->>RG: 阈值门禁 + 去重 + 单文件配额
+    MV-->>RG: 候选片段与元数据
+    RG-->>W: RetrievalContext 列表
+    alt 命中
+        W->>DB: 注入 code_contexts 置 CONTEXT_INDEXED
+        W->>DB: 检索历史相似任务 仅参考
+    else 为空
+        W->>DB: manual_reason=context_missing 转人工
+    end
+
+    W->>W: ANALYSIS_QUEUED 延迟 8s
+    W->>LLM: ai_analyze 生成结构化分析与风险
+    LLM-->>W: 问题 / 风险 / 影响面
+    W->>LLM: generate_plan 生成结构化修改计划
+    LLM-->>W: ModificationPlan v1
+    W->>DB: PLAN_GENERATED + WAITING_APPROVAL
+
+    W->>W: evaluate_plan_gate 二次风险判断
+    alt 低风险安全
+        W->>DB: PLAN_AUTO_APPROVED 自动审批并审计
+    else 需要人工
+        W->>DB: 通知审批人
+        U->>FE: 在审批中心处理
+        FE->>API: approve / reject / rewrite
+        API->>W: 恢复 LangGraph
+    end
+
+    W->>W: generate_diff 受控生成 Diff
+    W->>DK: run_test 白名单命令隔离执行
+    DK-->>W: exit_code + stdout + stderr
+    alt 测试失败且未超上限
+        W->>W: 回到 generate_diff 重试
+    end
+    W->>LLM: generate_pr_description 六段式
+    W->>G: 创建真实 Gitee PR
+    G-->>W: PR 链接与编号
+    W->>DB: TESTED / COMPLETED + 事件 + 步骤
+    W->>DB: 沉淀历史复用摘要
+    U->>FE: 打开任务回放与审计
+    FE->>API: 读取时间线与审计事件
+    API-->>FE: ReplaySummary

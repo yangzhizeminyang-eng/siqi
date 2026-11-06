@@ -1,0 +1,45 @@
+sequenceDiagram
+    autonumber
+    actor U as 用户 / 管理员
+    participant API as /api/enterprise/runtime
+    participant O as Orchestrator
+    participant DB as MySQL 租约表
+    participant W as Celery Worker
+    participant EX as AgentExecutor
+    participant AG as 专业 Agent
+    participant AR as ArtifactStore
+    participant AP as E2 审批服务
+    participant AU as 审计
+
+    U->>API: start_runtime_task workflow_version=2
+    API->>O: start_runtime_task 幂等键
+    O->>DB: 建 RuntimeTask + 6 个 RuntimeStep
+    O->>AU: 写 tenant 归属审计
+    loop 每个步骤
+        W->>O: claim_next_step worker_id
+        O->>DB: 条件 UPDATE 抢占租约 lease_expires_at
+        alt 抢到
+            DB-->>O: ExecutionLease
+        else 抢失败
+            DB-->>O: None 直接退出 不重复执行
+        end
+        O->>EX: 执行当前 agent_type
+        EX->>AG: 按定义注入 system prompt + 工具白名单 + 上下文域
+        AG->>AR: 读入允许的 Artifact 类型
+        AG->>AR: 写出允许的 Artifact 类型
+        EX->>O: route_via_graph 由图计算 decision 与 next_step
+        O->>DB: 保存 checkpoint 脱敏摘要
+        alt agent=planner
+            O->>AP: 创建 runtime 审批单
+            AP-->>O: WAITING_APPROVAL 停机
+            U->>AP: 审批通过
+            AP->>O: _forward_runtime_decision 回写
+        else review 不通过 或 test 失败且 repair_round 小于 2
+            O->>O: repair_round + 1 回退 CodeChange
+        else test 失败且超过上限
+            O->>O: WAITING_HUMAN 人工接管
+            U->>API: resume / retry / cancel
+        end
+    end
+    O->>DB: SUCCEEDED + completed_steps
+    O->>AU: 交付证据 ReleaseEvidence

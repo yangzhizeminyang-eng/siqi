@@ -1,0 +1,7 @@
+{
+  "schema": "opt12-doc-consistency-v1",
+  "corpus": "docs/project-development (assets 除外)",
+  "docs_scanned": 72,
+  "violations": [],
+  "violation_count": 0
+}

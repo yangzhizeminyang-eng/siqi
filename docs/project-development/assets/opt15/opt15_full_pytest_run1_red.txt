@@ -1,0 +1,110 @@
+........................................................................ [  6%]
+........................................................................ [ 13%]
+........................................................................ [ 20%]
+........................................................................ [ 26%]
+...................................................s.................... [ 33%]
+........s............................................................... [ 40%]
+........................................................................ [ 47%]
+........................................................................ [ 53%]
+........................................................................ [ 60%]
+.s...................................................................s.. [ 67%]
+..........s...............ssssss........................................ [ 73%]
+...............................................................FF.....F. [ 80%]
+........................................................................ [ 87%]
+....................s......ssss......s.................................. [ 94%]
+................................................................         [100%]
+================================== FAILURES ===================================
+_________________ test_parsing_config_env_override_subprocess _________________
+
+    def test_parsing_config_env_override_subprocess():
+>       line = _run_py(_PARSE_CONFIG_CODE, {
+            "RAG_CHUNK_LINES": "20", "RAG_CHUNK_OVERLAP_LINES": "3", "RAG_CHUNK_MAX_CHARS": "1500"})
+
+tests\test_opt10_rag_ablation.py:235:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+code = 'import app.retrieval.parsing_config as pc;print(pc.INDEX_TARGET_WINDOW_LINES, pc.INDEX_WINDOW_OVERLAP_LINES, pc.MAX_CHUNK_CHARS)'
+env_extra = {'RAG_CHUNK_LINES': '20', 'RAG_CHUNK_OVERLAP_LINES': '3', 'RAG_CHUNK_MAX_CHARS': '1500'}
+
+    def _run_py(code: str, env_extra: dict) -> str:
+        env = os.environ.copy()
+        env.update(env_extra)
+        out = subprocess.run([sys.executable, "-c", code], cwd=str(_BACKEND), env=env,
+                             capture_output=True, text=True, timeout=120)
+>       assert out.returncode == 0, out.stderr[-800:]
+E       AssertionError: OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.venv\\Scripts\\python.exe'...OpenBLAS error: Memory allocation still failed after 10 retries, giving up.\nOpenBLAS error: Memory allocation still ').returncode
+
+tests\test_opt10_rag_ablation.py:230: AssertionError
+______________ test_parsing_config_invalid_falls_back_and_clamps ______________
+
+    def test_parsing_config_invalid_falls_back_and_clamps():
+>       assert _run_py(_PARSE_CONFIG_CODE, {"RAG_CHUNK_LINES": "abc"}) == "40 10 4000"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_opt10_rag_ablation.py:241:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+code = 'import app.retrieval.parsing_config as pc;print(pc.INDEX_TARGET_WINDOW_LINES, pc.INDEX_WINDOW_OVERLAP_LINES, pc.MAX_CHUNK_CHARS)'
+env_extra = {'RAG_CHUNK_LINES': 'abc'}
+
+    def _run_py(code: str, env_extra: dict) -> str:
+        env = os.environ.copy()
+        env.update(env_extra)
+        out = subprocess.run([sys.executable, "-c", code], cwd=str(_BACKEND), env=env,
+                             capture_output=True, text=True, timeout=120)
+>       assert out.returncode == 0, out.stderr[-800:]
+E       AssertionError: OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.venv\\Scripts\\python.exe'...ll failed after 10 retries, giving up.\nOpenBLAS error: Memory allocation still failed after 10 retries, giving up.\n').returncode
+
+tests\test_opt10_rag_ablation.py:230: AssertionError
+_____________________ test_ablation_cli_quick_end_to_end ______________________
+
+tmp_path = WindowsPath('C:/temp/pytest-of-杨志泽民/pytest-231/test_ablation_cli_quick_end_to0')
+
+    def test_ablation_cli_quick_end_to_end(tmp_path):
+        out = tmp_path / "opt10_ablation.json"
+        env = os.environ.copy()
+        env["ENV_FILE"] = str(_BACKEND / "tests" / ".env.hermetic-nonexistent")
+        result = subprocess.run(
+            [sys.executable, str(_BACKEND / "scripts" / "opt10_rag_ablation.py"), "--quick", "--out", str(out)],
+            cwd=str(_BACKEND), env=env, capture_output=True, text=True, timeout=900)
+
+>       assert result.returncode == 0, f"stdout={result.stdout[-1500:]}\nstderr={result.stderr[-2500:]}"
+E       AssertionError: stdout=
+E         stderr=消融执行失败: 配置 baseline 子进程失败(exit=1): OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E         OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+E
+E
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['D:\\Enterprise‑Grade AI Agent R&D Collaboration Platform\\backend\\.venv\\Scripts\\python.exe'... failed after 10 retries, giving up.\nOpenBLAS error: Memory allocation still failed after 10 retries, giving up.\n\n').returncode
+
+tests\test_opt10_rag_ablation_cli.py:22: AssertionError
+============================== warnings summary ===============================
+tests/test_pr_creation.py::test_create_pr_rejections
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\app\main.py:7603: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    task = create_task_pull_request(task, user)
+
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+tests/test_reads_layer.py::test_core_reads_are_db_backed_after_dict_clear
+  D:\Enterprise‑Grade AI Agent R&D Collaboration Platform\backend\.venv\Lib\site-packages\starlette\testclient.py:455: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return super().request(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_opt10_rag_ablation.py::test_parsing_config_env_override_subprocess
+FAILED tests/test_opt10_rag_ablation.py::test_parsing_config_invalid_falls_back_and_clamps
+FAILED tests/test_opt10_rag_ablation_cli.py::test_ablation_cli_quick_end_to_end
+3 failed, 1052 passed, 17 skipped, 4 warnings in 1424.17s (0:23:44)
+PYTEST_EXIT=1
